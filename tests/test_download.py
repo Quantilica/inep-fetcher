@@ -144,9 +144,20 @@ def test_download_group_without_errors_list_does_not_raise(tmp_path):
     assert paths == []
 
 
-def test_download_all_default_covers_all_16_groups(tmp_path):
+def test_download_all_default_covers_all_34_groups(tmp_path):
     with patch("inep_fetcher.download._safe_head_date", return_value=None):
         paths = download_all(tmp_path, dry_run=True)
 
     assert len(paths) == len(list_datasets())
-    assert len(paths) == 149
+    assert len(paths) == 796
+
+
+def test_download_all_indicadores_macro_alias(tmp_path):
+    """O macro-alias 'indicadores_educacionais' deve funcionar em download_all,
+    igual ao 'aerodromos' do anac-fetcher."""
+    with patch("inep_fetcher.download._safe_head_date", return_value=None):
+        paths = download_all(
+            tmp_path, groups=["indicadores_educacionais"], dry_run=True
+        )
+
+    assert len(paths) == 647

@@ -2,7 +2,7 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square) ![Python](https://img.shields.io/badge/python-3.12+-blue.svg?style=flat-square)
 
-Utilitário de linha de comando para baixar microdados públicos do [INEP](https://www.gov.br/inep/) (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): ENEM, Censo Escolar, Censo da Educação Superior, SAEB, ENADE, ANA, Encceja, TALIS e mais 9 avaliações/censos menores — 16 grupos ao todo. Descobre datasets a partir de um catálogo declarativo e faz o download organizado por grupo, com manifestos de proveniência via `quantilica-core`.
+Utilitário de linha de comando para baixar dados públicos do [INEP](https://www.gov.br/inep/) (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): microdados brutos (ENEM, Censo Escolar, Censo da Educação Superior, SAEB, ENADE, ANA, Encceja, TALIS e mais 9 avaliações/censos menores — 16 grupos) e os 18 grupos de Indicadores Educacionais derivados (taxas de rendimento, distorção idade-série, nível socioeconômico, indicadores financeiros etc.) — 34 grupos e quase 800 datasets ao todo. Descobre datasets a partir de um catálogo declarativo e faz o download organizado por grupo, com manifestos de proveniência via `quantilica-core`.
 
 ## Instalação
 
@@ -35,6 +35,9 @@ inep-fetcher sync
 # Baixar grupos específicos
 inep-fetcher sync enem censo_escolar -o ./dados/inep
 
+# Baixar todos os 18 grupos de indicadores educacionais de uma vez
+inep-fetcher sync indicadores_educacionais
+
 # Listar os arquivos que seriam baixados, sem baixar
 inep-fetcher sync --dry-run
 ```
@@ -42,7 +45,7 @@ inep-fetcher sync --dry-run
 O `sync` aplica uma pausa de 0.3s entre downloads por padrão (cortesia ao
 servidor); ajuste com `--sleeptime SEGUNDOS` se necessário.
 
-Grupos disponíveis:
+**Microdados brutos** (16 grupos):
 
 | Grupo | Descrição | Cobertura |
 |---|---|---|
@@ -62,6 +65,31 @@ Grupos disponíveis:
 | `idd` | Indicador de Diferença entre Desempenho Observado e Esperado | 2021-2023 |
 | `enem_por_escola` | ENEM por Escola | 2005-2015 (agregado em 1 arquivo) |
 | `talis` | TALIS (pesquisa internacional de docência) | 2018, 2024 |
+
+**Indicadores Educacionais** (18 grupos, macro-alias `indicadores_educacionais`
+expande para todos de uma vez — dados derivados/agregados, não microdados
+brutos, publicados por ano/período em brasil-regiões-UF, município e escola):
+
+| Grupo | Descrição |
+|---|---|
+| `adequacao_formacao_docente` | Adequação da Formação Docente |
+| `complexidade_gestao_escola` | Complexidade de Gestão da Escola |
+| `esforco_docente` | Esforço Docente |
+| `indicadores_fluxo_educacao_superior` | Indicadores de Fluxo da Educação Superior |
+| `indicadores_qualidade_educacao_superior` | Indicadores de Qualidade da Educação Superior |
+| `indicadores_trajetoria_educacao_superior` | Indicadores de Trajetória da Educação Superior |
+| `indicadores_financeiros_educacionais` | Indicadores Financeiros Educacionais |
+| `media_alunos_por_turma` | Média de Alunos por Turma |
+| `media_horas_aula_diaria` | Média de Horas Aula Diária |
+| `nivel_socioeconomico` | Nível Socioeconômico (Inse) |
+| `docentes_curso_superior` | Percentual de Docentes com Curso Superior |
+| `docentes_pos_graduacao` | Percentual de Docentes com Pós-Graduação Stricto Sensu |
+| `regularidade_corpo_docente` | Regularidade do Corpo Docente |
+| `remuneracao_docentes` | Remuneração Média dos Docentes |
+| `taxas_distorcao_idade_serie` | Taxas de Distorção Idade-Série |
+| `taxas_nao_resposta` | Taxas de Não Resposta |
+| `taxas_rendimento_escolar` | Taxas de Rendimento Escolar |
+| `taxas_transicao` | Taxas de Transição |
 
 ### Nota sobre TLS
 

@@ -11,7 +11,7 @@ from .catalog import ALL_GROUP_KEYS, GROUP_ALIASES, expand_group, list_datasets
 from .download import DownloadError, download_all
 
 _DEFAULT_OUTPUT = Path("/data/inep")
-_ALL_KEYS = ALL_GROUP_KEYS + list(GROUP_ALIASES)
+_ALL_KEYS = ALL_GROUP_KEYS + list(GROUP_ALIASES) + ["indicadores_educacionais"]
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -35,8 +35,11 @@ def get_parser() -> argparse.ArgumentParser:
             "Grupos a baixar: enem, censo_escolar, censo_educacao_superior, "
             "saeb, enade, ana, encceja, censo_magisterio, "
             "enade_licenciaturas, enamed, pnd, pnera, "
-            "pesquisa_discriminacao, idd, enem_por_escola, talis. "
-            "Padrão: todos (16 grupos, pode passar de 20GB — use --dry-run "
+            "pesquisa_discriminacao, idd, enem_por_escola, talis, ou "
+            "indicadores_educacionais (macro-alias que expande para os 18 "
+            "grupos de indicadores educacionais — adequacao_formacao_docente, "
+            "taxas_rendimento_escolar, taxas_distorcao_idade_serie, etc.). "
+            "Padrão: todos (34 grupos, pode passar de 20GB — use --dry-run "
             "antes de rodar sem filtro)."
         ),
     )

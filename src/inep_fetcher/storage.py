@@ -36,6 +36,29 @@ _GROUP_DIRS: dict[str, str] = {
     "idd": "idd",
     "enem_por_escola": "enem-por-escola",
     "talis": "talis",
+    # Indicadores Educacionais (18 grupos derivados, não microdados brutos)
+    "adequacao_formacao_docente": "indicadores/adequacao-formacao-docente",
+    "complexidade_gestao_escola": "indicadores/complexidade-gestao-escola",
+    "esforco_docente": "indicadores/esforco-docente",
+    "indicadores_fluxo_educacao_superior": "indicadores/fluxo-educacao-superior",
+    "indicadores_qualidade_educacao_superior": (
+        "indicadores/qualidade-educacao-superior"
+    ),
+    "indicadores_trajetoria_educacao_superior": (
+        "indicadores/trajetoria-educacao-superior"
+    ),
+    "indicadores_financeiros_educacionais": "indicadores/financeiros",
+    "media_alunos_por_turma": "indicadores/media-alunos-por-turma",
+    "media_horas_aula_diaria": "indicadores/media-horas-aula-diaria",
+    "nivel_socioeconomico": "indicadores/nivel-socioeconomico",
+    "docentes_curso_superior": "indicadores/docentes-curso-superior",
+    "docentes_pos_graduacao": "indicadores/docentes-pos-graduacao",
+    "regularidade_corpo_docente": "indicadores/regularidade-corpo-docente",
+    "remuneracao_docentes": "indicadores/remuneracao-docentes",
+    "taxas_distorcao_idade_serie": "indicadores/taxas-distorcao-idade-serie",
+    "taxas_nao_resposta": "indicadores/taxas-nao-resposta",
+    "taxas_rendimento_escolar": "indicadores/taxas-rendimento-escolar",
+    "taxas_transicao": "indicadores/taxas-transicao",
 }
 
 

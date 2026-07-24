@@ -16,6 +16,24 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
   `enade_licenciaturas` (2025), `enamed` (2025), `pnd` (2025), `pnera`
   (2004), `pesquisa_discriminacao` (2008), `idd` (2021-2023),
   `enem_por_escola` (agregado 2005-2015) e `talis` (2018, 2024).
+- Catálogo de 18 grupos de **Indicadores Educacionais** (dados derivados/
+  agregados, não microdados brutos): `adequacao_formacao_docente`,
+  `complexidade_gestao_escola`, `esforco_docente`,
+  `indicadores_fluxo_educacao_superior`,
+  `indicadores_qualidade_educacao_superior`,
+  `indicadores_trajetoria_educacao_superior`,
+  `indicadores_financeiros_educacionais`, `media_alunos_por_turma`,
+  `media_horas_aula_diaria`, `nivel_socioeconomico`,
+  `docentes_curso_superior`, `docentes_pos_graduacao`,
+  `regularidade_corpo_docente`, `remuneracao_docentes`,
+  `taxas_distorcao_idade_serie`, `taxas_nao_resposta`,
+  `taxas_rendimento_escolar` e `taxas_transicao` — 647 datasets, com
+  macro-alias `indicadores_educacionais` para baixar todos de uma vez.
+  As URLs reais só ficam disponíveis via um fragmento carregado por AJAX
+  por ano/período (não aparecem na página estática), então foram obtidas
+  buscando cada fragmento individualmente; a nomenclatura muda de era
+  dentro de quase todo indicador (prefixos compactos maiúsculos nos anos
+  recentes vs. nomes descritivos com subdiretório extra nos anos antigos).
 - CLI standalone (`inep-fetcher`, `argparse`) e plugin Typer/Rich para
   `quantilica-cli` (`quantilica inep`), com os comandos `sync` e `discover`.
 - Manifestos de proveniência (`DownloadManifest`) via `quantilica-core` em

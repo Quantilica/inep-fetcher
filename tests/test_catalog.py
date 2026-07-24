@@ -5,12 +5,13 @@ import pytest
 from inep_fetcher.catalog import (
     ALL_GROUP_KEYS,
     GROUPS,
+    INDICADORES_GROUP_KEYS,
     expand_group,
     list_datasets,
     resolve_group,
 )
 
-_EXPECTED_GROUPS = {
+_EXPECTED_MICRODADOS_GROUPS = {
     "enem",
     "censo_escolar",
     "censo_educacao_superior",
@@ -29,6 +30,29 @@ _EXPECTED_GROUPS = {
     "talis",
 }
 
+_EXPECTED_INDICADORES_GROUPS = {
+    "adequacao_formacao_docente",
+    "complexidade_gestao_escola",
+    "esforco_docente",
+    "indicadores_fluxo_educacao_superior",
+    "indicadores_qualidade_educacao_superior",
+    "indicadores_trajetoria_educacao_superior",
+    "indicadores_financeiros_educacionais",
+    "media_alunos_por_turma",
+    "media_horas_aula_diaria",
+    "nivel_socioeconomico",
+    "docentes_curso_superior",
+    "docentes_pos_graduacao",
+    "regularidade_corpo_docente",
+    "remuneracao_docentes",
+    "taxas_distorcao_idade_serie",
+    "taxas_nao_resposta",
+    "taxas_rendimento_escolar",
+    "taxas_transicao",
+}
+
+_EXPECTED_GROUPS = _EXPECTED_MICRODADOS_GROUPS | _EXPECTED_INDICADORES_GROUPS
+
 _SINGLE_EDITION_GROUPS = {
     "censo_magisterio",
     "enade_licenciaturas",
@@ -39,10 +63,15 @@ _SINGLE_EDITION_GROUPS = {
 }
 
 
-def test_all_16_groups_present():
+def test_all_34_groups_present():
     assert set(GROUPS) == _EXPECTED_GROUPS
     assert set(ALL_GROUP_KEYS) == _EXPECTED_GROUPS
-    assert len(GROUPS) == 16
+    assert len(GROUPS) == 34
+
+
+def test_indicadores_group_keys_match_expected():
+    assert set(INDICADORES_GROUP_KEYS) == _EXPECTED_INDICADORES_GROUPS
+    assert len(INDICADORES_GROUP_KEYS) == 18
 
 
 def test_each_group_has_name_and_entries():
@@ -105,8 +134,12 @@ def test_semester_and_month_always_none():
 
 
 def test_total_dataset_count():
-    """Contagem exata confirmada durante a implementação (regressão)."""
-    assert len(list_datasets()) == 149
+    """Contagem exata confirmada durante a implementação (regressão).
+
+    149 = microdados (16 grupos) + 647 = indicadores educacionais (18 grupos).
+    """
+    assert len(list_datasets()) == 149 + 647
+    assert len(list_datasets()) == 796
 
 
 # ---------------------------------------------------------------------------
@@ -330,3 +363,101 @@ def test_list_datasets_filtered():
 def test_list_datasets_unknown_group_raises():
     with pytest.raises(ValueError, match="Unknown group"):
         list_datasets("bogus")
+
+
+# ---------------------------------------------------------------------------
+# Indicadores Educacionais (18 grupos derivados — descoberta via fragmento
+# AJAX por ano, não da página estática; ver catalog_indicadores.py)
+# ---------------------------------------------------------------------------
+
+
+def test_indicadores_macro_alias_expands_to_18_groups():
+    expanded = expand_group("indicadores_educacionais")
+    assert set(expanded) == _EXPECTED_INDICADORES_GROUPS
+
+
+def test_indicadores_macro_alias_datasets_count():
+    entries = [
+        e for g in expand_group("indicadores_educacionais") for e in list_datasets(g)
+    ]
+    assert len(entries) == 647
+
+
+def test_indicadores_entries_have_year_none():
+    """O nome público do arquivo já embute o período (ano único ou
+    intervalo, varia por indicador) — year fica None para não duplicar/
+    ambiguar; o período vive em `name`/`base_id`."""
+    entries = [e for g in INDICADORES_GROUP_KEYS for e in list_datasets(g)]
+    assert all(e["year"] is None for e in entries)
+
+
+def test_indicadores_source_is_distinct_from_microdados():
+    entries = [e for g in INDICADORES_GROUP_KEYS for e in list_datasets(g)]
+    assert all(e["source"] == "inep-indicadores-educacionais" for e in entries)
+    microdados_entries = [
+        e for g in _EXPECTED_MICRODADOS_GROUPS for e in list_datasets(g)
+    ]
+    assert all(e["source"] == "inep-microdados" for e in microdados_entries)
+
+
+def test_taxas_rendimento_escolar_has_3_files_for_2025():
+    entries = [
+        e for e in list_datasets("taxas_rendimento_escolar") if "2025" in e["url"]
+    ]
+    assert len(entries) == 3
+    levels = {e["url"].rsplit("/", 1)[-1] for e in entries}
+    assert levels == {
+        "tx_rend_brasil_regioes_ufs_2025.zip",
+        "tx_rend_escolas_2025.zip",
+        "tx_rend_municipios_2025.zip",
+    }
+
+
+def test_taxas_nao_resposta_has_no_spurious_2010_duplicate():
+    """Achado da coleta: a aba "2010" de taxas-de-nao-resposta no site do
+    INEP na verdade serve os MESMOS arquivos de 2011 (bug do próprio site,
+    confirmado por re-fetch) — removido do catálogo para não duplicar dados
+    de 2011 sob um rótulo de ano incorreto."""
+    urls = {e["url"] for e in list_datasets("taxas_nao_resposta")}
+    assert not any("/2010/" in u for u in urls)
+    assert any("2011" in u for u in urls)
+
+
+def test_nivel_socioeconomico_has_4_files_per_year():
+    entries = [e for e in list_datasets("nivel_socioeconomico") if "2023" in e["url"]]
+    assert len(entries) == 4
+
+
+def test_indicadores_financeiros_is_static_without_year_in_filename():
+    """Os 10 arquivos de indicadores financeiros não têm aba por ano — são
+    séries históricas completas em um único arquivo cada."""
+    entries = list_datasets("indicadores_financeiros_educacionais")
+    assert len(entries) == 10
+    for e in entries:
+        assert e["year"] is None
+
+
+def test_indicadores_urls_start_with_https():
+    entries = [e for g in INDICADORES_GROUP_KEYS for e in list_datasets(g)]
+    for e in entries:
+        assert e["url"].startswith("https://download.inep.gov.br/")
+
+
+def test_indicadores_no_duplicate_ids_globally():
+    """Os ids dos 18 grupos de indicadores não colidem entre si nem com os
+    16 grupos de microdados."""
+    all_entries = list_datasets()
+    ids = [e["id"] for e in all_entries]
+    assert len(ids) == len(set(ids))
+
+
+def test_indicadores_naming_era_shift_within_same_group():
+    """Regressão do achado principal: dentro de um MESMO indicador, a
+    nomenclatura muda de era (prefixo maiúsculo compacto nos anos recentes
+    vs. nome descritivo em português com subdiretório extra nos anos
+    antigos) — não existe fórmula única por range()."""
+    urls = [e["url"] for e in list_datasets("media_horas_aula_diaria")]
+    recent = [u for u in urls if "/2025/HAD_2025" in u]
+    old = [u for u in urls if "media_hora_aula_diaria/2010" in u]
+    assert recent, "formato recente (HAD_2025_*) não encontrado"
+    assert old, "formato antigo (media_hora_aula_diaria/2010/*) não encontrado"

@@ -28,7 +28,7 @@ console = get_console()
 
 _DEFAULT_OUTPUT = Path("/data/inep")
 
-_ALL_KEYS = ALL_GROUP_KEYS + list(GROUP_ALIASES)
+_ALL_KEYS = ALL_GROUP_KEYS + list(GROUP_ALIASES) + ["indicadores_educacionais"]
 
 
 def _file_callback(
@@ -58,7 +58,8 @@ def sync(
                 "censo_educacao_superior, saeb, enade, ana, encceja, "
                 "censo_magisterio, enade_licenciaturas, enamed, pnd, "
                 "pnera, pesquisa_discriminacao, idd, enem_por_escola, "
-                "talis. Padrão: todos."
+                "talis, ou indicadores_educacionais (macro-alias para os "
+                "18 grupos de indicadores). Padrão: todos."
             ),
         ),
     ] = None,

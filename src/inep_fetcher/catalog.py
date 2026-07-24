@@ -21,6 +21,8 @@ avaliações de edição única (Pnera, Censo do Magistério):
                                   (2021-2023)
 - catalog_enem_por_escola:       ENEM por Escola (2005-2015, agregado em 1 arquivo)
 - catalog_talis:                 TALIS (2018, 2024)
+- catalog_indicadores:           18 Indicadores Educacionais derivados (não
+                                  microdados brutos — ver docstring do módulo)
 
 Public API is stable across future waves (mais grupos podem ser adicionados
 sem quebrar esta interface).
@@ -47,6 +49,11 @@ from .catalog_enem_por_escola import (
     GROUPS_ENEM_POR_ESCOLA,
 )
 from .catalog_idd import GROUP_ALIASES_IDD, GROUPS_IDD
+from .catalog_indicadores import (
+    GROUP_ALIASES_INDICADORES,
+    GROUPS_INDICADORES,
+    INDICADORES_GROUP_KEYS,
+)
 from .catalog_pesquisa_discriminacao import (
     GROUP_ALIASES_PESQUISA_DISCRIMINACAO,
     GROUPS_PESQUISA_DISCRIMINACAO,
@@ -62,6 +69,7 @@ __all__ = [
     "GROUPS",
     "GROUP_ALIASES",
     "ALL_GROUP_KEYS",
+    "INDICADORES_GROUP_KEYS",
     "resolve_group",
     "expand_group",
     "list_datasets",
@@ -84,6 +92,7 @@ GROUPS: dict[str, GroupInfo] = {
     **GROUPS_IDD,
     **GROUPS_ENEM_POR_ESCOLA,
     **GROUPS_TALIS,
+    **GROUPS_INDICADORES,
 }
 
 GROUP_ALIASES: dict[str, str] = {
@@ -103,15 +112,23 @@ GROUP_ALIASES: dict[str, str] = {
     **GROUP_ALIASES_IDD,
     **GROUP_ALIASES_ENEM_POR_ESCOLA,
     **GROUP_ALIASES_TALIS,
+    **GROUP_ALIASES_INDICADORES,
 }
 
 ALL_GROUP_KEYS: list[str] = list(GROUPS)
+
+# Macro-alias que expande para os 18 grupos de indicadores educacionais de
+# uma vez, no mesmo espírito do alias "aerodromos" do anac-fetcher.
+_MACRO_GROUPS: dict[str, list[str]] = {
+    "indicadores_educacionais": INDICADORES_GROUP_KEYS,
+}
 
 
 def resolve_group(key: str) -> str | None:
     """Resolve a group key or alias to a canonical group id.
 
-    Returns None if not found.
+    Returns None if not found. Does not resolve macro-aliases (see
+    :func:`expand_group`), since those map to multiple groups.
     """
     if key in GROUPS:
         return key
@@ -119,14 +136,13 @@ def resolve_group(key: str) -> str | None:
 
 
 def expand_group(key: str) -> list[str]:
-    """Expand a group key or alias to a canonical group id (as a list).
+    """Expand a group key, alias, or macro-alias to canonical group id(s).
 
-    Returns an empty list if the key is not recognized. Kept as a list
-    (rather than a single value) for API parity with other fetchers in the
-    ecosystem that support macro-aliases expanding to multiple groups —
-    inep-fetcher has no macro-aliases today, but this keeps `download.py`
-    portable if one is added later.
+    Returns an empty list if the key is not recognized. "indicadores_educacionais"
+    expands to all 18 indicator groups at once.
     """
+    if key in _MACRO_GROUPS:
+        return list(_MACRO_GROUPS[key])
     canon = resolve_group(key)
     return [canon] if canon is not None else []
 
