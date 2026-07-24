@@ -1,6 +1,7 @@
 """Standalone command-line interface for inep-fetcher."""
 
 import argparse
+import logging
 import sys
 from pathlib import Path
 
@@ -96,6 +97,9 @@ def _expand_groups(keys: list[str]) -> list[str]:
 
 def _handle_sync(args: argparse.Namespace) -> None:
     configure_cli_logging(args.verbose)
+    if not args.verbose:
+        logging.getLogger("quantilica.core").setLevel(logging.WARNING)
+        logging.getLogger("inep_fetcher").setLevel(logging.WARNING)
 
     raw_groups: list[str] = args.groups or []
     if raw_groups:
@@ -138,6 +142,9 @@ def _handle_sync(args: argparse.Namespace) -> None:
 
 def _handle_discover(args: argparse.Namespace) -> None:
     configure_cli_logging(args.verbose)
+    if not args.verbose:
+        logging.getLogger("quantilica.core").setLevel(logging.WARNING)
+        logging.getLogger("inep_fetcher").setLevel(logging.WARNING)
     from .catalog import GROUPS
 
     for group_id, group_info in GROUPS.items():
