@@ -1,0 +1,67 @@
+[project]
+name = "inep-fetcher"
+version = "0.1.0"
+description = "A commandline utility to download INEP (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) open microdata"
+readme = "README.md"
+authors = [
+    { name = "Komesu, D.K.", email = "daniel@dkko.me" },
+]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+keywords = ["inep", "educacao", "microdados", "enem", "censo-escolar", "brazil", "open-data"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+dependencies = [
+    "quantilica-core>=0.3.1",
+    "certifi>=2024.2.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/Quantilica/inep-fetcher"
+Repository = "https://github.com/Quantilica/inep-fetcher"
+Issues = "https://github.com/Quantilica/inep-fetcher/issues"
+
+[project.scripts]
+inep-fetcher = "inep_fetcher.cli:main"
+
+[project.entry-points."quantilica.fetchers"]
+inep = "inep_fetcher.plugin:app"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.0",
+    "pytest>=8.0.0",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-p", "no:cacheprovider"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/inep_fetcher"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/inep_fetcher"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
