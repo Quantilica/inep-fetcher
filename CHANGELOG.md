@@ -45,3 +45,10 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
   no handshake).
 - Flag `--sleeptime` (padrão 0.3s) em `sync`, aplicando uma pequena pausa
   entre downloads dentro de um grupo.
+
+### Corrigido
+
+- `cli.py` não suprimia os loggers verbosos de terceiros (`quantilica.core`,
+  `httpx` via `log_step`) fora do modo `--verbose`, conforme
+  `docs/docs/normas/cli-fetchers.md` §2.6 — padronizado com os demais
+  fetchers do ecossistema.
