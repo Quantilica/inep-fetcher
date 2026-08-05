@@ -68,6 +68,14 @@ def get_parser() -> argparse.ArgumentParser:
         ),
     )
     sync_parser.add_argument(
+        "-w",
+        "--workers",
+        type=int,
+        default=4,
+        metavar="N",
+        help="Número de downloads simultâneos (padrão: 4)",
+    )
+    sync_parser.add_argument(
         "--verbose",
         action="store_true",
         help="Logs detalhados",
@@ -128,6 +136,7 @@ def _handle_sync(args: argparse.Namespace) -> None:
         show_progress=True,
         errors=errors,
         sleep=args.sleeptime,
+        workers=args.workers,
     )
 
     print(f"\n{len(paths)}/{len(paths) + len(errors)} arquivo(s) baixado(s).")

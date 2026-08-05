@@ -1,5 +1,6 @@
 """Download functions for inep-fetcher."""
 
+import concurrent.futures
 import contextlib
 import datetime as dt
 import ssl
@@ -108,6 +109,7 @@ def download_group(
     show_progress: bool = False,
     errors: list[DownloadError] | None = None,
     sleep: float = 0.0,
+    workers: int = 1,
 ) -> list[Path]:
     """Download all datasets for one group.
 
@@ -128,21 +130,44 @@ def download_group(
     repo = DataRepository(output)
     paths: list[Path] = []
     with batch_progress("inep-fetcher", total=len(entries)) as batch_pbar:
-        for i, entry in enumerate(entries):
-            if sleep > 0 and i > 0 and not dry_run:
-                time.sleep(sleep)
-            try:
-                path = download_entry(
-                    entry, repo, dry_run=dry_run, show_progress=show_progress
-                )
-            except Exception as exc:
-                logger.warning("Failed to download %s: %s", entry["id"], exc)
-                if errors is not None:
-                    errors.append((entry, exc))
-            else:
-                paths.append(path)
-            finally:
-                batch_pbar.update()
+        if workers > 1 and not dry_run:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+                futures = {}
+                for i, entry in enumerate(entries):
+                    if sleep > 0 and i > 0:
+                        time.sleep(sleep)
+                    future = executor.submit(
+                        download_entry, entry, repo, dry_run=False, show_progress=False
+                    )
+                    futures[future] = entry
+
+                for future in concurrent.futures.as_completed(futures):
+                    entry = futures[future]
+                    try:
+                        path = future.result()
+                        paths.append(path)
+                    except Exception as exc:
+                        logger.warning("Failed to download %s: %s", entry["id"], exc)
+                        if errors is not None:
+                            errors.append((entry, exc))
+                    finally:
+                        batch_pbar.update()
+        else:
+            for i, entry in enumerate(entries):
+                if sleep > 0 and i > 0 and not dry_run:
+                    time.sleep(sleep)
+                try:
+                    path = download_entry(
+                        entry, repo, dry_run=dry_run, show_progress=show_progress
+                    )
+                except Exception as exc:
+                    logger.warning("Failed to download %s: %s", entry["id"], exc)
+                    if errors is not None:
+                        errors.append((entry, exc))
+                else:
+                    paths.append(path)
+                finally:
+                    batch_pbar.update()
     return paths
 
 
@@ -154,6 +179,7 @@ def download_all(
     show_progress: bool = False,
     errors: list[DownloadError] | None = None,
     sleep: float = 0.0,
+    workers: int = 1,
 ) -> list[Path]:
     """Download all (or selected) groups.
 
@@ -187,6 +213,7 @@ def download_all(
                 show_progress=show_progress,
                 errors=errors,
                 sleep=sleep,
+                workers=workers,
             )
         )
     return paths

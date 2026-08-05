@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import concurrent.futures
+import threading
 import time
 from pathlib import Path
 from typing import Annotated
@@ -16,7 +18,7 @@ from quantilica.core.cli import (
 from quantilica.core.http import ProgressCallback
 from rich.console import Group
 from rich.live import Live
-from rich.progress import Progress, TaskID
+from rich.progress import TaskID
 from rich.table import Table
 
 from .catalog import ALL_GROUP_KEYS, GROUP_ALIASES, GROUPS, expand_group, list_datasets
@@ -29,23 +31,6 @@ console = get_console()
 _DEFAULT_OUTPUT = Path("/data/inep")
 
 _ALL_KEYS = ALL_GROUP_KEYS + list(GROUP_ALIASES) + ["indicadores_educacionais"]
-
-
-def _file_callback(
-    file_progress: Progress,
-    task_id: TaskID,
-    description: str,
-) -> ProgressCallback:
-    def callback(downloaded: int, total_bytes: int) -> None:
-        if downloaded == 0 and total_bytes == 0:
-            file_progress.reset(task_id)
-            file_progress.update(task_id, description=description, visible=True)
-            return
-        if total_bytes:
-            file_progress.update(task_id, total=total_bytes)
-        file_progress.update(task_id, completed=downloaded)
-
-    return callback
 
 
 @app.command("sync")
@@ -76,6 +61,9 @@ def sync(
             help="Pausa (segundos) entre downloads dentro de um grupo.",
         ),
     ] = 0.3,
+    workers: Annotated[
+        int, typer.Option("-w", "--workers", help="Número de downloads simultâneos")
+    ] = 4,
     verbose: Annotated[bool, typer.Option("--verbose", help="Logs detalhados")] = False,
 ) -> None:
     """Sincronizar microdados do INEP (ENEM, Censo Escolar, SAEB, ENADE, ...)."""
@@ -106,27 +94,67 @@ def sync(
     repo = DataRepository(output)
     overall = make_batch_progress(console)
     file_prog = make_download_progress(console)
-    overall_task = overall.add_task("[cyan]Iniciando...[/cyan]", total=total)
-    file_task = file_prog.add_task("", total=None, visible=False)
+    overall_task = overall.add_task("[cyan]Sincronizando...[/cyan]", total=total)
 
     downloaded = 0
     errors: list[tuple[str, str]] = []
 
     try:
+        lock = threading.Lock()
+        active_tasks: dict[str, TaskID] = {}
+
+        def on_bytes(entry_id: str, downloaded_bytes: int, total_bytes: int) -> None:
+            with lock:
+                if entry_id not in active_tasks:
+                    if downloaded_bytes == 0 and total_bytes == 0:
+                        return
+                    task_id = file_prog.add_task(
+                        f"[cyan]{entry_id}[/cyan]", total=total_bytes or None
+                    )
+                    active_tasks[entry_id] = task_id
+
+                task_id = active_tasks[entry_id]
+                if downloaded_bytes == 0 and total_bytes == 0:
+                    file_prog.update(task_id, completed=0)
+                    return
+                file_prog.update(
+                    task_id, completed=downloaded_bytes, total=total_bytes or None
+                )
+
         with Live(Group(overall, file_prog), console=console, refresh_per_second=10):
-            for i, entry in enumerate(entries):
-                if sleeptime > 0 and i > 0:
-                    time.sleep(sleeptime)
-                overall.update(overall_task, description=f"[cyan]{entry['id']}[/cyan]")
-                cb = _file_callback(file_prog, file_task, entry["id"])
-                try:
-                    download_entry(entry, repo, progress=cb)
-                    downloaded += 1
-                except Exception as exc:
-                    errors.append((entry["id"], str(exc)))
-                finally:
-                    overall.update(overall_task, advance=1)
-            file_prog.update(file_task, visible=False)
+            if dry_run:
+                # O dry_run ja tem return acima, entao nao faria nada aqui
+                pass
+            else:
+                with concurrent.futures.ThreadPoolExecutor(
+                    max_workers=workers
+                ) as executor:
+                    futures = {}
+                    for i, entry in enumerate(entries):
+                        if sleeptime > 0 and i > 0:
+                            time.sleep(sleeptime)
+
+                        def make_cb(eid: str) -> ProgressCallback:
+                            return lambda d, t, eid=eid: on_bytes(eid, d, t)
+
+                        future = executor.submit(
+                            download_entry, entry, repo, progress=make_cb(entry["id"])
+                        )
+                        futures[future] = entry
+
+                    for future in concurrent.futures.as_completed(futures):
+                        entry = futures[future]
+                        try:
+                            future.result()
+                            downloaded += 1
+                        except Exception as exc:
+                            errors.append((entry["id"], str(exc)))
+                        finally:
+                            with lock:
+                                if entry["id"] in active_tasks:
+                                    pass
+                            overall.update(overall_task, advance=1)
+
     except KeyboardInterrupt:
         console.print("\n[yellow]Interrompido.[/yellow]")
         raise typer.Exit(130) from None
