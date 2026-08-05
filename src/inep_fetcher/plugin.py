@@ -15,10 +15,8 @@ from quantilica.core.cli import (
     make_download_progress,
     setup_rich_logging,
 )
-from quantilica.core.http import ProgressCallback
 from rich.console import Group
 from rich.live import Live
-from rich.progress import TaskID
 from rich.table import Table
 
 from .catalog import ALL_GROUP_KEYS, GROUP_ALIASES, GROUPS, expand_group, list_datasets
@@ -101,29 +99,42 @@ def sync(
 
     try:
         lock = threading.Lock()
-        active_tasks: dict[str, TaskID] = {}
 
-        def on_bytes(entry_id: str, downloaded_bytes: int, total_bytes: int) -> None:
+        # Cria apenas o número de barras correspondente ao número de workers
+        worker_task_ids = [
+            file_prog.add_task("[dim]Inativo[/dim]", total=1) for _ in range(workers)
+        ]
+        available_tasks = worker_task_ids.copy()
+
+        def _worker(entry: dict) -> bool:
+            # Pega uma barra disponível assim que o worker começar a executar
             with lock:
-                if entry_id not in active_tasks:
-                    if downloaded_bytes == 0 and total_bytes == 0:
-                        return
-                    task_id = file_prog.add_task(
-                        f"[cyan]{entry_id}[/cyan]", total=total_bytes or None
-                    )
-                    active_tasks[entry_id] = task_id
+                task_id = available_tasks.pop(0)
 
-                task_id = active_tasks[entry_id]
-                if downloaded_bytes == 0 and total_bytes == 0:
+            def on_bytes(downloaded: int, total: int) -> None:
+                if downloaded == 0 and total == 0:
                     file_prog.update(task_id, completed=0)
                     return
                 file_prog.update(
-                    task_id, completed=downloaded_bytes, total=total_bytes or None
+                    task_id,
+                    description=f"[cyan]{entry['id']}[/cyan]",
+                    completed=downloaded,
+                    total=total or None,
                 )
+
+            try:
+                download_entry(entry, repo, progress=on_bytes)
+                return True
+            finally:
+                with lock:
+                    # Limpa a barra e devolve para a pool
+                    file_prog.update(
+                        task_id, description="[dim]Inativo[/dim]", completed=0, total=1
+                    )
+                    available_tasks.append(task_id)
 
         with Live(Group(overall, file_prog), console=console, refresh_per_second=10):
             if dry_run:
-                # O dry_run ja tem return acima, entao nao faria nada aqui
                 pass
             else:
                 with concurrent.futures.ThreadPoolExecutor(
@@ -133,13 +144,7 @@ def sync(
                     for i, entry in enumerate(entries):
                         if sleeptime > 0 and i > 0:
                             time.sleep(sleeptime)
-
-                        def make_cb(eid: str) -> ProgressCallback:
-                            return lambda d, t, eid=eid: on_bytes(eid, d, t)
-
-                        future = executor.submit(
-                            download_entry, entry, repo, progress=make_cb(entry["id"])
-                        )
+                        future = executor.submit(_worker, entry)
                         futures[future] = entry
 
                     for future in concurrent.futures.as_completed(futures):
@@ -150,9 +155,6 @@ def sync(
                         except Exception as exc:
                             errors.append((entry["id"], str(exc)))
                         finally:
-                            with lock:
-                                if entry["id"] in active_tasks:
-                                    pass
                             overall.update(overall_task, advance=1)
 
     except KeyboardInterrupt:
