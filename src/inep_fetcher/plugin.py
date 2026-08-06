@@ -106,7 +106,10 @@ def sync(
         ]
         available_tasks = worker_task_ids.copy()
 
-        def _worker(entry: dict) -> bool:
+        def _worker(i: int, entry: dict) -> bool:
+            if sleeptime > 0 and i > 0:
+                time.sleep(sleeptime)
+
             # Pega uma barra disponível assim que o worker começar a executar
             with lock:
                 task_id = available_tasks.pop(0)
@@ -133,31 +136,33 @@ def sync(
                     )
                     available_tasks.append(task_id)
 
-        with Live(Group(overall, file_prog), console=console, refresh_per_second=10):
-            if dry_run:
-                pass
-            else:
-                with concurrent.futures.ThreadPoolExecutor(
-                    max_workers=workers
-                ) as executor:
-                    futures = {}
-                    for i, entry in enumerate(entries):
-                        if sleeptime > 0 and i > 0:
-                            time.sleep(sleeptime)
-                        future = executor.submit(_worker, entry)
-                        futures[future] = entry
+        executor = concurrent.futures.ThreadPoolExecutor(max_workers=workers)
+        futures = {}
 
-                    for future in concurrent.futures.as_completed(futures):
-                        entry = futures[future]
-                        try:
-                            future.result()
-                            downloaded += 1
-                        except Exception as exc:
-                            errors.append((entry["id"], str(exc)))
-                        finally:
-                            overall.update(overall_task, advance=1)
+        with Live(Group(overall, file_prog), console=console, refresh_per_second=10):
+            if not dry_run:
+                for i, entry in enumerate(entries):
+                    future = executor.submit(_worker, i, entry)
+                    futures[future] = entry
+
+                for future in concurrent.futures.as_completed(futures):
+                    entry = futures[future]
+                    try:
+                        future.result()
+                        downloaded += 1
+                    except Exception as exc:
+                        errors.append((entry["id"], str(exc)))
+                    finally:
+                        overall.update(overall_task, advance=1)
+
+        executor.shutdown(wait=True)
 
     except KeyboardInterrupt:
+        # Cancel all pending tasks so shutdown doesn't block forever
+        if "executor" in locals() and "futures" in locals():
+            for future in futures:
+                future.cancel()
+            executor.shutdown(wait=False, cancel_futures=True)
         console.print("\n[yellow]Interrompido.[/yellow]")
         raise typer.Exit(130) from None
 
