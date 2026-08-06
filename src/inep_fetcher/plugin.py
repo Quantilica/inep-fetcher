@@ -114,6 +114,13 @@ def sync(
             with lock:
                 task_id = available_tasks.pop(0)
 
+            file_prog.update(
+                task_id,
+                description=f"[cyan]{entry['id']}[/cyan]",
+                completed=0,
+                total=None,
+            )
+
             def on_bytes(downloaded: int, total: int) -> None:
                 if downloaded == 0 and total == 0:
                     file_prog.update(task_id, completed=0)
