@@ -3,14 +3,15 @@
 from __future__ import annotations
 
 import concurrent.futures
-import threading
 import time
 from pathlib import Path
 from typing import Annotated
 
 import typer
 from quantilica.core.cli import (
+    ProgressPool,
     get_console,
+    graceful_executor,
     make_batch_progress,
     make_download_progress,
     setup_rich_logging,
@@ -97,81 +98,35 @@ def sync(
     downloaded = 0
     errors: list[tuple[str, str]] = []
 
-    try:
-        lock = threading.Lock()
+    pool = ProgressPool(workers=workers, file_prog=file_prog)
 
-        # Cria apenas o número de barras correspondente ao número de workers
-        worker_task_ids = [
-            file_prog.add_task("[dim]Inativo[/dim]", total=1) for _ in range(workers)
-        ]
-        available_tasks = worker_task_ids.copy()
-
-        def _worker(i: int, entry: dict) -> bool:
-            if sleeptime > 0 and i > 0:
-                time.sleep(sleeptime)
-
-            # Pega uma barra disponível assim que o worker começar a executar
-            with lock:
-                task_id = available_tasks.pop(0)
-
-            file_prog.update(
-                task_id,
-                description=f"[cyan]{entry['id']}[/cyan]",
-                completed=0,
-                total=None,
-            )
-
-            def on_bytes(downloaded: int, total: int) -> None:
-                if downloaded == 0 and total == 0:
-                    file_prog.update(task_id, completed=0)
-                    return
-                file_prog.update(
-                    task_id,
-                    description=f"[cyan]{entry['id']}[/cyan]",
-                    completed=downloaded,
-                    total=total or None,
-                )
-
-            try:
-                download_entry(entry, repo, progress=on_bytes)
+    def _worker(i: int, entry: dict) -> bool:
+        if sleeptime > 0 and i > 0:
+            time.sleep(sleeptime)
+        try:
+            with pool.acquire(description=f"[cyan]{entry['id']}[/cyan]") as cb:
+                download_entry(entry, repo, progress=cb)
                 return True
-            finally:
-                with lock:
-                    # Limpa a barra e devolve para a pool
-                    file_prog.update(
-                        task_id, description="[dim]Inativo[/dim]", completed=0, total=1
-                    )
-                    available_tasks.append(task_id)
+        except Exception as exc:
+            errors.append((entry["id"], str(exc)))
+            return False
 
-        executor = concurrent.futures.ThreadPoolExecutor(max_workers=workers)
-        futures = {}
-
-        with Live(Group(overall, file_prog), console=console, refresh_per_second=10):
-            if not dry_run:
-                for i, entry in enumerate(entries):
-                    future = executor.submit(_worker, i, entry)
-                    futures[future] = entry
-
+    with graceful_executor(max_workers=workers) as executor:
+        try:
+            with Live(
+                Group(overall, file_prog), console=console, refresh_per_second=10
+            ):
+                futures = {
+                    executor.submit(_worker, i, entry): entry
+                    for i, entry in enumerate(entries)
+                }
                 for future in concurrent.futures.as_completed(futures):
-                    entry = futures[future]
-                    try:
-                        future.result()
+                    overall.update(overall_task, advance=1)
+                    if future.result():
                         downloaded += 1
-                    except Exception as exc:
-                        errors.append((entry["id"], str(exc)))
-                    finally:
-                        overall.update(overall_task, advance=1)
-
-        executor.shutdown(wait=True)
-
-    except KeyboardInterrupt:
-        # Cancel all pending tasks so shutdown doesn't block forever
-        if "executor" in locals() and "futures" in locals():
-            for future in futures:
-                future.cancel()
-            executor.shutdown(wait=False, cancel_futures=True)
-        console.print("\n[yellow]Interrompido.[/yellow]")
-        raise typer.Exit(130) from None
+        except KeyboardInterrupt:
+            console.print("\n[yellow]Interrompido.[/yellow]")
+            raise typer.Exit(130) from None
 
     console.print(
         f"\n[green]Concluído:[/green] {downloaded}/{total} arquivo(s) baixado(s)."
