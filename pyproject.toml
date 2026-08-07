@@ -1,6 +1,6 @@
 [project]
 name = "inep-fetcher"
-version = "0.3.0"
+version = "0.3.1"
 description = "A commandline utility to download INEP (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) open microdata"
 readme = "README.md"
 authors = [
@@ -24,7 +24,9 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "quantilica-core>=0.3.2",
+    "quantilica-core>=0.4.0",
+    "quantilica-cli>=0.2.0",
+    "quantilica-catalog>=0.2.0",
     "certifi>=2024.2.2",
 ]
 
