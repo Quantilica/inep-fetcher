@@ -66,6 +66,11 @@ class DataRepository(BaseDataRepository):
     """Manages local storage for inep-fetcher files."""
 
     def __init__(self, root: Path | str):
+        """Initialize the data repository.
+
+        Args:
+            root: The root directory path for data storage.
+        """
         super().__init__(root)
 
     def path_for_entry(
@@ -74,7 +79,15 @@ class DataRepository(BaseDataRepository):
         *,
         last_modified: dt.date | None = None,
     ) -> Path:
-        """Compute the local path for a dataset entry."""
+        """Compute the local path for a dataset entry.
+
+        Args:
+            entry: The dataset entry containing metadata.
+            last_modified: The last modified date of the remote file, if available.
+
+        Returns:
+            The computed local path to store the dataset file.
+        """
         group_dir = _GROUP_DIRS[entry["group"]]
         ext = entry["ext"]
         base_id = entry["base_id"]

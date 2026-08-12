@@ -1,8 +1,11 @@
-# inep-fetcher: Coletor de microdados abertos do INEP
+# inep-fetcher
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square) ![Python](https://img.shields.io/badge/python-3.12+-blue.svg?style=flat-square)
 
-Utilitário de linha de comando para baixar dados públicos do [INEP](https://www.gov.br/inep/) (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): microdados brutos (ENEM, Censo Escolar, Censo da Educação Superior, SAEB, ENADE, ANA, Encceja, TALIS e mais 9 avaliações/censos menores — 16 grupos) e os 18 grupos de Indicadores Educacionais derivados (taxas de rendimento, distorção idade-série, nível socioeconômico, indicadores financeiros etc.) — 34 grupos e quase 800 datasets ao todo. Descobre datasets a partir de um catálogo declarativo e faz o download organizado por grupo, com manifestos de proveniência via `quantilica-core`.
+Utilitário de linha de comando para baixar dados públicos do [INEP](https://www.gov.br/inep/) (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira).
+Descobre datasets a partir de um catálogo declarativo e faz o download organizado por grupo, com manifestos de proveniência via `quantilica-core`.
+
+For full documentation, please visit [https://docs.quantilica.com](https://docs.quantilica.com).
 
 ## Instalação
 
