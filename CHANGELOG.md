@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1] - 2026-08-31
+### Corrigido
+- Quitação de dívida de lint (E501) revelada ao preparar a primeira publicação; nenhum comportamento alterado.
+### Alterado
+- Primeira publicação efetiva do pacote (o repositório GitHub não existia antes de hoje; o tag v0.4.0 antecediu os workflows de CI).
+
 ## [0.4.0] - 2026-08-07
 ### Alterado
 - Refatoração arquitetural: Remoção de dependências (`quantilica-cli` e `quantilica-catalog`) e limpeza de imports. Os fetchers agora são pacotes de extração puros, dependendo estritamente do `quantilica-core`.

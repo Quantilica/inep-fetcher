@@ -1,6 +1,6 @@
 [project]
 name = "inep-fetcher"
-version = "0.4.0"
+version = "0.4.1"
 description = "A commandline utility to download INEP (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) open microdata"
 readme = "README.md"
 authors = [
