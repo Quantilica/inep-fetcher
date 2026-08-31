@@ -150,7 +150,8 @@ def expand_group(key: str) -> list[str]:
         key: The group key, alias, or macro-alias to expand.
 
     Returns:
-        A list of canonical group ids. Returns an empty list if the key is not recognized.
+        A list of canonical group ids. Returns an empty list if the key
+            is not recognized.
     """
     if key in _MACRO_GROUPS:
         return list(_MACRO_GROUPS[key])
