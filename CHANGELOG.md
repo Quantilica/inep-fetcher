@@ -11,6 +11,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 - `cli.py` protege o import do plugin; sem o host a CLI standalone sai com
   código 1 e orienta `quantilica install <fonte>`.
+- `cli.py` ganha o bloco `if __name__ == "__main__": main()` (paridade com
+  `bcb-sgs-fetcher`).
 
 ## [0.4.1] - 2026-08-31
 ### Corrigido
