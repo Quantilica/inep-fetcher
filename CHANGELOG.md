@@ -1,5 +1,17 @@
 # Changelog
 
+Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
+
+O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
+e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
+
+## [Não lançado]
+
+### Alterado
+
+- `cli.py` protege o import do plugin; sem o host a CLI standalone sai com
+  código 1 e orienta `quantilica install <fonte>`.
+
 ## [0.4.1] - 2026-08-31
 ### Corrigido
 - Quitação de dívida de lint (E501) revelada ao preparar a primeira publicação; nenhum comportamento alterado.
@@ -9,11 +21,6 @@
 ## [0.4.0] - 2026-08-07
 ### Alterado
 - Refatoração arquitetural: Remoção de dependências (`quantilica-cli` e `quantilica-catalog`) e limpeza de imports. Os fetchers agora são pacotes de extração puros, dependendo estritamente do `quantilica-core`.
-
-Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
-
-O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
-e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [0.1.0] - 2026-07-24
 
