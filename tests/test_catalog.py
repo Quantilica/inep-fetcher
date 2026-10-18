@@ -136,10 +136,11 @@ def test_semester_and_month_always_none():
 def test_total_dataset_count():
     """Contagem exata confirmada durante a implementação (regressão).
 
-    149 = microdados (16 grupos) + 647 = indicadores educacionais (18 grupos).
+    143 = microdados (16 grupos, sem o ENADE 2004-2009 removido do
+    servidor do INEP) + 647 = indicadores educacionais (18 grupos).
     """
-    assert len(list_datasets()) == 149 + 647
-    assert len(list_datasets()) == 796
+    assert len(list_datasets()) == 143 + 647
+    assert len(list_datasets()) == 790
 
 
 # ---------------------------------------------------------------------------
@@ -214,8 +215,19 @@ def test_saeb_total_entry_count():
 
 
 # ---------------------------------------------------------------------------
-# ENADE (sufixos LGPD, sem 2020, 2022=.rar)
+# ENADE (sufixos LGPD, sem 2020, 2024-2009 descontinuados, 2022=.rar)
 # ---------------------------------------------------------------------------
+
+
+def test_enade_removed_2004_2009_dead_urls():
+    """ENADE 2004–2009: microdados removidos do servidor do INEP (404
+    confirmado no dry-run do cron em 2026-10-12) — edições descontinuadas,
+    removidas do catálogo (plano crons-fetchers-skip-postgres §2.4)."""
+    years = {e["year"] for e in GROUPS["enade"]["entries"]}
+    assert years & set(range(2004, 2010)) == set()
+    assert min(years) == 2010
+    for e in GROUPS["enade"]["entries"]:
+        assert "microdados_enade_200" not in e["url"]
 
 
 def test_enade_has_no_2020_entry():
@@ -241,7 +253,8 @@ def test_enade_lgpd_suffix_years():
 
 
 def test_enade_total_entry_count():
-    assert len(GROUPS["enade"]["entries"]) == 19
+    """19 → 13 após descontinuar 2004-2009 (06 entradas mortas, §2.4)."""
+    assert len(GROUPS["enade"]["entries"]) == 13
 
 
 # ---------------------------------------------------------------------------

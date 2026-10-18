@@ -56,7 +56,7 @@ servidor); ajuste com `--sleeptime SEGUNDOS` se necessário.
 | `censo_escolar` | Censo Escolar (Educação Básica) | 1995-presente, anual |
 | `censo_educacao_superior` | Censo da Educação Superior | 1995-2024, anual |
 | `saeb` | SAEB | 1995-2023, bienal |
-| `enade` | ENADE | 2004-2023, anual (sem 2020) |
+| `enade` | ENADE | 2010-2023, anual (sem 2020; 2004-2009 descontinuados) |
 | `ana` | Avaliação Nacional da Alfabetização | 2014, 2016 |
 | `encceja` | Encceja | 2013-2025, com lacunas |
 | `censo_magisterio` | Censo dos Profissionais do Magistério | 2003 |

@@ -8,7 +8,9 @@ avaliações de edição única (Pnera, Censo do Magistério):
 - catalog_censo:                 Censo Escolar (1995-presente, 1 exceção em 2025)
 - catalog_censo_superior:        Censo da Educação Superior (1995-2024, sem exceções)
 - catalog_saeb:                  SAEB (1995-2023, bienal, nomenclatura irregular)
-- catalog_enade:                 ENADE (2004-2023 sem 2020, sufixos LGPD, 2022=.rar)
+- catalog_enade:                 ENADE (2010-2023 sem 2020; 2004-2009
+                                 descontinuados — 404 no servidor, sufixos
+                                 LGPD, 2022=.rar)
 - catalog_ana:                   Avaliação Nacional da Alfabetização (2014, 2016)
 - catalog_encceja:               Encceja (2013-2025, com lacunas)
 - catalog_censo_magisterio:      Censo dos Profissionais do Magistério (2003)

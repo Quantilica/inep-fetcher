@@ -3,6 +3,8 @@
 Nomenclatura irregular confirmada via curl: sufixo _LGPD aparece e some
 entre edições, 2020 não existe (ENADE não aplicado — pandemia), e 2022 é
 o único dataset .rar de todo o catálogo INEP (não .zip).
+Microdados de 2004-2009 foram removidos do servidor do INEP (404,
+dry-run do cron em 2026-10-12) — edições descontinuadas (plano §2.4).
 """
 
 from ._catalog_base import DatasetEntry, GroupInfo
@@ -27,7 +29,10 @@ def _entry(year: int, url: str, ext: str = "zip") -> DatasetEntry:
 
 
 _enade_entries: list[DatasetEntry] = [
-    *[_entry(y, f"{_BASE}/microdados_enade_{y}.zip") for y in range(2004, 2012)],
+    # 2004-2009: microdados removidos do servidor do INEP (404 na checagem do
+    # cron, 2026-10-12) — edições descontinuadas, não faz parte do catálogo
+    # (plano crons-fetchers-skip-postgres §2.4).
+    *[_entry(y, f"{_BASE}/microdados_enade_{y}.zip") for y in range(2010, 2012)],
     *[_entry(y, f"{_BASE}/microdados_enade_{y}_LGPD.zip") for y in range(2012, 2020)],
     # 2020: não existe (ENADE não foi aplicado)
     _entry(2021, f"{_BASE}/microdados_enade_2021.zip"),
