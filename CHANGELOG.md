@@ -13,7 +13,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 - Catálogo `enade`: entradas 2004-2009 descontinuadas — os microdados
   `microdados_enade_{2004..2009}.zip` foram removidos do portal do INEP
-  (404 confirmado no dry-run do cron em 2026-10-12); o catálogo começa em
+  (404 confirmado no dry-run agendado em 2026-10-12); o catálogo começa em
   2010 (total do catálogo: 796 → 790, ENADE: 19 → 13).
 
 ### Alterado
