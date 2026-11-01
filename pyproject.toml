@@ -36,8 +36,18 @@ Issues = "https://github.com/Quantilica/inep-fetcher/issues"
 [project.scripts]
 inep-fetcher = "inep_fetcher.cli:main"
 
+[project.optional-dependencies]
+analysis = [
+    "duckdb>=1.0.0",
+    "polars>=1.0.0",
+    "quantilica-analytics>=0.5.0",
+]
+
 [project.entry-points."quantilica.fetchers"]
 inep = "inep_fetcher.plugin:app"
+
+[project.entry-points."quantilica.lake"]
+inep = "inep_fetcher.lake:converter"
 
 [dependency-groups]
 dev = [
