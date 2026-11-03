@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from quantilica.cli.sdk import FetcherApp
+from quantilica.core.sync import FreshnessPolicy
 
 from . import catalog
 from .catalog import GROUP_ALIASES, GROUPS, list_datasets
@@ -40,6 +41,7 @@ fetcher = FetcherApp(
     aliases_dict=aliases,
     list_datasets=list_datasets,
     path_builder=path_builder,
+    freshness_policy=FreshnessPolicy.REMOTE_ONLY,
 )
 
 
