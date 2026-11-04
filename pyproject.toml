@@ -53,6 +53,7 @@ inep = "inep_fetcher.lake:converter"
 dev = [
     "ruff>=0.9.0",
     "pytest>=8.0.0",
+    "quantilica-cli>=0.15.0",
     "pytest-cov",
 ]
 
