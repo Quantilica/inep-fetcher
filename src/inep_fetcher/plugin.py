@@ -41,6 +41,7 @@ fetcher = FetcherApp(
     aliases_dict=aliases,
     list_datasets=list_datasets,
     path_builder=path_builder,
+    default_output=Path("/data/inep"),
     freshness_policy=FreshnessPolicy.HEAD_FALLBACK_GET,
 )
 
@@ -53,7 +54,13 @@ def convert(
     force: bool = False,
 ) -> Any:
     """Converte arquivos brutos do INEP para o lake Hive (Parquet)."""
-    from inep_fetcher import lake
+    try:
+        from inep_fetcher import lake
+    except ImportError as exc:
+        raise ImportError(
+            "Conversão para o lake requer o extra 'analysis'. "
+            "Instale com: quantilica install inep --extra analysis"
+        ) from exc
 
     return lake.converter.convert(input_dir, lake_dir, datasets=dataset, force=force)
 
