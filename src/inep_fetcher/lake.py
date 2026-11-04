@@ -303,7 +303,8 @@ class LakeConverter:
                             continue
 
                         for member in data_members:
-                            key = composite_file_key(path, member.stem)
+                            member_name = member.stem
+                            key = composite_file_key(path, member_name)
                             sep = _detect_separator(member)
                             fallback_sep = "," if sep == ";" else ";"
                             try:
