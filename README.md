@@ -98,10 +98,16 @@ brutos, publicados por ano/período em brasil-regiões-UF, município e escola):
 
 `download.inep.gov.br` não envia a cadeia de certificado completa no
 handshake TLS (falta a CA intermediária `RNP ICPEdu GR46 OV TLS CA 2025`,
-um problema conhecido do lado do servidor). Este pacote inclui essa CA
-intermediária empacotada e configura a verificação TLS automaticamente —
-nenhuma ação é necessária, e a verificação continua ativa (não usamos
-`verify=False`).
+um problema conhecido do lado do servidor). **Este pacote não empacota essa
+CA**: com o store padrão, o download falha com `CERTIFICATE_VERIFY_FAILED`.
+
+A saída suportada é apontar `QUANTILICA_CA_BUNDLE` para um bundle PEM que
+contenha as raízes confiáveis (por exemplo, as do `certifi`) **mais** a
+intermediária; o bundle substitui o store padrão, então precisa incluir as
+duas coisas. No workspace Quantilica, `infra/certs/build_ca_bundle.sh`
+gera esse bundle e o `infra/cron_fetch.sh` o exporta automaticamente.
+Desligar a verificação (`QUANTILICA_SSL_VERIFY=0`) funciona, mas é decisão
+explícita do operador e não é recomendada.
 
 ### Integração com `quantilica-cli`
 
