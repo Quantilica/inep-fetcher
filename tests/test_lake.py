@@ -143,3 +143,40 @@ def test_convert_comma_separated_zip(
     df = pl.read_parquet(saeb_parquet)
     assert df.shape == (2, 3)
     assert set(df.columns) == {"id_aluno", "id_turma", "proficiencia"}
+
+
+def test_zip_com_membros_excel(
+    lake_converter: LakeConverter, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """ZIP so com planilhas (.xls/.xlsx): cada membro vira um Parquet, sem erro."""
+    raw_dir = tmp_path / "raw" / "indicadores" / "media-alunos-por-turma"
+    raw_dir.mkdir(parents=True)
+    zip_path = (
+        raw_dir / "media-alunos-por-turma-alunos-turma-brasil-regioes-ufs-2011"
+        "@20130613.zip"
+    )
+    with zipfile.ZipFile(zip_path, "w") as zf:
+        zf.writestr("BRASIL 2011.xls", b"planilha brasil")
+        zf.writestr("ESTADOS 2011.xlsx", b"planilha estados")
+    lake_dir = tmp_path / "lake"
+    lake_dir.mkdir()
+
+    lidos: list[str] = []
+
+    def _read_excel(path, *args, **kwargs):
+        lidos.append(Path(path).name)
+        return pl.DataFrame({"uf": ["SP", "RJ"], "alunos": [30, 28]})
+
+    monkeypatch.setattr(pl, "read_excel", _read_excel)
+
+    res = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res.errors
+    assert (res.converted, res.skipped) == (2, 0)
+    assert sorted(lidos) == ["BRASIL 2011.xls", "ESTADOS 2011.xlsx"]
+    dataset_dir = lake_dir / "inep" / "media-alunos-por-turma" / "ano=2011"
+    assert len(list(dataset_dir.glob("*.parquet"))) == 2
+
+    # idempotente: a segunda rodada pula os dois membros
+    res2 = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res2.errors
+    assert (res2.converted, res2.skipped) == (0, 2)

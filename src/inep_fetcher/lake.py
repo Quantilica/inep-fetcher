@@ -281,7 +281,8 @@ class LakeConverter:
                         all_members = sorted(
                             m
                             for m in Path(tmp).rglob("*")
-                            if m.is_file() and m.suffix.lower() in {".csv", ".txt"}
+                            if m.is_file()
+                            and m.suffix.lower() in {".csv", ".txt", ".xlsx", ".xls"}
                         )
                         # Filter out documentation and dictionary subpaths
                         data_members = [
@@ -305,6 +306,19 @@ class LakeConverter:
                         for member in data_members:
                             member_name = member.stem
                             key = composite_file_key(path, member_name)
+                            if member.suffix.lower() in {".xlsx", ".xls"}:
+                                written = writer.write_polars(
+                                    pl.read_excel(member),
+                                    path,
+                                    partitions=part_vals,
+                                    file_key_name=key,
+                                    converter=f"inep-fetcher {__version__}",
+                                )
+                                if written.status == "skipped":
+                                    result.skipped += 1
+                                else:
+                                    result.converted += 1
+                                continue
                             sep = _detect_separator(member)
                             fallback_sep = "," if sep == ";" else ";"
                             try:
