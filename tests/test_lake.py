@@ -209,3 +209,51 @@ def test_zip_ignora_lock_file_do_office(
     assert not res.errors
     assert lidos == ["TX_TRANSICAO_2021.xlsx"]
     assert res.converted == 1
+
+
+def _write_xlsx(path: Path) -> None:
+    """Gera uma planilha .xlsx real (sem monkeypatch do leitor)."""
+    pl.DataFrame({"uf": ["SP", "RJ"], "alunos": [30, 28]}).write_excel(path)
+
+
+def test_xlsx_real_solto(lake_converter: LakeConverter, tmp_path: Path) -> None:
+    """Um .xlsx real e lido por pl.read_excel (exige fastexcel no extra analysis)."""
+    raw_dir = tmp_path / "raw" / "indicadores" / "adequacao-formacao-docente"
+    raw_dir.mkdir(parents=True)
+    _write_xlsx(raw_dir / "afd_2022@20230501.xlsx")
+    lake_dir = tmp_path / "lake"
+    lake_dir.mkdir()
+
+    res = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res.errors
+    assert (res.converted, res.skipped) == (1, 0)
+    parquets = list(
+        (lake_dir / "inep" / "adequacao-formacao-docente" / "ano=2022").glob(
+            "*.parquet"
+        )
+    )
+    assert len(parquets) == 1
+    df = pl.read_parquet(parquets[0])
+    assert df.shape == (2, 2)
+    assert set(df.columns) == {"uf", "alunos"}
+
+
+def test_xlsx_real_dentro_de_zip(lake_converter: LakeConverter, tmp_path: Path) -> None:
+    """Um .xlsx real dentro de ZIP e lido sem monkeypatch."""
+    raw_dir = tmp_path / "raw" / "indicadores" / "media-alunos-por-turma"
+    raw_dir.mkdir(parents=True)
+    xlsx = tmp_path / "ESTADOS 2011.xlsx"
+    _write_xlsx(xlsx)
+    zip_path = raw_dir / "media-alunos-por-turma-2011@20130613.zip"
+    with zipfile.ZipFile(zip_path, "w") as zf:
+        zf.write(xlsx, "ESTADOS 2011.xlsx")
+    lake_dir = tmp_path / "lake"
+    lake_dir.mkdir()
+
+    res = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res.errors
+    assert (res.converted, res.skipped) == (1, 0)
+    dataset_dir = lake_dir / "inep" / "media-alunos-por-turma" / "ano=2011"
+    parquets = list(dataset_dir.glob("*.parquet"))
+    assert len(parquets) == 1
+    assert pl.read_parquet(parquets[0]).shape == (2, 2)
