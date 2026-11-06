@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [0.5.3] - 2026-11-06
+
 ### Corrigido
 - O extra `analysis` passa a declarar `fastexcel`, necessário para ler planilhas `.xlsx`/`.xls` na conversão para o lake; sem ele a conversão de indicadores em Excel falhava em instalações limpas.
 
