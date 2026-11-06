@@ -9,6 +9,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ### Corrigido
 - Lake: ZIP cujos membros são planilhas (`.xls`/`.xlsx`) deixa de falhar com `Unsupported format: <membro>.xls`. Os membros Excel entram como arquivos de dados e são lidos com `pl.read_excel`, como o `.xlsx` solto, com o ZIP como origem no lake. Afeta os ZIPs só com planilhas (ex.: `docentes-curso-superior-dsu-*`, `media-alunos-por-turma-*`, `adequacao-formacao-docente-*`, 2011 a 2014). Reconverter esses datasets.
+- Lake: lock file do Office (`~$<nome>.xlsx`, 165 bytes) esquecido dentro do ZIP deixa de ser lido como planilha e de derrubar o arquivo com `Could not find EOCD` (9 ZIPs de 2016 a 2022 em `adequacao-formacao-docente`, `media-alunos-por-turma`, `taxas-rendimento-escolar` e `taxas-transicao`).
 
 ## [0.5.1] - 2026-11-04
 

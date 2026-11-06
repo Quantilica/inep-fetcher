@@ -283,6 +283,8 @@ class LakeConverter:
                             for m in Path(tmp).rglob("*")
                             if m.is_file()
                             and m.suffix.lower() in {".csv", ".txt", ".xlsx", ".xls"}
+                            # "~$X.xlsx": lock file do Office esquecido no ZIP
+                            and not m.name.startswith("~$")
                         )
                         # Filter out documentation and dictionary subpaths
                         data_members = [

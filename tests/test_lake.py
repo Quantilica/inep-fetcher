@@ -180,3 +180,31 @@ def test_zip_com_membros_excel(
     res2 = lake_converter.convert(tmp_path / "raw", lake_dir)
     assert not res2.errors
     assert (res2.converted, res2.skipped) == (0, 2)
+
+
+def test_zip_ignora_lock_file_do_office(
+    lake_converter: LakeConverter, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Lock file "~$X.xlsx" esquecido no ZIP não é planilha e não vira erro."""
+    raw_dir = tmp_path / "raw" / "indicadores" / "taxas-transicao"
+    raw_dir.mkdir(parents=True)
+    zip_path = raw_dir / "taxas-transicao-tx-transicao-2021@20250826.zip"
+    with zipfile.ZipFile(zip_path, "w") as zf:
+        zf.writestr("TX_2021/TX_TRANSICAO_2021.xlsx", b"planilha")
+        zf.writestr("TX_2021/~$TX_TRANSICAO_2021.xlsx", b"\x1eJulio C")
+        zf.writestr("TX_2021/TX_TRANSICAO_2021.ods", b"PK")
+    lake_dir = tmp_path / "lake"
+    lake_dir.mkdir()
+
+    lidos: list[str] = []
+
+    def _read_excel(path, *args, **kwargs):
+        lidos.append(Path(path).name)
+        return pl.DataFrame({"uf": ["SP"], "taxa": [1.5]})
+
+    monkeypatch.setattr(pl, "read_excel", _read_excel)
+
+    res = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res.errors
+    assert lidos == ["TX_TRANSICAO_2021.xlsx"]
+    assert res.converted == 1
