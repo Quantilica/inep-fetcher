@@ -283,8 +283,10 @@ class LakeConverter:
                             for m in Path(tmp).rglob("*")
                             if m.is_file()
                             and m.suffix.lower() in {".csv", ".txt", ".xlsx", ".xls"}
-                            # "~$X.xlsx": lock file do Office esquecido no ZIP
+                            # "~$X.xlsx": lock file do Office esquecido no ZIP;
+                            # "md5_X.txt": checksum que o INEP põe ao lado do dado
                             and not m.name.startswith("~$")
+                            and not m.name.lower().startswith("md5_")
                         )
                         # Filter out documentation and dictionary subpaths
                         data_members = [

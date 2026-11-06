@@ -185,7 +185,7 @@ def test_zip_com_membros_excel(
 def test_zip_ignora_lock_file_do_office(
     lake_converter: LakeConverter, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Lock file "~$X.xlsx" esquecido no ZIP não é planilha e não vira erro."""
+    """Lock file "~$X.xlsx" e checksum "md5_X.txt" no ZIP não viram dado nem erro."""
     raw_dir = tmp_path / "raw" / "indicadores" / "taxas-transicao"
     raw_dir.mkdir(parents=True)
     zip_path = raw_dir / "taxas-transicao-tx-transicao-2021@20250826.zip"
@@ -193,6 +193,7 @@ def test_zip_ignora_lock_file_do_office(
         zf.writestr("TX_2021/TX_TRANSICAO_2021.xlsx", b"planilha")
         zf.writestr("TX_2021/~$TX_TRANSICAO_2021.xlsx", b"\x1eJulio C")
         zf.writestr("TX_2021/TX_TRANSICAO_2021.ods", b"PK")
+        zf.writestr("TX_2021/md5_TX_TRANSICAO_2021.txt", b"be2b7c54  TX.xlsx")
     lake_dir = tmp_path / "lake"
     lake_dir.mkdir()
 
