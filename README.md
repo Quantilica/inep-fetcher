@@ -104,9 +104,8 @@ CA**: com o store padrão, o download falha com `CERTIFICATE_VERIFY_FAILED`.
 A saída suportada é apontar `QUANTILICA_CA_BUNDLE` para um bundle PEM que
 contenha as raízes confiáveis (por exemplo, as do `certifi`) **mais** a
 intermediária; o bundle substitui o store padrão, então precisa incluir as
-duas coisas. No workspace Quantilica, `infra/certs/build_ca_bundle.sh`
-gera esse bundle e o `infra/cron_fetch.sh` o exporta automaticamente.
-Desligar a verificação (`QUANTILICA_SSL_VERIFY=0`) funciona, mas é decisão
+duas coisas. Uma forma de montá-lo é concatenar o `cacert.pem` do
+`certifi` com o PEM da intermediária, publicada pela RNP. Desligar a verificação (`QUANTILICA_SSL_VERIFY=0`) funciona, mas é decisão
 explícita do operador e não é recomendada.
 
 ### Integração com `quantilica-cli`
