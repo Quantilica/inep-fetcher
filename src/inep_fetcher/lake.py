@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import re
 import tempfile
+import unicodedata
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -134,6 +135,12 @@ def resolve_year(path: Path) -> int | None:
     if path.parent.name.isdigit() and len(path.parent.name) == 4:
         return int(path.parent.name)
     return None
+
+
+def _ascii_lower(text: str) -> str:
+    """Minúsculas sem acento ("DICIONÁRIO" -> "dicionario")."""
+    nfkd = unicodedata.normalize("NFKD", text)
+    return nfkd.encode("ascii", "ignore").decode("ascii").lower()
 
 
 def _detect_separator(path: Path) -> str:
@@ -293,9 +300,21 @@ class LakeConverter:
                             m
                             for m in all_members
                             if not any(
-                                doc in m.as_posix().lower() for doc in _DOC_PATTERNS
+                                doc in _ascii_lower(m.as_posix())
+                                for doc in _DOC_PATTERNS
                             )
                         ]
+                        # Com pasta DADOS/ (ENEM, SAEB, censos), o dado é só o
+                        # que está nela: provas em texto (DOSVOX) e outros
+                        # anexos ficam de fora.
+                        em_dados = [
+                            m
+                            for m in data_members
+                            if "dados"
+                            in {p.lower() for p in m.relative_to(tmp).parts[:-1]}
+                        ]
+                        if em_dados:
+                            data_members = em_dados
                         if not data_members and all_members:
                             data_members = all_members
                         elif not data_members and extracted.is_file():

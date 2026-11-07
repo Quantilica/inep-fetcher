@@ -257,3 +257,34 @@ def test_xlsx_real_dentro_de_zip(lake_converter: LakeConverter, tmp_path: Path) 
     parquets = list(dataset_dir.glob("*.parquet"))
     assert len(parquets) == 1
     assert pl.read_parquet(parquets[0]).shape == (2, 2)
+
+
+def test_zip_enem_le_so_dados(lake_converter: LakeConverter, tmp_path: Path) -> None:
+    """ENEM: provas DOSVOX em .txt e o dicionário com acento não viram dado."""
+    raw_dir = tmp_path / "raw" / "enem"
+    raw_dir.mkdir(parents=True)
+    zip_path = raw_dir / "enem-microdados_2023@20260709.zip"
+    with zipfile.ZipFile(zip_path, "w") as zf:
+        zf.writestr(
+            "microdados_enem_2023/DADOS/ITENS_PROVA_2023.csv",
+            "CO_POSICAO;SG_AREA;CO_ITEM\n115;CN;111466\n107;CN;88557\n",
+        )
+        zf.writestr(
+            "microdados_enem_2023/PROVAS E GABARITOS/ENEM_2023_P1_CAD_09_DOSVOX_LC.txt",
+            'Exame Nacional\r\n\r\n"São tantas formas\r\nde dizer\r\n'.encode(
+                "latin-1"
+            ),
+        )
+        zf.writestr(
+            "microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx",
+            b"planilha",
+        )
+    lake_dir = tmp_path / "lake"
+    lake_dir.mkdir()
+
+    res = lake_converter.convert(tmp_path / "raw", lake_dir)
+    assert not res.errors, res.errors
+    assert res.converted == 1
+    (parquet,) = (lake_dir / "inep" / "enem").rglob("*.parquet")
+    assert "itens_prova_2023" in parquet.name
+    assert pl.read_parquet(parquet).height == 2
