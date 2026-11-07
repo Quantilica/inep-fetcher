@@ -7,6 +7,9 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Corrigido
+- `lake`: CSV separado por `|` passa a ser reconhecido (o separador é o mais frequente na primeira linha, entre `;`, `,`, `|` e tabulação). No SAEB 2021 e 2023, os arquivos da educação infantil, do diretor (2021) e do secretário municipal usam `|` e eram recusados pela verificação de separador da 0.5.5; antes dela, viravam tabelas de uma coluna só.
+
 ## [0.5.5] - 2026-11-07
 
 ### Adicionado

@@ -264,6 +264,24 @@ def test_txt_without_separator_on_csv_path_is_an_error(
     assert not list(root.rglob("*sem_layout*"))
 
 
+def test_csv_com_barra_vertical(tmp_path: Path, raw: Path) -> None:
+    """SAEB 2021+ (educação infantil, secretário municipal) separa com "|"."""
+    _zip(
+        raw / "saeb-microdados-infantil_2023@20260722.zip",
+        {
+            "microdados/DADOS/TS_SECRETARIO_MUNICIPAL_2023.csv": (
+                b"NU_ANO_SAEB|CO_UF|CO_MUNICIPIO|TX_Q001\n"
+                b"2023|11|1100015|A\n2023|11|1100023|B\n"
+            ),
+        },
+    )
+    result, root = _convert(tmp_path)
+    assert result.errors == []
+    df = _read(root, "saeb-microdados-infantil_2023__ts_secretario_municipal_2023")
+    assert df.height == 2
+    assert df.columns == ["nu_ano_saeb", "co_uf", "co_municipio", "tx_q001"]
+
+
 def test_fields_past_end_of_lines_are_null_with_warning(
     tmp_path: Path, raw: Path, caplog: pytest.LogCaptureFixture
 ) -> None:

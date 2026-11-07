@@ -152,29 +152,35 @@ def _ascii_lower(text: str) -> str:
     return nfkd.encode("ascii", "ignore").decode("ascii").lower()
 
 
+# Ordem de preferência no empate. O SAEB 2021+ (educação infantil, diretor e
+# secretário municipal) usa "|".
+_SEPARATORS = (";", ",", "|", "\t")
+
+
+def _first_line_separator(path: Path) -> str | None:
+    """Separador mais frequente na primeira linha, ou None se não houver nenhum."""
+    with open(path, "rb") as f:
+        line = f.readline().decode("latin-1", errors="ignore")
+    counts = [(line.count(s), -i, s) for i, s in enumerate(_SEPARATORS)]
+    best = max(counts)
+    return best[2] if best[0] else None
+
+
 def _detect_separator(path: Path) -> str:
     """Sniff CSV delimiter from the first line (defaulting to semicolon)."""
     try:
-        with open(path, "rb") as f:
-            line = f.readline().decode("latin-1", errors="ignore")
-            if ";" in line:
-                return ";"
-            if "," in line:
-                return ","
+        return _first_line_separator(path) or ";"
     except Exception:
-        pass
-    return ";"
+        return ";"
 
 
 def _require_separator(path: Path) -> None:
-    """Falha se a primeira linha não tem ``;`` nem ``,`` (não é CSV delimitado).
+    """Falha se a primeira linha não tem separador conhecido (não é CSV delimitado).
 
     Sem isso o DuckDB lê um TXT de largura fixa como tabela de uma coluna só e
     o lake recebe um Parquet sem sentido, sem nenhum erro.
     """
-    with open(path, "rb") as f:
-        line = f.readline().decode("latin-1", errors="ignore")
-    if ";" not in line and "," not in line:
+    if _first_line_separator(path) is None:
         raise LakeError(
             f"{path.name}: separador de colunas não detectado "
             "(não é CSV delimitado; largura fixa precisa de layout)"
