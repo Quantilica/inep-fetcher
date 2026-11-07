@@ -18,6 +18,7 @@ Datasets in the Lake:
 from __future__ import annotations
 
 import re
+import shutil
 import tempfile
 import unicodedata
 import zipfile
@@ -44,6 +45,7 @@ except ImportError as exc:
     ) from exc
 
 from inep_fetcher import __version__
+from inep_fetcher.sas_layout import SasLayout, parse_sas_input, peek_infile
 
 SOURCE_ID = "inep"
 
@@ -157,6 +159,188 @@ def _detect_separator(path: Path) -> str:
     return ";"
 
 
+def _require_separator(path: Path) -> None:
+    """Falha se a primeira linha não tem ``;`` nem ``,`` (não é CSV delimitado).
+
+    Sem isso o DuckDB lê um TXT de largura fixa como tabela de uma coluna só e
+    o lake recebe um Parquet sem sentido, sem nenhum erro.
+    """
+    with open(path, "rb") as f:
+        line = f.readline().decode("latin-1", errors="ignore")
+    if ";" not in line and "," not in line:
+        raise LakeError(
+            f"{path.name}: separador de colunas não detectado "
+            "(não é CSV delimitado; largura fixa precisa de layout)"
+        )
+
+
+def _is_lock_or_checksum(path: Path) -> bool:
+    """Lock file do Office (``~$X``) ou checksum ``md5_X`` ao lado do dado."""
+    return path.name.startswith("~$") or path.name.lower().startswith("md5_")
+
+
+def _fixed_width_frame(txt: Path, layout: SasLayout, workdir: Path) -> pl.LazyFrame:
+    """TXT de largura fixa (latin-1) como LazyFrame com uma coluna por campo.
+
+    O arquivo é regravado em UTF-8 por blocos (o Polars só lê latin-1 pelo
+    modo com perda), depois lido como uma coluna de linhas inteiras e fatiado
+    por campo; o ``sink_parquet`` da escrita processa em fluxo. Texto: sem
+    espaços nas pontas, vazio vira nulo. Número: ``TRY_CAST`` (o que não for
+    número, como o "." do SAS, vira nulo); com decimais ``w.d`` e sem ponto no
+    campo, o valor é dividido por 10^d, como o informato do SAS.
+    """
+    utf8 = workdir / f"{abs(hash(txt))}.utf8"
+    with (
+        open(txt, encoding="latin-1", newline="") as src,
+        open(utf8, "w", encoding="utf-8", newline="") as dst,
+    ):
+        shutil.copyfileobj(src, dst, 1 << 24)
+    lines = pl.scan_csv(
+        utf8,
+        has_header=False,
+        separator="\x1f",
+        quote_char=None,
+        new_columns=["linha"],
+        schema={"linha": pl.String},
+    )
+    exprs = []
+    for f in layout.fields:
+        raw = pl.col("linha").str.slice(f.start - 1, f.width).str.strip_chars()
+        if not f.numeric:
+            expr = pl.when(raw.str.len_chars() > 0).then(raw)
+        elif f.decimals == 0:
+            expr = raw.cast(pl.Int64, strict=False)
+        else:
+            num = raw.cast(pl.Float64, strict=False)
+            expr = (
+                pl.when(raw.str.contains(".", literal=True))
+                .then(num)
+                .otherwise(num / 10**f.decimals)
+            )
+        exprs.append(expr.alias(f.name))
+    return lines.select(exprs)
+
+
+def _unique_member_names(members: list[Path], root: Path) -> dict[Path, str]:
+    """Nome de cada TXT para o ``file_key``: o stem, ou o caminho se repetir.
+
+    Dois TXT de mesmo nome em pastas diferentes não podem cair no mesmo
+    arquivo do lake; nesse caso o nome inclui as pastas (``alunos_x``).
+    """
+    stems = [m.stem.lower() for m in members]
+    names: dict[Path, str] = {}
+    for m, stem in zip(members, stems, strict=True):
+        if stems.count(stem) > 1:
+            parts = list(m.relative_to(root).with_suffix("").parts)
+            lower = [p.lower() for p in parts]
+            if "dados" in lower:
+                parts = parts[lower.index("dados") + 1 :]
+            names[m] = "_".join(parts)
+        else:
+            names[m] = m.stem
+    return names
+
+
+def _convert_fixed_width(
+    path: Path,
+    root: Path,
+    writer: LakeWriter,
+    part_vals: dict[str, Any],
+    result: ConvertResult,
+) -> bool:
+    """SAEB 1995-2005: TXT de largura fixa em ``DADOS/`` + scripts SAS de layout.
+
+    ``root`` é a pasta onde o ZIP foi extraído. Devolve ``False`` quando o ZIP
+    não tem esse formato (o chamador segue pelo caminho de CSV). Os ZIPs
+    dentro de ``DADOS/`` (1999) são extraídos um nível. Cada TXT é pareado ao
+    layout pelo nome do ``INFILE``; TXT sem layout, layout sem TXT e script
+    inválido entram em ``result.errors`` sem derrubar os demais.
+    """
+    scripts = sorted(
+        m
+        for m in root.rglob("*")
+        if m.is_file() and m.suffix.lower() == ".sas" and not m.name.startswith("~$")
+    )
+    if not scripts:
+        return False
+
+    def in_dados(m: Path) -> bool:
+        return "dados" in {p.lower() for p in m.relative_to(root).parts[:-1]}
+
+    for inner in sorted(root.rglob("*")):
+        if inner.is_file() and inner.suffix.lower() == ".zip" and in_dados(inner):
+            decompress_archive(inner, inner.parent / inner.stem)
+    txts = sorted(
+        m
+        for m in root.rglob("*")
+        if m.is_file()
+        and m.suffix.lower() == ".txt"
+        and in_dados(m)
+        and not _is_lock_or_checksum(m)
+        and not any(
+            doc in _ascii_lower(m.relative_to(root).as_posix()) for doc in _DOC_PATTERNS
+        )
+    )
+    if not txts:
+        return False
+
+    layouts: dict[str, list[tuple[Path, SasLayout]]] = {}
+    broken: set[str] = set()
+    for script in scripts:
+        text = script.read_text(encoding="latin-1")
+        try:
+            layout = parse_sas_input(text)
+        except ValueError as exc:
+            result.errors.append(f"{path.name}: {script.name}: {exc}")
+            name = peek_infile(text)
+            if name:
+                broken.add(name)
+            continue
+        layouts.setdefault(layout.infile, []).append((script, layout))
+
+    names = _unique_member_names(txts, root)
+    matched: set[str] = set()
+    for txt in txts:
+        name = txt.name.lower()
+        cands = layouts.get(name, [])
+        if not cands:
+            if name not in broken:
+                result.errors.append(f"{path.name}: {txt.name}: sem layout SAS")
+            continue
+        matched.add(name)
+        if any(c[1].fields != cands[0][1].fields for c in cands):
+            result.errors.append(
+                f"{path.name}: {txt.name}: layouts SAS divergentes "
+                f"({', '.join(c[0].name for c in cands)})"
+            )
+            continue
+        layout = cands[0][1]
+        try:
+            with tempfile.TemporaryDirectory() as work:
+                written = writer.write_polars(
+                    _fixed_width_frame(txt, layout, Path(work)),
+                    path,
+                    partitions=part_vals,
+                    file_key_name=composite_file_key(path, names[txt]),
+                    converter=f"inep-fetcher {__version__}",
+                )
+        except Exception as exc:
+            first_line = (str(exc).strip().splitlines() or [repr(exc)])[0]
+            result.errors.append(f"{path.name}: {txt.name}: {first_line}")
+            continue
+        if written.status == "skipped":
+            result.skipped += 1
+        else:
+            result.converted += 1
+    for name, cands in sorted(layouts.items()):
+        if name not in matched:
+            script = cands[0][0].name
+            result.errors.append(
+                f"{path.name}: {script}: arquivo de dados {name} não encontrado"
+            )
+    return True
+
+
 class LakeConverter:
     """Converter registered under the ``quantilica.lake`` entry point."""
 
@@ -246,6 +430,7 @@ class LakeConverter:
             suffix = path.suffix.lower()
             try:
                 if suffix == ".csv":
+                    _require_separator(path)
                     sep = _detect_separator(path)
                     fallback_sep = "," if sep == ";" else ";"
                     try:
@@ -285,6 +470,10 @@ class LakeConverter:
                 elif suffix in {".zip", ".7z"}:
                     with tempfile.TemporaryDirectory() as tmp:
                         extracted = decompress_archive(path, Path(tmp))
+                        if _convert_fixed_width(
+                            path, Path(tmp), writer, part_vals, result
+                        ):
+                            continue
                         all_members = sorted(
                             m
                             for m in Path(tmp).rglob("*")
@@ -341,6 +530,11 @@ class LakeConverter:
                                     result.skipped += 1
                                 else:
                                     result.converted += 1
+                                continue
+                            try:
+                                _require_separator(member)
+                            except LakeError as exc:
+                                result.errors.append(f"{path.name}: {exc}")
                                 continue
                             sep = _detect_separator(member)
                             fallback_sep = "," if sep == ";" else ";"
