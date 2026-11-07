@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [0.5.5] - 2026-11-07
+
 ### Adicionado
 - `lake`: microdados do SAEB de 1995, 1997, 1999, 2001, 2003 e 2005 (TXT de largura fixa) passam a ser convertidos. O layout vem dos scripts SAS que acompanham os dados (`INPUT_SAS_*.sas`, em 2005 `IMPUT_SAS_*.sas`): cada TXT vira um Parquet com uma coluna por campo, texto sem espaços nas pontas, números tipados (informato `w.d` sem ponto no campo divide por 10^d, como no SAS) e vazio como nulo. O TXT é pareado ao script pelo nome do `INFILE`. Os ZIPs dentro do ZIP de 1999 (`DADOS/ALUNOS.zip` etc.) são extraídos. Script com campos sobrepostos ou além do `LRECL`, TXT sem layout e layout sem TXT são listados em `result.errors` sem interromper os demais arquivos.
 
