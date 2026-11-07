@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [0.5.4] - 2026-11-07
+
 ### Corrigido
 - `lake`: em ZIPs com pasta `DADOS/` (ENEM, SAEB, censos), só o que está nela é lido como dado. No ENEM 2023, os cadernos de prova em texto para leitor de tela (`PROVAS E GABARITOS/*_DOSVOX_*.txt`) eram lidos como CSV: um virava tabela sem sentido e outro interrompia a conversão com `CSV Error on Line: 626`.
 - `lake`: o filtro de documentação compara nomes sem acento, então `DICIONÁRIO/` deixa de entrar no lake como dado.
