@@ -17,8 +17,8 @@ Datasets in the Lake:
 
 from __future__ import annotations
 
+import logging
 import re
-import shutil
 import tempfile
 import unicodedata
 import zipfile
@@ -45,7 +45,14 @@ except ImportError as exc:
     ) from exc
 
 from inep_fetcher import __version__
-from inep_fetcher.sas_layout import SasLayout, parse_sas_input, peek_infile
+from inep_fetcher.sas_layout import (
+    LAYOUT_FIXES,
+    SasLayout,
+    parse_sas_input,
+    peek_infile,
+)
+
+logger = logging.getLogger(__name__)
 
 SOURCE_ID = "inep"
 
@@ -190,11 +197,14 @@ def _fixed_width_frame(txt: Path, layout: SasLayout, workdir: Path) -> pl.LazyFr
     campo, o valor é dividido por 10^d, como o informato do SAS.
     """
     utf8 = workdir / f"{abs(hash(txt))}.utf8"
+    longest = 0
     with (
         open(txt, encoding="latin-1", newline="") as src,
         open(utf8, "w", encoding="utf-8", newline="") as dst,
     ):
-        shutil.copyfileobj(src, dst, 1 << 24)
+        for line in src:
+            longest = max(longest, len(line.rstrip("\r\n")))
+            dst.write(line)
     lines = pl.scan_csv(
         utf8,
         has_header=False,
@@ -205,6 +215,23 @@ def _fixed_width_frame(txt: Path, layout: SasLayout, workdir: Path) -> pl.LazyFr
     )
     exprs = []
     for f in layout.fields:
+        if f.start > longest:
+            # Além do fim das linhas: com MISSOVER o SAS lê como ausente.
+            logger.warning(
+                "%s: campo %s (posição %d) começa depois do fim das linhas "
+                "(%d colunas); coluna nula",
+                txt.name,
+                f.name,
+                f.start,
+                longest,
+            )
+            dtype = (
+                pl.String
+                if not f.numeric
+                else (pl.Int64 if f.decimals == 0 else pl.Float64)
+            )
+            exprs.append(pl.lit(None, dtype=dtype).alias(f.name))
+            continue
         raw = pl.col("linha").str.slice(f.start - 1, f.width).str.strip_chars()
         if not f.numeric:
             expr = pl.when(raw.str.len_chars() > 0).then(raw)
@@ -219,6 +246,42 @@ def _fixed_width_frame(txt: Path, layout: SasLayout, workdir: Path) -> pl.LazyFr
             )
         exprs.append(expr.alias(f.name))
     return lines.select(exprs)
+
+
+def _check_layout_fix(txt: Path, layout: SasLayout) -> None:
+    """Confere nas 200 primeiras linhas a correção de layout aplicada ao script.
+
+    Raises:
+        ValueError: os dados não confirmam o deslocamento.
+    """
+    fix = layout.fix
+    if fix is None:
+        return
+    lines: list[str] = []
+    with open(txt, encoding="latin-1", newline="") as f:
+        for line in f:
+            if line.strip():
+                lines.append(line.rstrip("\r\n"))
+            if len(lines) >= 200:
+                break
+    if not lines:
+        raise ValueError("correção de layout não validada: arquivo sem dados")
+    by_name = {f.name: f for f in layout.fields}
+    for name in fix.dotted:
+        f = by_name[name]
+        if not all("." in line[f.start - 1 : f.end] for line in lines):
+            raise ValueError(
+                f"correção de layout não validada: {name} sem ponto decimal"
+            )
+    for name, (low, high) in fix.ranges.items():
+        f = by_name[name]
+        for line in lines:
+            raw = line[f.start - 1 : f.end].strip()
+            if not raw.isdigit() or not low <= int(raw) <= high:
+                raise ValueError(
+                    f"correção de layout não validada: {name}={raw!r} "
+                    f"fora de {low}-{high}"
+                )
 
 
 def _unique_member_names(members: list[Path], root: Path) -> dict[Path, str]:
@@ -244,6 +307,7 @@ def _unique_member_names(members: list[Path], root: Path) -> dict[Path, str]:
 def _convert_fixed_width(
     path: Path,
     root: Path,
+    year: int | None,
     writer: LakeWriter,
     part_vals: dict[str, Any],
     result: ConvertResult,
@@ -288,8 +352,9 @@ def _convert_fixed_width(
     broken: set[str] = set()
     for script in scripts:
         text = script.read_text(encoding="latin-1")
+        fix = LAYOUT_FIXES.get((year, peek_infile(text) or "")) if year else None
         try:
-            layout = parse_sas_input(text)
+            layout = parse_sas_input(text, fix)
         except ValueError as exc:
             result.errors.append(f"{path.name}: {script.name}: {exc}")
             name = peek_infile(text)
@@ -316,6 +381,7 @@ def _convert_fixed_width(
             continue
         layout = cands[0][1]
         try:
+            _check_layout_fix(txt, layout)
             with tempfile.TemporaryDirectory() as work:
                 written = writer.write_polars(
                     _fixed_width_frame(txt, layout, Path(work)),
@@ -471,7 +537,7 @@ class LakeConverter:
                     with tempfile.TemporaryDirectory() as tmp:
                         extracted = decompress_archive(path, Path(tmp))
                         if _convert_fixed_width(
-                            path, Path(tmp), writer, part_vals, result
+                            path, Path(tmp), year, writer, part_vals, result
                         ):
                             continue
                         all_members = sorted(

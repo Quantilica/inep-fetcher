@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from inep_fetcher.sas_layout import parse_sas_input, peek_infile
+from inep_fetcher.sas_layout import LAYOUT_FIXES, parse_sas_input, peek_infile
 
 FIXTURES = Path(__file__).parent / "fixtures" / "saeb"
 
@@ -77,9 +77,32 @@ def test_overlap_is_an_error() -> None:
         parse_sas_input(text)
 
 
-def test_field_beyond_lrecl_is_an_error() -> None:
+def test_field_starting_at_lrecl_is_accepted_missover() -> None:
+    layout = parse_sas_input(_read("INPUT_SAS_BIOLOGIA_03ANO_99.SAS"))
+    assert layout.lrecl == 238
+    gab = [f for f in layout.fields if f.name.startswith("gab_bl")]
+    assert [f.start for f in gab] == [238, 251, 264]
+
+
+def test_field_starting_inside_and_ending_beyond_lrecl_is_an_error() -> None:
+    text = "INFILE 'x.txt' LRECL=10;\nINPUT\n@1 A 4.\n@5 B 8.\n;"
     with pytest.raises(ValueError, match="além do LRECL"):
-        parse_sas_input(_read("INPUT_SAS_BIOLOGIA_03ANO_gabarito_alem_lrecl.SAS"))
+        parse_sas_input(text)
+
+
+def test_escola_99_overlap_and_fix() -> None:
+    text = _read("INPUT_SAS_ESCOLA_99.sas")
+    with pytest.raises(ValueError, match="se sobrepõem"):
+        parse_sas_input(text)
+    fix = LAYOUT_FIXES[(1999, "escolas_99.txt")]
+    layout = parse_sas_input(text, fix)
+    by_name = {f.name: f for f in layout.fields}
+    assert by_name["estrato"].start == 23  # antes de UPA: intacto
+    assert by_name["upa"].start == 32
+    assert by_name["peso_ec"].start == 44
+    assert by_name["e_6_0"].end == 259
+    assert layout.fix is fix
+    assert set(LAYOUT_FIXES) == {(1999, "escolas_99.txt")}
 
 
 @pytest.mark.parametrize(
@@ -100,6 +123,6 @@ def test_malformed_scripts(text: str, message: str) -> None:
 
 
 def test_peek_infile_survives_invalid_script() -> None:
-    text = _read("INPUT_SAS_BIOLOGIA_03ANO_gabarito_alem_lrecl.SAS")
+    text = _read("INPUT_SAS_BIOLOGIA_03ANO_99.SAS")
     assert peek_infile(text) == "biologia_03ano.txt"
     assert peek_infile("sem nada") is None

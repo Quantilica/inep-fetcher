@@ -130,9 +130,10 @@ def test_errors_do_not_stop_other_members(tmp_path: Path, raw: Path) -> None:
             "INPUTS_SAS_SPSS/ALUNOS/IMPUT_SAS_MATEMATICA_03ANO.sas": _fx(
                 "IMPUT_SAS_MATEMATICA_03ANO.sas"
             ),
-            # layout inválido (campo além do LRECL) e seu TXT
-            "INPUTS_SAS_SPSS/ALUNOS/INPUT_SAS_BIOLOGIA_03ANO.SAS": _fx(
-                "INPUT_SAS_BIOLOGIA_03ANO_gabarito_alem_lrecl.SAS"
+            # layout inválido (campos sobrepostos) e seu TXT
+            "INPUTS_SAS_SPSS/ALUNOS/INPUT_SAS_BIOLOGIA_03ANO.SAS": (
+                b"INFILE 'D:\\BIOLOGIA_03ANO.TXT' LRECL=9;\r\nINPUT\r\n"
+                b"@1 A 8.\r\n@5 B 4.;\r\n"
             ),
             "DADOS/ALUNOS/BIOLOGIA_03ANO.TXT": b"abc\r\n",
             # layout sem TXT
@@ -148,7 +149,7 @@ def test_errors_do_not_stop_other_members(tmp_path: Path, raw: Path) -> None:
     assert result.converted == 1
     assert len(result.errors) == 3
     joined = "\n".join(result.errors)
-    assert "além do LRECL" in joined
+    assert "se sobrepõem" in joined
     assert "SOBRA.TXT: sem layout SAS" in joined
     assert "escola_05.txt não encontrado" in joined
     assert "BIOLOGIA_03ANO.TXT: sem layout" not in joined  # só o erro do script
@@ -261,3 +262,81 @@ def test_txt_without_separator_on_csv_path_is_an_error(
     assert any("SEM_LAYOUT.TXT: separador" in e for e in result.errors)
     assert any("enem_2023@20240101.csv: separador" in e for e in result.errors)
     assert not list(root.rglob("*sem_layout*"))
+
+
+def test_fields_past_end_of_lines_are_null_with_warning(
+    tmp_path: Path, raw: Path, caplog: pytest.LogCaptureFixture
+) -> None:
+    _zip(
+        raw / "saeb-microdados_1999@20240101.zip",
+        {
+            "INPUTS_SAS_SPSS/ALUNOS/INPUT_SAS_BIOLOGIA_03ANO.SAS": _fx(
+                "INPUT_SAS_BIOLOGIA_03ANO_99.SAS"
+            ),
+            "DADOS/ALUNOS/BIOLOGIA_03ANO.TXT": _fx("BIOLOGIA_03ANO_99.TXT"),
+        },
+    )
+    with caplog.at_level("WARNING", logger="inep_fetcher.lake"):
+        result, root = _convert(tmp_path)
+    assert result.errors == []
+    df = _read(root, "saeb-microdados_1999__biologia_03ano")
+    assert df.height == 5
+    for name in ("gab_bl1", "gab_bl2", "gab_bl3"):
+        assert df[name].null_count() == 5
+        assert df.schema[name] == pl.String
+    # o campo imediatamente anterior (dentro da linha) segue preenchido
+    assert df["resp_total"].null_count() == 0
+    warned = [r.getMessage() for r in caplog.records if "coluna nula" in r.getMessage()]
+    assert len(warned) == 3 and "gab_bl1" in warned[0]
+    assert check_dataset(root) == []
+
+
+def _escola_zip(raw: Path, txt: bytes) -> None:
+    _zip(
+        raw / "saeb-microdados_1999@20240101.zip",
+        {
+            "INPUTS_SAS_SPSS/ESCOLAS/INPUT_SAS_ESCOLA_99.sas": _fx(
+                "INPUT_SAS_ESCOLA_99.sas"
+            ),
+            "DADOS/ESCOLAS.zip": _inner_zip({"ESCOLAS/escolas_99.txt": txt}),
+        },
+    )
+
+
+def _inner_zip(members: dict[str, bytes]) -> bytes:
+    buf = io.BytesIO()
+    _zip_to(buf, members)
+    return buf.getvalue()
+
+
+def _zip_to(target: io.BytesIO, members: dict[str, bytes]) -> None:
+    with zipfile.ZipFile(target, "w") as z:
+        for name, data in members.items():
+            z.writestr(name, data)
+
+
+def test_escola_99_layout_fix_validated_by_data(tmp_path: Path, raw: Path) -> None:
+    _escola_zip(raw, _fx("escolas_99.txt"))
+    result, root = _convert(tmp_path)
+    assert result.errors == []
+    df = _read(root, "saeb-microdados_1999__escolas_99")
+    assert df.height == 5
+    assert df["estrato"].to_list()[:3] == [1000003, 1000004, 1000006]
+    assert df["upa"].to_list()[:3] == [11000058, 11000090, 11000155]
+    assert df["peso_ec"].to_list()[:3] == pytest.approx([0.9670, 1.9341, 1.9341])
+    assert df["dep_adm"].to_list()[:3] == [3, 3, 3]
+    assert df["local"].to_list() == [1] * 5
+    assert check_dataset(root) == []
+
+
+def test_escola_99_layout_fix_rejected_when_data_disagree(
+    tmp_path: Path, raw: Path
+) -> None:
+    # mesmos dados com o PESO_EC sem ponto decimal: o deslocamento não se confirma
+    bad = _fx("escolas_99.txt").replace(b".", b"0")
+    _escola_zip(raw, bad)
+    result, root = _convert(tmp_path)
+    assert result.converted == 0
+    assert len(result.errors) == 1
+    assert "correção de layout não validada" in result.errors[0]
+    assert not list(root.rglob("*.parquet"))

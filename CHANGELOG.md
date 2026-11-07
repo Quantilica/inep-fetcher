@@ -11,6 +11,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - `lake`: microdados do SAEB de 1995, 1997, 1999, 2001, 2003 e 2005 (TXT de largura fixa) passam a ser convertidos. O layout vem dos scripts SAS que acompanham os dados (`INPUT_SAS_*.sas`, em 2005 `IMPUT_SAS_*.sas`): cada TXT vira um Parquet com uma coluna por campo, texto sem espaços nas pontas, números tipados (informato `w.d` sem ponto no campo divide por 10^d, como no SAS) e vazio como nulo. O TXT é pareado ao script pelo nome do `INFILE`. Os ZIPs dentro do ZIP de 1999 (`DADOS/ALUNOS.zip` etc.) são extraídos. Script com campos sobrepostos ou além do `LRECL`, TXT sem layout e layout sem TXT são listados em `result.errors` sem interromper os demais arquivos.
 
 ### Corrigido
+- `lake`: no SAEB 1999, os sete arquivos da 3ª série (`*_03ANO`) declaram no script os campos `GAB_Bl1` a `GAB_Bl3` depois do fim das linhas. Como no SAS com `MISSOVER`, campo que começa depois do fim dos dados vira coluna nula, com aviso no log, em vez de impedir a conversão.
+- `lake`: o script do SAEB 1999 de escolas (`escolas_99.txt`) tem campos sobrepostos (`ESTRATO` e `UPA`) e não bate com os dados. Uma correção específica desloca uma coluna os campos a partir de `UPA`, e só é aplicada depois de conferir nos dados (ponto decimal em `PESO_EC`, faixas de `DEP_ADM` e `LOCAL`); se os dados não confirmarem, o arquivo é listado como erro.
 - `lake`: TXT de dados sem separador de colunas detectado (largura fixa lida como CSV) deixa de virar tabela de uma coluna só e passa a ser erro. Antes, SAEB 1995, 1997, 2001, 2003 e 2005 gravavam essas tabelas sem aviso e o de 1999 falhava com "nenhum arquivo de dados encontrado".
 
 ## [0.5.4] - 2026-11-07
