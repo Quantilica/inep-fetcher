@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from quantilica.cli.sdk import FetcherApp
+from quantilica.core.registry import FetcherInfo
 from quantilica.core.sync import FreshnessPolicy
 
 from . import catalog
@@ -37,6 +38,17 @@ if hasattr(catalog, "_MACRO_GROUPS"):
 fetcher = FetcherApp(
     name="inep-fetcher",
     help="Microdados abertos do INEP (educação).",
+    info=FetcherInfo(
+        id="inep",
+        nome="INEP - Microdados da Educação",
+        orgao=(
+            "Instituto Nacional de Estudos e Pesquisas Educacionais "
+            "Anísio Teixeira (INEP)"
+        ),
+        homepage="https://www.gov.br/inep/",
+        cadencia="yearly",
+        dominio="educacao",
+    ),
     groups_dict=GROUPS,
     aliases_dict=aliases,
     list_datasets=list_datasets,
