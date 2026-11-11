@@ -45,6 +45,10 @@ fetcher = FetcherApp(
             "Instituto Nacional de Estudos e Pesquisas Educacionais "
             "Anísio Teixeira (INEP)"
         ),
+        licenca=(
+            "Sem licença declarada; dados públicos pela Lei 12.527/2011 (LAI) "
+            "e Decreto 8.777/2016"
+        ),
         homepage="https://www.gov.br/inep/",
         cadencia="yearly",
         dominio="educacao",
