@@ -216,6 +216,40 @@ def _multi_level(raw: pl.DataFrame) -> pl.DataFrame | None:
 MULTI_LEVEL_DATASETS = frozenset({"financeiros", "fluxo-educacao-superior"})
 
 
+#: datasets cujas planilhas trazem notas (``* ...``) acima do cabeçalho de um nível
+NOTES_ABOVE_DATASETS = frozenset({"nivel-socioeconomico"})
+_FOOTNOTE_MARK = re.compile(r"\s*\*+$")
+
+
+def _header_row_below_notes(source: Any, **kwargs: Any) -> int:
+    """Índice da linha do cabeçalho: a primeira com duas células ou mais.
+
+    As linhas de cima, com no máximo uma célula preenchida, são notas.
+    """
+    head = pl.read_excel(source, has_header=False, **kwargs).head(50)
+    for i, row in enumerate(head.rows()):
+        if sum(1 for v in row if _text(v)) >= 2:
+            return i
+    return 0
+
+
+def _read_below_notes(source: Any, **kwargs: Any) -> pl.DataFrame | None:
+    """Lê a planilha com o cabeçalho depois das notas; ``None`` se não há nota.
+
+    O INSE 2019 (estados, municípios) abre com uma ou duas notas de rodapé
+    (``* Não há escala...``) *acima* do cabeçalho; a nota virava o nome da
+    primeira coluna e as outras ficavam ``__UNNAMED__N``. As notas saem e o
+    asterisco de remissão nos nomes (``MEDIA_INSE*``) também.
+    """
+    row = _header_row_below_notes(source, **kwargs)
+    if row == 0:
+        return None
+    options = {**kwargs.pop("read_options", {}), "header_row": row}
+    df = pl.read_excel(source, read_options=options, **kwargs)
+    df.columns = [_FOOTNOTE_MARK.sub("", _text(c)) or c for c in df.columns]
+    return df
+
+
 def read_planilha(
     source: Any, dataset_id: str | None = None, **kwargs: Any
 ) -> pl.DataFrame:
@@ -227,8 +261,19 @@ def read_planilha(
     juntando os níveis (``" - "``), o título e as notas de rodapé saem, ``--``,
     ``-``, ``...`` e ``*`` viram nulo e as colunas numéricas voltam tipadas. Os
     demais datasets leem como ``pl.read_excel`` sempre leu.
+
+    Exceção: em ``nivel-socioeconomico`` (:data:`NOTES_ABOVE_DATASETS`), quando
+    a primeira linha é uma nota e não o cabeçalho (INSE 2019), o cabeçalho é a
+    primeira linha com duas células ou mais e as notas acima saem.
     """
     df = pl.read_excel(source, **kwargs)
+    if dataset_id in NOTES_ABOVE_DATASETS:
+        unnamed = sum(1 for c in df.columns if _BLANK_NAME.fullmatch(_text(c)))
+        if df.width > 1 and unnamed * 2 >= df.width:
+            below = _read_below_notes(source, **kwargs)
+            if below is not None:
+                return clean_columns(below)
+        return df
     if dataset_id not in MULTI_LEVEL_DATASETS:
         return df
     unnamed = sum(1 for c in df.columns if _BLANK_NAME.fullmatch(_text(c)))

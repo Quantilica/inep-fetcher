@@ -7,6 +7,9 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Corrigido
+- `nivel-socioeconomico` (INSE 2019, estados e municípios): a nota de rodapé que vem *acima* do cabeçalho deixa de virar o nome de uma coluna (as demais ficavam `__UNNAMED__N`). O cabeçalho é a primeira linha com duas células ou mais; as notas saem e o asterisco de remissão dos nomes (`MEDIA_INSE*`) também. Os arquivos de 2021 e 2023 não mudam.
+
 ## [0.6.0] - 2026-11-14
 
 ### Corrigido

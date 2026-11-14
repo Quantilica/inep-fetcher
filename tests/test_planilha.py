@@ -174,3 +174,68 @@ def test_outros_datasets_leem_como_sempre(tmp_path: Path) -> None:
     df = read_planilha(src, "taxas-rendimento-escolar")
     assert df.columns == pl.read_excel(src).columns
     assert df.height == pl.read_excel(src).height
+
+
+def _inse_2019(path: Path, *, notas: int = 2) -> None:
+    """INSE 2019: notas de rodapé *acima* do cabeçalho, que traz ``*`` de remissão."""
+    book = xlsxwriter.Workbook(str(path))
+    sheet = book.add_worksheet()
+    textos = [
+        "* Foi calculado o INSE apenas para os Municípios com 10 alunos ou mais",
+        "** Não há escala interpretada do indicador. Consulte a Nota Técnica.",
+    ]
+    for i in range(notas):
+        sheet.write(i, 0, textos[i])
+    cab = ["CO_UF", "NOME_UF", "CO_MUNICIPIO*", "MEDIA_INSE**", "PC_NIVEL_1"]
+    for j, nome in enumerate(cab):
+        sheet.write(notas, j, nome)
+    for i, linha in enumerate(
+        [(11, "Rondônia", 1100015, 4.86, 0.31), (53, "DF", 5300108, 5.27, 0.3)]
+    ):
+        for j, v in enumerate(linha):
+            sheet.write(notas + 1 + i, j, v)
+    book.close()
+
+
+@pytest.mark.parametrize("notas", [1, 2])
+def test_inse_2019_nota_acima_do_cabecalho_nao_vira_coluna(
+    tmp_path: Path, notas: int
+) -> None:
+    src = tmp_path / "inse.xlsx"
+    _inse_2019(src, notas=notas)
+    df = read_planilha(src, "nivel-socioeconomico")
+    assert df.columns == [
+        "CO_UF",
+        "NOME_UF",
+        "CO_MUNICIPIO",
+        "MEDIA_INSE",
+        "PC_NIVEL_1",
+    ]
+    assert _valid(df.columns)
+    assert df.height == 2  # as notas não são dados
+    assert df["CO_MUNICIPIO"].to_list() == [1100015, 5300108]
+    assert df["MEDIA_INSE"].dtype == pl.Float64
+
+
+def test_inse_com_cabecalho_na_primeira_linha_nao_muda(tmp_path: Path) -> None:
+    # INSE 2021/2023: cabeçalho na primeira linha, sem nota acima
+    src = tmp_path / "inse21.xlsx"
+    pl.DataFrame({"CO_UF": [11, 53], "MEDIA_INSE": [4.86, 5.27]}).write_excel(src)
+    df = read_planilha(src, "nivel-socioeconomico")
+    assert df.columns == ["CO_UF", "MEDIA_INSE"]
+    assert df.height == 2
+
+
+def test_lake_converte_inse_2019_sem_nome_invalido(tmp_path: Path) -> None:
+    raw = tmp_path / "raw" / "indicadores" / "nivel-socioeconomico"
+    raw.mkdir(parents=True)
+    _inse_2019(raw / "nivel-socioeconomico-inse-2019-municipios@20210602.xlsx")
+    lake = tmp_path / "lake"
+    lake.mkdir()
+    res = LakeConverter().convert(tmp_path / "raw", lake)
+    assert not res.errors
+    parquets = list((lake / "inep" / "nivel-socioeconomico").rglob("*.parquet"))
+    assert len(parquets) == 1
+    df = pl.read_parquet(parquets[0])
+    assert _valid(df.columns)
+    assert df.height == 2
