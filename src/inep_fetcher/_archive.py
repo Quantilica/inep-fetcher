@@ -351,10 +351,10 @@ def scratch_dir() -> Iterator[Path]:
     def _warn(func: Callable[[str], object], path: str, exc: BaseException) -> None:
         # arquivo somente leitura (Windows): libera a escrita e tenta de novo
         try:
-            os.chmod(path, stat.S_IWRITE)
+            os.chmod(path, os.stat(path).st_mode | stat.S_IWRITE)
             func(path)
             return
-        except OSError:
+        except Exception:  # noqa: BLE001 - qualquer falha aqui vira aviso
             pass
         logger.warning("não consegui apagar %s: %s", path, exc)
 
