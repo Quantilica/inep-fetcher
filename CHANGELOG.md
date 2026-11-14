@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [0.7.1] - 2026-11-14
+
 ### Corrigido
 - `lake`: arquivos de checksum que acompanham o dado (TXT em que toda linha é `<hash hex de 32, 40, 64 ou 128 dígitos> *nome.ext` e há ao menos uma letra a-f nos hashes (um TXT de largura fixa só de dígitos não é checksum), como o `tx_rend_escolas_2023.txt` de `taxas-rendimento-escolar`; também `.md5`, `.sha1`, `.sha256`, `.sha512`) são ignorados, sem Parquet e sem o erro "separador de colunas não detectado". `.ods` já era ignorado (só `.xlsx`/`.xls`/`.csv`/`.txt` viram dado) e, quando há `.xlsx` e `.xls` com o mesmo nome na mesma pasta, só um é convertido, na ordem de preferência xlsx > xls > csv > txt (antes os dois disputavam o mesmo `file_key`).
 - `lake`: o formato do arquivo compactado vem dos bytes mágicos, não da extensão. O IDD 2022 é um RAR v5 com extensão `.zip` e passa a ser lido pelo 7-Zip (`7z`, `7z.exe` ou `%ProgramFiles%\7-Zip`; `QUANTILICA_7Z` aponta outro executável). O código de saída 1 do 7-Zip (aviso, comum em RAR) não é erro; nomes demais para a linha de comando, ou membros que o 7-Zip não acha pelo nome, fazem a extração do arquivo inteiro por ele, numa pasta de preparo dentro do destino (o que já estava no destino não é apagado). O 7-Zip do Fedora não tem codec RAR: nesse caso o `libarchive-c` serve de reserva, se instalado. Sem leitor, o erro diz para instalar o 7-Zip.
