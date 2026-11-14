@@ -45,7 +45,7 @@ except ImportError as exc:
 
 from inep_fetcher import __version__
 from inep_fetcher._archive import extract_archive, scratch_dir
-from inep_fetcher.csv_clean import clean_csv
+from inep_fetcher.csv_clean import clean_csv, detect_separator
 from inep_fetcher.planilha import read_planilha
 from inep_fetcher.sas_layout import (
     LAYOUT_FIXES,
@@ -484,32 +484,44 @@ def _write_csv(
     """CSV delimitado (latin-1) para o lake, com o separador detectado e a reserva.
 
     Nos indicadores (planilhas exportadas para CSV), o título acima do
-    cabeçalho e as colunas finais sem nome e sem valor saem antes da leitura;
-    os microdados seguem direto para o DuckDB.
+    cabeçalho é pulado (``skip``) e as colunas finais sem nome e sem valor
+    saem (o CSV é reescrito); os microdados seguem direto para o DuckDB.
     """
     sep = _detect_separator(src)
+    indicator = dataset_id in INDICADORES_GROUPS
+    if indicator:
+        # o título pode não ter o separador do dado: confere na linha do cabeçalho
+        sep = detect_separator(src, _SEPARATORS, sep)
     fallback_sep = "," if sep == ";" else ";"
-    read_from = src
     with scratch_dir() as work:
-        if dataset_id in INDICADORES_GROUPS:
-            cleaned = clean_csv(src, sep, work)
-            if cleaned is not None:
-                read_from = cleaned.path
-        kwargs: dict[str, Any] = {
-            "partitions": part_vals,
-            "encoding": "latin-1",
-            "converter": f"inep-fetcher {__version__}",
-        }
-        if file_key_name is not None:
-            kwargs["file_key_name"] = file_key_name
-        if src_origin is not None:
-            kwargs["src_origin"] = src_origin
-        elif read_from is not src:
-            kwargs["src_origin"] = src
+
+        def attempt(use_sep: str) -> Any:
+            read_from, skip, origin = src, 0, src_origin
+            plan = clean_csv(src, use_sep, work) if indicator else None
+            if plan is not None:
+                skip = plan.skip
+                if plan.path is not None:
+                    read_from = plan.path
+                    origin = src_origin or src
+            kwargs: dict[str, Any] = {
+                "partitions": part_vals,
+                "separator": use_sep,
+                "encoding": "latin-1",
+                "converter": f"inep-fetcher {__version__}",
+            }
+            if skip:
+                kwargs["skip"] = skip
+            if file_key_name is not None:
+                kwargs["file_key_name"] = file_key_name
+            if origin is not None:
+                kwargs["src_origin"] = origin
+            return writer.write_duckdb(read_from, **kwargs)
+
         try:
-            return writer.write_duckdb(read_from, separator=sep, **kwargs)
+            return attempt(sep)
         except (LakeError, duckdb.Error):
-            return writer.write_duckdb(read_from, separator=fallback_sep, **kwargs)
+            # reserva com o outro separador: a limpeza é refeita com ele
+            return attempt(fallback_sep)
 
 
 class LakeConverter:
