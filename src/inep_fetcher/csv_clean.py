@@ -84,25 +84,74 @@ def split_raw(line: str, sep: str) -> tuple[list[str], bool]:
         i = end + 1
 
 
+#: Registro com campo entre aspas que não fecha: passado destes limites a aspa é
+#: tratada como texto e as linhas acumuladas voltam a ser registros próprios (sem
+#: isto, uma aspa solta engoliria o resto do arquivo num registro só).
+_MAX_PENDING_LINES = 1000
+_MAX_PENDING_BYTES = 1 << 20
+
+
+def _still_open(line: str, sep: str, in_quote: bool) -> bool:
+    """Estado de aspas ao fim de ``line``, partindo de ``in_quote`` (incremental).
+
+    Mesma regra de ``split_raw``: aspa só abre no início do campo, ``""`` dentro
+    do campo é aspa literal, e o campo termina no separador seguinte ao fecho.
+    """
+    if not in_quote and '"' not in line:
+        return False
+    i, n = 0, len(line)
+    while True:
+        if in_quote or (i < n and line[i] == '"'):
+            j = i if in_quote else i + 1
+            while True:
+                k = line.find('"', j)
+                if k < 0:
+                    return True
+                if k + 1 < n and line[k + 1] == '"':
+                    j = k + 2
+                    continue
+                break
+            in_quote = False
+            i = k + 1
+        end = line.find(sep, i)
+        if end < 0:
+            return False
+        i = end + 1
+
+
 def _records(src: Path, sep: str, encoding: str) -> Iterator[tuple[list[str], int]]:
-    """Registros do CSV como (campos brutos, nº de linhas físicas)."""
+    """Registros do CSV como (campos brutos, nº de linhas físicas).
+
+    Campo entre aspas que continua na linha seguinte junta as linhas (estado
+    incremental: cada linha é varrida uma vez). Se o acúmulo passa de
+    ``_MAX_PENDING_LINES`` linhas ou ``_MAX_PENDING_BYTES``, a aspa é tomada
+    por texto: as linhas acumuladas saem uma a uma, divididas sem aspas, sem
+    perder nenhum byte.
+    """
     with open(src, encoding=encoding, newline="") as fh:
-        pending = ""
-        lines = 0
+        pending: list[str] = []
+        size = 0
+        in_quote = False
         for raw in fh:
             line = raw.rstrip("\r\n")
-            if pending:
-                line = f"{pending}\n{line}"
-            lines += 1
-            fields, open_ = split_raw(line, sep)
-            if open_:
-                pending = line
-                continue
-            pending = ""
-            yield fields, lines
-            lines = 0
-        if pending:
-            yield split_raw(pending, sep)[0], lines
+            if not pending:
+                if not _still_open(line, sep, False):
+                    yield split_raw(line, sep)[0], 1
+                    continue
+                in_quote = True
+            else:
+                in_quote = _still_open(line, sep, True)
+            pending.append(line)
+            size += len(line)
+            if not in_quote:
+                yield split_raw("\n".join(pending), sep)[0], len(pending)
+                pending, size = [], 0
+            elif len(pending) > _MAX_PENDING_LINES or size > _MAX_PENDING_BYTES:
+                for ln in pending:
+                    yield ln.split(sep), 1
+                pending, size, in_quote = [], 0, False
+        for ln in pending:  # arquivo termina com campo aberto
+            yield ln.split(sep), 1
 
 
 def _text(cell: str) -> str:

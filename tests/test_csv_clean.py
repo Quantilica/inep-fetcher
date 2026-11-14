@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 import zipfile
 from pathlib import Path
 
@@ -210,3 +211,31 @@ def test_microdados_nao_passam_pela_limpeza(tmp_path: Path) -> None:
     assert not res.errors
     df = pl.read_parquet(next((tmp_path / "lake").rglob("*.parquet")))
     assert df.width == 4  # as colunas sem nome continuam: só os indicadores limpam
+
+
+def test_aspa_aberta_nao_engole_o_arquivo_nem_fica_quadratica(tmp_path: Path) -> None:
+    n = 50_000
+    corpo = "".join(f"{i};ESCOLA {i};{i * 2};;\n" for i in range(n))
+    texto = 'a;b;c;;\n1;" (aspa sozinha);3;;\n' + corpo
+    src = _write(tmp_path / "a.csv", texto)
+
+    t0 = time.perf_counter()
+    plan = clean_csv(src, ";", tmp_path)
+    dt = time.perf_counter() - t0
+
+    assert dt < 2.0, f"{dt:.1f} s"
+    assert plan is not None and plan.path is not None
+    saida = plan.path.read_text(encoding="latin-1").splitlines()
+    # nenhuma linha some e a aspa solta segue como texto
+    assert len(saida) == n + 2
+    assert saida[0] == "a;b;c"
+    assert saida[1] == '1;" (aspa sozinha);3'
+    assert saida[2] == "0;ESCOLA 0;0"
+    assert saida[-1] == f"{n - 1};ESCOLA {n - 1};{(n - 1) * 2}"
+
+
+def test_campo_entre_aspas_com_quebra_de_linha_continua_unido(tmp_path: Path) -> None:
+    src = _write(tmp_path / "a.csv", 'a;b;;\n"l1\nl2\nl3";2;;\n5;6;;\n')
+    plan = clean_csv(src, ";", tmp_path)
+    assert plan is not None and plan.path is not None
+    assert plan.path.read_text(encoding="latin-1") == 'a;b\n"l1\nl2\nl3";2\n5;6\n'
