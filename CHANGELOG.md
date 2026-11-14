@@ -7,6 +7,11 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Corrigido
+- `lake`: arquivos de checksum que acompanham o dado (TXT em que toda linha é `<hash hex> *nome`, como o `tx_rend_escolas_2023.txt` de `taxas-rendimento-escolar`; também `.md5`, `.sha1`, `.sha256`, `.sha512`) são ignorados, sem Parquet e sem o erro "separador de colunas não detectado". `.ods` já era ignorado (só `.xlsx`/`.xls`/`.csv`/`.txt` viram dado) e, quando há `.xlsx` e `.xls` com o mesmo nome na mesma pasta, só o `.xlsx` é convertido (antes os dois disputavam o mesmo `file_key`).
+- `lake`: o formato do arquivo compactado vem dos bytes mágicos, não da extensão. O IDD 2022 é um RAR v5 com extensão `.zip` e passa a ser lido pelo 7-Zip (`7z`, `7z.exe` ou `%ProgramFiles%\7-Zip`; `QUANTILICA_7Z` aponta outro executável). O 7-Zip do Fedora não tem codec RAR: nesse caso o `libarchive-c` serve de reserva, se instalado. Sem leitor, o erro diz para instalar o 7-Zip.
+- `lake`: ZIP com membro em Deflate64 (microdados do ENEM 2025, `RESULTADOS_2025.csv`) deixa de falhar com "That compression method is not supported". Os membros que o `zipfile` lê seguem por ele; só os de método não suportado são extraídos pelo 7-Zip, direto para o disco (nada de 2 GB em memória). `QUANTILICA_LAKE_SCRATCH` escolhe o disco do diretório temporário de extração.
+
 ## [0.7.0] - 2026-11-14
 
 ### Corrigido

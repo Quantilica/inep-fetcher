@@ -30,7 +30,6 @@ try:
     import duckdb
     import polars as pl
     from quantilica.analytics.lake import LakeError, LakeWriter
-    from quantilica.core.files import decompress_archive
     from quantilica.core.lake import (
         DatasetDescriptor,
         composite_file_key,
@@ -45,6 +44,7 @@ except ImportError as exc:
     ) from exc
 
 from inep_fetcher import __version__
+from inep_fetcher._archive import extract_archive, scratch_dir
 from inep_fetcher.planilha import read_planilha
 from inep_fetcher.sas_layout import (
     LAYOUT_FIXES,
@@ -188,9 +188,66 @@ def _require_separator(path: Path) -> None:
         )
 
 
+#: Linha de arquivo de checksum: hash hex (MD5 a SHA-512), espaço(s), ``*`` opcional
+#: do modo binário e o nome do arquivo (formato do ``md5sum``/``sha256sum``).
+_CHECKSUM_LINE = re.compile(r"^[0-9a-fA-F]{32,128}\s+\*?\S.*$")
+_CHECKSUM_SUFFIXES = {".md5", ".sha1", ".sha256", ".sha512"}
+#: Um checksum tem poucas linhas; acima disso o arquivo não é checksum.
+_CHECKSUM_MAX_BYTES = 64 * 1024
+
+
+def _is_checksum_file(path: Path) -> bool:
+    """Arquivo de checksum (``<hash> *nome`` por linha) que acompanha o dado.
+
+    Pela extensão (``.md5``, ``.sha1``, ``.sha256``, ``.sha512``) ou, para
+    ``.txt``/``.csv``, pelo conteúdo: arquivo pequeno em que toda linha não
+    vazia casa o formato do ``md5sum`` (o INEP põe ``tx_rend_escolas_2023.txt``
+    ao lado do ``.xlsx`` e do ``.ods``).
+    """
+    if path.suffix.lower() in _CHECKSUM_SUFFIXES:
+        return True
+    if path.suffix.lower() not in {".txt", ".csv"}:
+        return False
+    try:
+        if path.stat().st_size > _CHECKSUM_MAX_BYTES:
+            return False
+        text = path.read_bytes().decode("latin-1")
+    except OSError:
+        return False
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    return bool(lines) and all(_CHECKSUM_LINE.match(ln) for ln in lines)
+
+
 def _is_lock_or_checksum(path: Path) -> bool:
-    """Lock file do Office (``~$X``) ou checksum ``md5_X`` ao lado do dado."""
-    return path.name.startswith("~$") or path.name.lower().startswith("md5_")
+    """Lock file do Office (``~$X``) ou checksum (``md5_X``, ``X.md5``, conteúdo)."""
+    return (
+        path.name.startswith("~$")
+        or path.name.lower().startswith("md5_")
+        or _is_checksum_file(path)
+    )
+
+
+_MEMBER_PRIORITY = {".xlsx": 0, ".xls": 1, ".csv": 2, ".txt": 3}
+
+
+def _dedup_same_stem(members: list[Path]) -> list[Path]:
+    """Um só membro por pasta e nome-base (``a.xlsx`` e ``a.xls`` são o mesmo dado).
+
+    O ``file_key`` usa só o stem; dois membros de mesmo stem na mesma pasta
+    cairiam no mesmo arquivo do lake. Fica o de melhor formato (xlsx, xls, csv,
+    txt). Membros de mesmo stem em pastas diferentes não são tocados.
+    """
+    best: dict[tuple[Path, str], Path] = {}
+    for m in members:
+        key = (m.parent, m.stem.lower())
+        cur = best.get(key)
+        if (
+            cur is None
+            or _MEMBER_PRIORITY[m.suffix.lower()] < _MEMBER_PRIORITY[cur.suffix.lower()]
+        ):
+            best[key] = m
+    keep = set(best.values())
+    return [m for m in members if m in keep]
 
 
 def _fixed_width_frame(txt: Path, layout: SasLayout, workdir: Path) -> pl.LazyFrame:
@@ -340,7 +397,7 @@ def _convert_fixed_width(
 
     for inner in sorted(root.rglob("*")):
         if inner.is_file() and inner.suffix.lower() == ".zip" and in_dados(inner):
-            decompress_archive(inner, inner.parent / inner.stem)
+            extract_archive(inner, inner.parent / inner.stem)
     txts = sorted(
         m
         for m in root.rglob("*")
@@ -541,21 +598,25 @@ class LakeConverter:
                         result.converted += 1
 
                 elif suffix in {".zip", ".7z"}:
-                    with tempfile.TemporaryDirectory() as tmp:
-                        extracted = decompress_archive(path, Path(tmp))
+                    with scratch_dir() as tmp:
+                        extracted_files = extract_archive(path, tmp)
                         if _convert_fixed_width(
-                            path, Path(tmp), year, writer, part_vals, result
+                            path, tmp, year, writer, part_vals, result
                         ):
                             continue
-                        all_members = sorted(
-                            m
-                            for m in Path(tmp).rglob("*")
-                            if m.is_file()
-                            and m.suffix.lower() in {".csv", ".txt", ".xlsx", ".xls"}
-                            # "~$X.xlsx": lock file do Office esquecido no ZIP;
-                            # "md5_X.txt": checksum que o INEP põe ao lado do dado
-                            and not m.name.startswith("~$")
-                            and not m.name.lower().startswith("md5_")
+                        # "~$X.xlsx": lock file do Office esquecido no ZIP;
+                        # "md5_X.txt", "X.md5" e TXT só de linhas "<hash> *nome":
+                        # checksum que o INEP põe ao lado do dado (sem Parquet,
+                        # sem erro). ".ods" fica de fora: é cópia do ".xlsx".
+                        all_members = _dedup_same_stem(
+                            sorted(
+                                m
+                                for m in tmp.rglob("*")
+                                if m.is_file()
+                                and m.suffix.lower()
+                                in {".csv", ".txt", ".xlsx", ".xls"}
+                                and not _is_lock_or_checksum(m)
+                            )
                         )
                         # Filter out documentation and dictionary subpaths
                         data_members = [
@@ -579,8 +640,8 @@ class LakeConverter:
                             data_members = em_dados
                         if not data_members and all_members:
                             data_members = all_members
-                        elif not data_members and extracted.is_file():
-                            data_members = [extracted]
+                        elif not data_members and len(extracted_files) == 1:
+                            data_members = [extracted_files[0]]
 
                         if not data_members:
                             result.errors.append(
