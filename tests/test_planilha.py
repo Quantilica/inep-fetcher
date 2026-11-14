@@ -486,3 +486,64 @@ def test_lake_converte_zip_de_taxas_sem_coluna_sem_nome(tmp_path: Path) -> None:
     df = pl.read_parquet(parquets[0])
     assert df.columns == NOMES_TAXAS
     assert df.height == 2
+
+
+def test_faixa_com_titulo_e_ano_nao_entra_no_nome_das_chaves(tmp_path: Path) -> None:
+    # taxas de rendimento 2007-2015: "Taxa de Aprovação - 2007" mesclado desde a
+    # coluna Ano até o fim das taxas, mais uma linha de subtítulo longo
+    sub = "Taxa de Aprovação por Localização e a Dependência Administrativa"
+    book = xlsxwriter.Workbook(str(tmp_path / "rend.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 2, "Ministério da Educação")
+    sheet.write(1, 0, "Taxas de Rendimento por Município")
+    sheet.merge_range(2, 0, 2, 4, "Taxa de Aprovação - 2007")
+    sheet.merge_range(2, 5, 2, 7, "Taxa de Reprovação - 2007")
+    sheet.merge_range(3, 0, 3, 4, sub)
+    sheet.merge_range(
+        3, 5, 3, 7, "Taxa de Reprovação por Localização e a Dependência Administrativa"
+    )
+    sheet.write(4, 0, "Ano")
+    sheet.write(4, 1, "Rede")
+    sheet.merge_range(4, 2, 4, 4, "Taxa de Aprovação - Ensino Fundamental")
+    sheet.merge_range(4, 5, 4, 7, "Taxa de Reprovação - Ensino Fundamental")
+    sheet.write_row(5, 2, ["Total", "Anos Iniciais", "Anos Finais"] * 2)
+    sheet.write_row(6, 0, [2007, "Estadual", 80.1, 82.0, 78.3, 9.1, "--", 11.2])
+    sheet.write_row(7, 0, [2007, "Municipal", 70.5, 71.0, 69.9, 15.0, 14.0, 16.1])
+    sheet.write(8, 0, "Notas: 1) inclui as taxas de ...")
+    book.close()
+    df = read_planilha(tmp_path / "rend.xlsx", "taxas-rendimento-escolar")
+    assert df.columns == [
+        "Ano",
+        "Rede",
+        "Taxa de Aprovação - Ensino Fundamental - Total",
+        "Taxa de Aprovação - Ensino Fundamental - Anos Iniciais",
+        "Taxa de Aprovação - Ensino Fundamental - Anos Finais",
+        "Taxa de Reprovação - Ensino Fundamental - Total",
+        "Taxa de Reprovação - Ensino Fundamental - Anos Iniciais",
+        "Taxa de Reprovação - Ensino Fundamental - Anos Finais",
+    ]
+    assert df.height == 2
+    assert df.schema["Ano"] == pl.Int64
+
+
+def test_remissao_numerica_apos_espaco_so_sai_de_total_e_rotulo_longo(
+    tmp_path: Path,
+) -> None:
+    book = xlsxwriter.Workbook(str(tmp_path / "turma.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 1, "Ministério da Educação")
+    sheet.write(1, 0, "Ano")
+    sheet.merge_range(1, 1, 1, 3, "Média de Alunos por Turma")
+    sheet.write(2, 1, "Total 1")
+    sheet.write(2, 2, "Turmas Multietapa, Multi ou Correção de Fluxo 2")
+    sheet.write(2, 3, "Nível 1")
+    sheet.write_row(3, 0, [2025, 21.5, 18.0, 30.1])
+    sheet.write_row(4, 0, [2025, 22.5, 19.0, 31.1])
+    book.close()
+    df = read_planilha(tmp_path / "turma.xlsx", "media-alunos-por-turma")
+    assert df.columns == [
+        "Ano",
+        "Média de Alunos por Turma - Total",
+        "Média de Alunos por Turma - Turmas Multietapa, Multi ou Correção de Fluxo",
+        "Média de Alunos por Turma - Nível 1",
+    ]

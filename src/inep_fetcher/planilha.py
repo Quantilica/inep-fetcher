@@ -64,6 +64,10 @@ INDICADORES_DATASETS = frozenset(
     }
 )
 
+#: datasets cujas colunas sempre passaram por :func:`clean_columns`; nos demais,
+#: planilha que já começa no cabeçalho é lida sem nenhuma alteração
+_ALWAYS_CLEAN = frozenset({"financeiros", "fluxo-educacao-superior"})
+
 #: quantas linhas do topo da planilha o detector examina para achar o cabeçalho
 _HEAD_ROWS = 80
 #: fração mínima de células numéricas (com piso de duas) para uma linha ser dado
@@ -129,10 +133,25 @@ _SUPERSCRIPT = re.compile("[¹²³⁰⁴-⁹]+")
 _STAR = re.compile(r"\s*\*+")
 _PAREN_NOTE = re.compile(r"\s*\(\d{1,2}\)")
 _GLUED_NOTE = re.compile(r"(?<=[^\W\d_])\d{1,2}(?:,\d{1,2})*(?=\W|$)")
+#: ano no fim do rótulo ("Taxa de Aprovação - 2007"): muda a cada edição e não é
+#: parte do nome da coluna
+_TRAILING_YEAR = re.compile(r"(?<=\S)\s*[-\u2013]\s*(?:19|20)\d{2}$")
 
 
 def _star_free(text: str) -> str:
     return _STAR.sub("", text).strip()
+
+
+#: remissão separada por espaço no fim de rótulo longo ("... Correção de Fluxo 2")
+#: ou de "Total 1"; "Nível 1", "Grupo 1" e afins são parte do nome e ficam
+_TRAILING_NOTE = re.compile(r"^(.+?\s)?(?P<last>\S+)\s[1-9]$")
+
+
+def _strip_trailing_note(text: str) -> str:
+    match = _TRAILING_NOTE.match(text)
+    if match and (match["last"] == "Total" or len(text.split()) >= 6):
+        return text[:-2].rstrip()
+    return text
 
 
 def _label(value: Any) -> str:
@@ -142,7 +161,8 @@ def _label(value: Any) -> str:
     text = _STAR.sub("", text)
     text = _PAREN_NOTE.sub("", text)
     text = _GLUED_NOTE.sub("", text)
-    return _CONTROL_RUN.sub(" ", text).strip(" :")
+    text = _TRAILING_YEAR.sub("", text)
+    return _strip_trailing_note(_CONTROL_RUN.sub(" ", text).strip(" :"))
 
 
 def _code_like(cell: str) -> bool:
@@ -194,31 +214,55 @@ def _levels(parts: list[str]) -> list[str]:
     return levels
 
 
+def _drop_prefixes(levels: list[str]) -> list[str]:
+    """Tira o nível que só repete o começo do seguinte ("Taxa de Aprovação" antes
+    de "Taxa de Aprovação - Ensino Fundamental")."""
+    return [
+        t
+        for i, t in enumerate(levels)
+        if i + 1 == len(levels) or not levels[i + 1].casefold().startswith(t.casefold())
+    ]
+
+
 def _names(columns: list[list[str]]) -> list[str]:
     """Junta os níveis de cada coluna (``" - "``), sem estourar 128 caracteres.
 
-    Quando alguma coluna estoura, o título da tabela repetido nas células
-    mescladas (nível com mais de 60 caracteres que aparece em duas colunas ou
-    mais) sai de todas, para os nomes seguirem o mesmo critério. O que ainda
-    passar do limite perde os níveis mais altos, um a um, e por fim é cortado.
+    Título descritivo (nível com mais de 60 caracteres repetido em duas colunas ou
+    mais: "Percentual de Funções Docentes com curso superior por etapa...") sai de
+    todas as colunas, para os nomes não variarem com o tamanho do cabeçalho de cada
+    edição; se isso deixasse dois nomes iguais, só sai quando alguma coluna estoura
+    o limite. O que ainda passar de 128 caracteres perde os níveis mais altos, um a
+    um, e por fim é cortado.
     """
     levels = [_levels(c) for c in columns]
-    if any(len(_SEP.join(lv)) > MAX_COLUMN_NAME for lv in levels):
-        counts: dict[str, int] = {}
-        for lv in levels:
-            for text in set(lv):
-                counts[text] = counts.get(text, 0) + 1
-        titles = {t for t, n in counts.items() if n >= 2 and len(t) > 60}
-        levels = [[t for t in lv if t not in titles] or lv[-1:] for lv in levels]
-    names = []
+    counts: dict[str, int] = {}
     for lv in levels:
+        for text in set(lv):
+            counts[text] = counts.get(text, 0) + 1
+    titles = {t for t, n in counts.items() if n >= 2 and len(t) > 60}
+    if titles:
+        short = [
+            _drop_prefixes([t for t in lv if t not in titles]) or lv[-1:]
+            for lv in levels
+        ]
+        joined = [_SEP.join(lv) for lv in short]
+        before = [_SEP.join(lv) for lv in levels]
+        collides = len(set(joined)) < len(joined) and len(set(before)) == len(before)
+        if not collides or any(len(b) > MAX_COLUMN_NAME for b in before):
+            levels = short
+    names = []
+    for lv in map(_drop_prefixes, levels):
         while len(lv) > 1 and len(_SEP.join(lv)) > MAX_COLUMN_NAME:
             lv = lv[1:]
         names.append(_fit(_SEP.join(lv)))
     return names
 
 
-def _column_levels(header: list[list[str]], width: int) -> list[list[str]]:
+#: (linha do cabeçalho, coluna onde o rótulo começa, coluna onde termina, texto)
+_Span = tuple[int, int, int, str]
+
+
+def _column_levels(header: list[list[str]], width: int) -> list[list[_Span]]:
     """Níveis de cada coluna a partir das linhas de rótulos, sem preencher à toa.
 
     A célula mesclada guarda o valor no canto esquerdo; o que vem à direita está
@@ -232,7 +276,7 @@ def _column_levels(header: list[list[str]], width: int) -> list[list[str]]:
     """
     n = len(header)
     labels = [[j for j in range(width) if header[r][j]] for r in range(n)]
-    per_col: list[list[str]] = [[] for _ in range(width)]
+    per_col: list[list[_Span]] = [[] for _ in range(width)]
     for r in range(n):
         for c in labels[r]:
             if not any(header[r2][c] for r2 in range(r + 1, n)):
@@ -242,9 +286,39 @@ def _column_levels(header: list[list[str]], width: int) -> list[list[str]]:
                 for r2 in range(r + 1):
                     nxt = next((j for j in labels[r2] if j > c), width)
                     stop = min(stop, nxt)
-            for j in range(c, min(stop, width)):
-                per_col[j].append(header[r][c])
+            stop = min(stop, width)
+            for j in range(c, stop):
+                per_col[j].append((r, c, stop, header[r][c]))
     return per_col
+
+
+def _key_columns(sample: pl.DataFrame, used: list[int]) -> int:
+    """Quantas colunas do começo são chave (ano, região, código, nome...).
+
+    Chave é o que vem antes da primeira coluna de medida: a que tem decimal
+    (``52.2``) ou marcador de "sem dado" (``--``) nas primeiras linhas de dados.
+    """
+    measure = r"^\s*-?\d+[.,]\d+\s*$|^\s*(--|-|\.\.\.|\*)\s*$"
+    for k, j in enumerate(used):
+        column = sample[sample.columns[j]].drop_nulls()
+        if column.str.contains(measure).any():
+            return k
+    return len(used)
+
+
+def _band_free(levels: list[_Span], first_col: int, key_end: int) -> list[_Span]:
+    """Tira de uma coluna-chave o título de faixa que cobre também as medidas.
+
+    Planilhas antigas põem "Taxa de Aprovação - 2007" mesclado desde a primeira
+    coluna (``Ano``, ``Região``...) até o fim das taxas daquele grupo; o título é
+    das medidas, não das chaves.
+    """
+    own = max((r for r, c, _, _ in levels), default=0)
+    return [
+        lv
+        for lv in levels
+        if not (lv[0] < own and lv[1] == first_col and lv[2] > key_end)
+    ]
 
 
 def _unique(names: list[str]) -> list[str]:
@@ -318,12 +392,12 @@ def _assemble(raw: pl.DataFrame) -> pl.DataFrame | None:
     if human:
         labels = [[_label(v) for v in r] for r in human]
         code_row = [_star_free(v) for v in codes[-1]] if codes else [""] * width
-        per_col = _column_levels(labels, width)
+        spans = _column_levels(labels, width)
     else:
         # só nomes técnicos (INSE: ``MEDIA_INSE*``): a linha é o cabeçalho
         labels = [[_star_free(v) for v in codes[-1]]]
         code_row = [""] * width
-        per_col = _column_levels(labels, width)
+        spans = _column_levels(labels, width)
 
     body = _normalized(raw.slice(end))
     body = body.head(body.height - _footer_rows(body))
@@ -331,7 +405,12 @@ def _assemble(raw: pl.DataFrame) -> pl.DataFrame | None:
     used = [j for j, c in enumerate(body.columns) if body[c].null_count() < body.height]
     if not used:
         return None
-    names = _names([per_col[j] for j in used])
+    key_n = _key_columns(raw.slice(end, 200), used)
+    if key_n < len(used):
+        first, key_end = used[0], used[key_n - 1] + 1 if key_n else used[0]
+        for j in used[:key_n]:
+            spans[j] = _band_free(spans[j], first, key_end)
+    names = _names([[t for *_, t in spans[j]] for j in used])
     names = [
         n or code_row[j] or f"__UNNAMED__{j}" for j, n in zip(used, names, strict=True)
     ]
@@ -366,4 +445,6 @@ def read_planilha(
         repaired = _assemble(raw.cast(pl.String))
         if repaired is not None:
             return repaired
-    return clean_columns(df)
+        return clean_columns(df)
+    # já começa no cabeçalho: só os datasets que sempre passaram por clean_columns
+    return clean_columns(df) if dataset_id in _ALWAYS_CLEAN else df
