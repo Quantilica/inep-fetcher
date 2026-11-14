@@ -1,10 +1,15 @@
 """Leitura de planilhas do INEP com nomes de coluna válidos.
 
-Os indicadores educacionais (``financeiros``, ``fluxo-educacao-superior``...)
-vêm em XLSX com título, linhas em branco e cabeçalho em dois ou três níveis com
-células mescladas. Lidas de uma vez, a primeira linha (o título, às vezes com
-quebra de linha e centenas de caracteres) virava o nome de uma coluna e as demais
-ficavam ``__UNNAMED__N``.
+Os indicadores educacionais (``taxas-transicao``, ``esforco-docente``...) vêm em
+XLSX com título, linhas em branco, notas acima da tabela, cabeçalho em dois a
+quatro níveis com células mescladas e, às vezes, uma linha extra com os nomes
+técnicos das colunas (``NU_ANO_CENSO``). Lidas de uma vez, a primeira linha (o
+título, às vezes com centenas de caracteres) virava o nome de uma coluna e as
+demais ficavam ``__UNNAMED__N``.
+
+:func:`read_planilha` acha o cabeçalho real, junta os níveis num nome só
+(``Taxa de Aprovação - Ensino Fundamental - Anos Iniciais``), tira o que não é
+dado (título, notas, rodapé) e devolve colunas com nome válido e tipo certo.
 """
 
 from __future__ import annotations
@@ -28,9 +33,41 @@ _CONTROL_RUN = re.compile(
 _BLANK_NAME = re.compile(r"(_duplicated_\d+|__UNNAMED__\d+)?")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INTEGER = re.compile(r"-?(0|[1-9]\d*)")
+#: período no lugar do ano (``2010-2011``, ``2021/2022``, ``2010-11``)
+_PERIOD = re.compile(r"\d{4}\s*[-/]\s*\d{2,4}")
 _SEP = " - "
 #: marcadores de "sem dado" dos indicadores (``--``, ``-``, ``...``, ``*``)
 _NULL_MARKERS = frozenset({"--", "-", "...", "*"})
+
+#: datasets de indicadores educacionais: as planilhas passam pelo detector de
+#: cabeçalho (:func:`read_planilha`). Microdados e demais fontes leem como sempre.
+INDICADORES_DATASETS = frozenset(
+    {
+        "adequacao-formacao-docente",
+        "complexidade-gestao-escola",
+        "docentes-curso-superior",
+        "docentes-pos-graduacao",
+        "esforco-docente",
+        "financeiros",
+        "fluxo-educacao-superior",
+        "media-alunos-por-turma",
+        "media-horas-aula-diaria",
+        "nivel-socioeconomico",
+        "qualidade-educacao-superior",
+        "regularidade-corpo-docente",
+        "remuneracao-docentes",
+        "taxas-distorcao-idade-serie",
+        "taxas-nao-resposta",
+        "taxas-rendimento-escolar",
+        "taxas-transicao",
+        "trajetoria-educacao-superior",
+    }
+)
+
+#: quantas linhas do topo da planilha o detector examina para achar o cabeçalho
+_HEAD_ROWS = 80
+#: fração mínima de células numéricas (com piso de duas) para uma linha ser dado
+_DATA_FRACTION = 0.1
 
 
 def _text(value: Any) -> str:
@@ -76,7 +113,7 @@ def clean_columns(df: pl.DataFrame) -> pl.DataFrame:
 
 
 def _numeric_like(value: str) -> bool:
-    return bool(_NUMBER.fullmatch(value) or re.fullmatch(r"\d{4}-\d{2,4}", value))
+    return bool(_NUMBER.fullmatch(value) or _PERIOD.fullmatch(value))
 
 
 def _data_like(value: str) -> bool:
@@ -84,19 +121,66 @@ def _data_like(value: str) -> bool:
     return _numeric_like(value) or value in _NULL_MARKERS
 
 
+# --- rótulos do cabeçalho -----------------------------------------------------
+
+#: remissões de nota: sobrescritos (``¹²³``), asteriscos, ``(1)`` e dígitos
+#: colados na palavra (``Média6``, ``docentes1,2``, ``Bruta5``)
+_SUPERSCRIPT = re.compile("[¹²³⁰⁴-⁹]+")
+_STAR = re.compile(r"\s*\*+")
+_PAREN_NOTE = re.compile(r"\s*\(\d{1,2}\)")
+_GLUED_NOTE = re.compile(r"(?<=[^\W\d_])\d{1,2}(?:,\d{1,2})*(?=\W|$)")
+
+
+def _star_free(text: str) -> str:
+    return _STAR.sub("", text).strip()
+
+
+def _label(value: Any) -> str:
+    """Rótulo de cabeçalho legível: sem remissão de nota nem espaço repetido."""
+    text = _text(value)
+    text = _SUPERSCRIPT.sub("", text)
+    text = _STAR.sub("", text)
+    text = _PAREN_NOTE.sub("", text)
+    text = _GLUED_NOTE.sub("", text)
+    return _CONTROL_RUN.sub(" ", text).strip(" :")
+
+
+def _code_like(cell: str) -> bool:
+    """Nome técnico de coluna: ``NU_ANO_CENSO``, ``TIPOLOCA``, ``no_cod``."""
+    if " " in cell or cell in _NULL_MARKERS:
+        return False
+    return "_" in cell or (len(cell) >= 3 and cell.isupper()) or cell.islower()
+
+
+def _is_code_row(cells: list[str]) -> bool:
+    """Linha dos nomes técnicos das colunas: 60% ou mais das células são código."""
+    filled = [c for c in cells if c]
+    return len(filled) >= 2 and sum(_code_like(c) for c in filled) * 10 >= (
+        len(filled) * 6
+    )
+
+
+def _is_data_row(cells: list[str]) -> bool:
+    """Linha de dados: ao menos duas células numéricas, 10% ou mais do total."""
+    filled = [c for c in cells if c]
+    if len(filled) < 2:
+        return False
+    numeric = sum(_data_like(c) for c in filled)
+    return numeric >= 2 and numeric >= _DATA_FRACTION * len(filled)
+
+
 def _header_block(rows: list[list[str]]) -> tuple[int, int] | None:
     """Intervalo ``[inicio, fim)`` das linhas de cabeçalho, ou ``None``.
 
-    Pula as linhas de título (no máximo uma célula preenchida) e vai até a
-    primeira linha de dados: a que tem metade ou mais das células numéricas
-    (``8.4``, ``2010-2011``) ou de "sem dado" (``--``). Os cabeçalhos são só texto.
+    Pula o que vem antes do cabeçalho (título, instituição, notas: linhas com no
+    máximo uma célula preenchida) e vai até a primeira linha de dados. Os
+    cabeçalhos são só texto; a linha de dados tem números, períodos ou ``--``.
     """
     start = 0
     while start < len(rows) and sum(1 for v in rows[start] if v) <= 1:
         start += 1
     for i in range(start + 1, len(rows)):
-        cells = [v for v in rows[i] if v]
-        if len(cells) >= 2 and sum(_data_like(v) for v in cells) * 2 >= len(cells):
+        if _is_data_row(rows[i]):
             return start, i
     return None
 
@@ -134,41 +218,33 @@ def _names(columns: list[list[str]]) -> list[str]:
     return names
 
 
-def _typed(values: list[str | None]) -> pl.Series:
-    """Série com inteiro ou decimal quando todos os valores são numéricos."""
-    present = [v for v in values if v is not None]
-    if present and all(_INTEGER.fullmatch(v) for v in present):
-        return pl.Series(
-            [None if v is None else int(v) for v in values], dtype=pl.Int64
-        )
-    if present and all(_NUMBER.fullmatch(v) for v in present):
-        return pl.Series(
-            [None if v is None else float(v) for v in values], dtype=pl.Float64
-        )
-    return pl.Series(values, dtype=pl.String)
+def _column_levels(header: list[list[str]], width: int) -> list[list[str]]:
+    """Níveis de cada coluna a partir das linhas de rótulos, sem preencher à toa.
 
+    A célula mesclada guarda o valor no canto esquerdo; o que vem à direita está
+    vazio. Em vez de repetir o rótulo por todas as vazias (o que invade grupos
+    vizinhos: "Anos Finais" cobrindo o Ensino Médio), cada rótulo vale só para o
+    seu grupo:
 
-def _cell(value: Any) -> str | None:
-    """Valor da célula como texto; vazio e marcadores de "sem dado" viram ``None``."""
-    if value is None:
-        return None
-    text = str(value).strip()
-    return None if not text or text in _NULL_MARKERS else str(value)
-
-
-def _trim_footnotes(rows: list[list[str | None]]) -> list[list[str | None]]:
-    """Tira do fim as notas de rodapé ("Fonte: ...", "Notas: ..."): texto em uma célula.
-
-    Só o bloco final conta; uma linha de dado com uma célula só no meio da tabela
-    fica. Linha final só numérica é dado.
+    - rótulo **sem** rótulo abaixo na mesma coluna é folha: vale a própria coluna;
+    - rótulo **com** rótulo abaixo na mesma coluna é grupo: vale até o próximo
+      rótulo da mesma linha ou de uma linha de cima (o grupo de cima mudou).
     """
-    end = len(rows)
-    while end:
-        cells = [v for v in rows[end - 1] if v is not None]
-        if len(cells) > 1 or (len(cells) == 1 and _numeric_like(cells[0].strip())):
-            break
-        end -= 1
-    return rows[:end]
+    n = len(header)
+    labels = [[j for j in range(width) if header[r][j]] for r in range(n)]
+    per_col: list[list[str]] = [[] for _ in range(width)]
+    for r in range(n):
+        for c in labels[r]:
+            if not any(header[r2][c] for r2 in range(r + 1, n)):
+                stop = c + 1
+            else:
+                stop = width
+                for r2 in range(r + 1):
+                    nxt = next((j for j in labels[r2] if j > c), width)
+                    stop = min(stop, nxt)
+            for j in range(c, min(stop, width)):
+                per_col[j].append(header[r][c])
+    return per_col
 
 
 def _unique(names: list[str]) -> list[str]:
@@ -181,73 +257,88 @@ def _unique(names: list[str]) -> list[str]:
     return out
 
 
-def _multi_level(raw: pl.DataFrame) -> pl.DataFrame | None:
-    rows = [[_text(v) for v in r] for r in raw.rows()]
-    block = _header_block(rows)
+# --- corpo da tabela ----------------------------------------------------------
+
+
+def _normalized(body: pl.DataFrame) -> pl.DataFrame:
+    """Vazio e marcadores de "sem dado" viram nulo; o resto fica como veio."""
+    nullish = ["", *_NULL_MARKERS]
+    return body.select(
+        pl.when(pl.col(c).str.strip_chars().is_in(nullish))
+        .then(None)
+        .otherwise(pl.col(c))
+        .alias(c)
+        for c in body.columns
+    )
+
+
+def _footer_rows(body: pl.DataFrame) -> int:
+    """Quantas linhas do fim são rodapé: vazias ou com texto em uma célula só.
+
+    Só o bloco final conta ("Fonte: ...", "Notas: ...", endereços); uma linha com
+    uma célula só no meio da tabela fica, e uma linha final só numérica é dado.
+    """
+    tail = body.tail(500).rows()
+    dropped = 0
+    for row in reversed(tail):
+        cells = [v for v in row if v is not None]
+        if len(cells) > 1 or (len(cells) == 1 and _numeric_like(cells[0].strip())):
+            break
+        dropped += 1
+    return dropped
+
+
+def _typed(series: pl.Series) -> pl.Series:
+    """Série com inteiro ou decimal quando todos os valores são numéricos."""
+    present = series.drop_nulls()
+    if present.len() == 0:
+        return series
+    if present.str.contains(f"^{_INTEGER.pattern}$").all():
+        try:
+            return series.cast(pl.Int64)
+        except pl.exceptions.PolarsError:
+            pass
+    if present.str.contains(f"^{_NUMBER.pattern}$").all():
+        return series.cast(pl.Float64)
+    return series
+
+
+def _assemble(raw: pl.DataFrame) -> pl.DataFrame | None:
+    """Tabela com o cabeçalho real, ou ``None`` se não acha cabeçalho nem dados."""
+    top = [[_text(v) for v in r] for r in raw.head(_HEAD_ROWS).rows()]
+    block = _header_block(top)
     if block is None:
         return None
     start, end = block
     width = raw.width
-    levels: list[list[str]] = []
-    for r in range(start, end):
-        row = rows[r]
-        if r < end - 1:
-            # mescladas dos níveis de cima: o valor vale para as vazias à direita
-            filled, last = [], ""
-            for v in row:
-                last = v or last
-                filled.append(last)
-            row = filled
-        levels.append(row)
-    body = _trim_footnotes([[_cell(v) for v in r] for r in raw.slice(end).rows()])
+
+    header = top[start:end]
+    human = [r for r in header if not _is_code_row(r)]
+    codes = [r for r in header if _is_code_row(r)]
+    if human:
+        labels = [[_label(v) for v in r] for r in human]
+        code_row = [_star_free(v) for v in codes[-1]] if codes else [""] * width
+        per_col = _column_levels(labels, width)
+    else:
+        # só nomes técnicos (INSE: ``MEDIA_INSE*``): a linha é o cabeçalho
+        labels = [[_star_free(v) for v in codes[-1]]]
+        code_row = [""] * width
+        per_col = _column_levels(labels, width)
+
+    body = _normalized(raw.slice(end))
+    body = body.head(body.height - _footer_rows(body))
     # o intervalo usado da planilha pode passar da tabela (células soltas à direita)
-    used = [j for j in range(width) if any(r[j] is not None for r in body)]
-    names = _names([[lvl[j] for lvl in levels] for j in used])
-    columns = {f"_c{j}": _typed([row[j] for row in body]) for j in used}
-    df = pl.DataFrame(columns)
-    df.columns = _unique(
-        [n or f"__UNNAMED__{j}" for j, n in zip(used, names, strict=True)]
-    )
-    return clean_columns(df)
-
-
-#: datasets cujas planilhas têm título e cabeçalho em níveis. Os demais
-#: indicadores seguem lidos como sempre, sem mudança de esquema.
-MULTI_LEVEL_DATASETS = frozenset({"financeiros", "fluxo-educacao-superior"})
-
-
-#: datasets cujas planilhas trazem notas (``* ...``) acima do cabeçalho de um nível
-NOTES_ABOVE_DATASETS = frozenset({"nivel-socioeconomico"})
-_FOOTNOTE_MARK = re.compile(r"\s*\*+$")
-
-
-def _header_row_below_notes(source: Any, **kwargs: Any) -> int:
-    """Índice da linha do cabeçalho: a primeira com duas células ou mais.
-
-    As linhas de cima, com no máximo uma célula preenchida, são notas.
-    """
-    head = pl.read_excel(source, has_header=False, **kwargs).head(50)
-    for i, row in enumerate(head.rows()):
-        if sum(1 for v in row if _text(v)) >= 2:
-            return i
-    return 0
-
-
-def _read_below_notes(source: Any, **kwargs: Any) -> pl.DataFrame | None:
-    """Lê a planilha com o cabeçalho depois das notas; ``None`` se não há nota.
-
-    O INSE 2019 (estados, municípios) abre com uma ou duas notas de rodapé
-    (``* Não há escala...``) *acima* do cabeçalho; a nota virava o nome da
-    primeira coluna e as outras ficavam ``__UNNAMED__N``. As notas saem e o
-    asterisco de remissão nos nomes (``MEDIA_INSE*``) também.
-    """
-    row = _header_row_below_notes(source, **kwargs)
-    if row == 0:
+    used = [j for j, c in enumerate(body.columns) if body[c].null_count() < body.height]
+    if not used:
         return None
-    options = {**kwargs.pop("read_options", {}), "header_row": row}
-    df = pl.read_excel(source, read_options=options, **kwargs)
-    df.columns = [_FOOTNOTE_MARK.sub("", _text(c)) or c for c in df.columns]
-    return df
+    names = _names([per_col[j] for j in used])
+    names = [
+        n or code_row[j] or f"__UNNAMED__{j}" for j, n in zip(used, names, strict=True)
+    ]
+    columns = [_typed(body[body.columns[j]]) for j in used]
+    out = pl.DataFrame(columns)
+    out.columns = _unique(names)
+    return clean_columns(out)
 
 
 def read_planilha(
@@ -255,30 +346,24 @@ def read_planilha(
 ) -> pl.DataFrame:
     """Lê a primeira aba de um XLSX/XLS.
 
-    Só em ``financeiros`` e ``fluxo-educacao-superior`` (:data:`MULTI_LEVEL_DATASETS`)
-    a primeira linha deixa de ser cabeçalho: quando metade ou mais dos nomes lidos
-    é vazio (título e cabeçalho em vários níveis), o cabeçalho real é montado
-    juntando os níveis (``" - "``), o título e as notas de rodapé saem, ``--``,
-    ``-``, ``...`` e ``*`` viram nulo e as colunas numéricas voltam tipadas. Os
-    demais datasets leem como ``pl.read_excel`` sempre leu.
+    Nos indicadores educacionais (:data:`INDICADORES_DATASETS`), quando a primeira
+    linha não é o cabeçalho (algum nome de coluna lido é vazio: título, notas acima
+    da tabela, cabeçalho em vários níveis), o cabeçalho real é detectado: o título
+    e as notas de cima saem, os níveis mesclados (``Taxa de Promoção`` > ``Ensino
+    Fundamental`` > ``Anos Iniciais``) viram um nome só (``" - "``) sem remissão de
+    nota (``*``, ``¹``, ``(1)``, ``Média6``), a linha dos nomes técnicos
+    (``NU_ANO_CENSO``) só entra onde falta rótulo legível, as notas do rodapé saem,
+    ``--``, ``-``, ``...`` e ``*`` viram nulo e as colunas numéricas voltam tipadas.
 
-    Exceção: em ``nivel-socioeconomico`` (:data:`NOTES_ABOVE_DATASETS`), quando
-    a primeira linha é uma nota e não o cabeçalho (INSE 2019), o cabeçalho é a
-    primeira linha com duas células ou mais e as notas acima saem.
+    Planilhas que já começam no cabeçalho, e os demais datasets, leem como
+    ``pl.read_excel`` sempre leu.
     """
     df = pl.read_excel(source, **kwargs)
-    if dataset_id in NOTES_ABOVE_DATASETS:
-        unnamed = sum(1 for c in df.columns if _BLANK_NAME.fullmatch(_text(c)))
-        if df.width > 1 and unnamed * 2 >= df.width:
-            below = _read_below_notes(source, **kwargs)
-            if below is not None:
-                return clean_columns(below)
+    if dataset_id not in INDICADORES_DATASETS:
         return df
-    if dataset_id not in MULTI_LEVEL_DATASETS:
-        return df
-    unnamed = sum(1 for c in df.columns if _BLANK_NAME.fullmatch(_text(c)))
-    if df.width > 1 and unnamed * 2 >= df.width:
-        multi = _multi_level(pl.read_excel(source, has_header=False, **kwargs))
-        if multi is not None:
-            return multi
+    if any(_BLANK_NAME.fullmatch(_text(c)) for c in df.columns):
+        raw = pl.read_excel(source, has_header=False, **kwargs)
+        repaired = _assemble(raw.cast(pl.String))
+        if repaired is not None:
+            return repaired
     return clean_columns(df)
