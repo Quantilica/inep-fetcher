@@ -19,6 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # O 7-Zip lê o Deflate64 e o RAR que o Python não lê; sem ele os testes
+      # dessas leituras seriam pulados em silêncio (INEP_REQUIRE_7Z=1 abaixo
+      # transforma o skip em falha). O pacote 7zip traz o executável 7zz.
+      - name: Install 7-Zip
+        run: sudo apt-get update && sudo apt-get install -y 7zip
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
@@ -53,6 +59,8 @@ jobs:
 
       - name: Run tests with coverage
         # Limiar: [tool.coverage.report] fail_under no pyproject (se houver).
+        env:
+          INEP_REQUIRE_7Z: "1"
         run: uv run --no-sync pytest --cov --cov-report=term-missing
 
       - name: Type check with pyright

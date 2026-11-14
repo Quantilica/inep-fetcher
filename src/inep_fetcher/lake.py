@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import logging
 import re
-import tempfile
 import unicodedata
 import zipfile
 from dataclasses import dataclass, field
@@ -189,9 +188,13 @@ def _require_separator(path: Path) -> None:
         )
 
 
-#: Linha de arquivo de checksum: hash hex (MD5 a SHA-512), espaço(s), ``*`` opcional
-#: do modo binário e o nome do arquivo (formato do ``md5sum``/``sha256sum``).
-_CHECKSUM_LINE = re.compile(r"^[0-9a-fA-F]{32,128}\s+\*?\S.*$")
+#: Linha de arquivo de checksum: hash hex de MD5 (32), SHA-1 (40), SHA-256 (64) ou
+#: SHA-512 (128) dígitos, espaço(s), ``*`` opcional do modo binário e o nome do
+#: arquivo, que termina em extensão (formato do ``md5sum``/``sha256sum``).
+_CHECKSUM_LINE = re.compile(
+    r"^(?P<hash>[0-9a-fA-F]{128}|[0-9a-fA-F]{64}|[0-9a-fA-F]{40}|[0-9a-fA-F]{32})"
+    r"\s+\*?\S.*\.\w{2,5}$"
+)
 _CHECKSUM_SUFFIXES = {".md5", ".sha1", ".sha256", ".sha512"}
 #: Um checksum tem poucas linhas; acima disso o arquivo não é checksum.
 _CHECKSUM_MAX_BYTES = 64 * 1024
@@ -202,8 +205,9 @@ def _is_checksum_file(path: Path) -> bool:
 
     Pela extensão (``.md5``, ``.sha1``, ``.sha256``, ``.sha512``) ou, para
     ``.txt``/``.csv``, pelo conteúdo: arquivo pequeno em que toda linha não
-    vazia casa o formato do ``md5sum`` (o INEP põe ``tx_rend_escolas_2023.txt``
-    ao lado do ``.xlsx`` e do ``.ods``).
+    vazia casa o formato do ``md5sum`` e que tem ao menos uma letra ``a-f`` nos
+    hashes (um TXT de largura fixa só de dígitos não é checksum). O INEP põe
+    ``tx_rend_escolas_2023.txt`` ao lado do ``.xlsx`` e do ``.ods``.
     """
     if path.suffix.lower() in _CHECKSUM_SUFFIXES:
         return True
@@ -215,8 +219,16 @@ def _is_checksum_file(path: Path) -> bool:
         text = path.read_bytes().decode("latin-1")
     except OSError:
         return False
-    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
-    return bool(lines) and all(_CHECKSUM_LINE.match(ln) for ln in lines)
+    hashes: list[str] = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = _CHECKSUM_LINE.match(line)
+        if m is None:
+            return False
+        hashes.append(m["hash"])
+    return bool(hashes) and any(c in "abcdefABCDEF" for h in hashes for c in h)
 
 
 def _is_lock_or_checksum(path: Path) -> bool:
@@ -447,7 +459,7 @@ def _convert_fixed_width(
         layout = cands[0][1]
         try:
             _check_layout_fix(txt, layout)
-            with tempfile.TemporaryDirectory() as work:
+            with scratch_dir() as work:
                 written = writer.write_polars(
                     _fixed_width_frame(txt, layout, Path(work)),
                     path,

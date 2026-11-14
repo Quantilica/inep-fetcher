@@ -48,6 +48,12 @@ _RAR_HELP = (
     "Windows tem). Use o 7-Zip oficial ou instale `libarchive-c` com a "
     "biblioteca libarchive do sistema"
 )
+#: Teto de uma extração pelo 7-Zip (o ENEM tem 2 GB; isto só evita travar para sempre).
+_SEVENZIP_TIMEOUT = 6 * 3600
+#: Acima disto, os nomes não vão na linha de comando (limite de ~8191 caracteres
+#: do cmd.exe do Windows): extrai-se o arquivo inteiro.
+_MAX_NAMES = 50
+_MAX_NAMES_CHARS = 8000
 _SEVENZIP_NOT_ARCHIVE = re.compile(
     r"can ?not open the file as|is not archive|unsupported", re.IGNORECASE
 )
@@ -59,6 +65,10 @@ class ArchiveError(RuntimeError):
 
 class SevenZipUnavailableError(ArchiveError):
     """O 7-Zip é necessário para este arquivo e não foi encontrado."""
+
+
+class RarUnavailableError(ArchiveError):
+    """Nenhum leitor de RAR neste ambiente (7-Zip sem codec RAR e sem libarchive)."""
 
 
 def archive_kind(path: Path) -> str:
@@ -113,16 +123,32 @@ def _sevenzip_extract(
 ) -> None:
     """``7z x`` (com pastas) do arquivo inteiro ou só dos ``names``, direto no disco.
 
-    ``-spd`` desliga curingas nos nomes; ``-aoa`` sobrescreve sem perguntar.
+    ``-spd`` desliga curingas nos nomes; ``-aoa`` sobrescreve sem perguntar. O
+    código de saída 1 do 7-Zip é só aviso ("Warnings: 1", comum em RAR): vale a
+    checagem de presença dos arquivos feita por quem chama. 2 ou mais é falha.
     """
     cmd = [exe, "x", "-y", "-bd", "-aoa", f"-o{dest}"]
     if names:
         cmd.append("-spd")
     cmd += ["--", str(archive), *(names or [])]
-    proc = subprocess.run(
-        cmd, capture_output=True, stdin=subprocess.DEVNULL, check=False
-    )
-    if proc.returncode != 0:
+    try:
+        proc = subprocess.run(
+            cmd,
+            capture_output=True,
+            stdin=subprocess.DEVNULL,
+            check=False,
+            timeout=_SEVENZIP_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise ArchiveError(
+            f"{archive.name}: 7-Zip passou de {_SEVENZIP_TIMEOUT // 3600} h e foi "
+            "interrompido"
+        ) from exc
+    except FileNotFoundError as exc:
+        raise SevenZipUnavailableError(
+            f"{archive.name}: não consegui executar {exe}; {_SEVENZIP_HELP}"
+        ) from exc
+    if proc.returncode not in (0, 1):
         detail = (
             proc.stderr.decode("utf-8", errors="replace")
             + proc.stdout.decode("utf-8", errors="replace")
@@ -131,28 +157,37 @@ def _sevenzip_extract(
             f"{archive.name}: 7-Zip falhou ({proc.returncode}): "
             f"{detail or 'sem detalhe'}"
         )
+    if proc.returncode == 1:
+        logger.warning("%s: 7-Zip terminou com avisos", archive.name)
 
 
 def _libarchive_extract(archive: Path, dest: Path) -> list[Path]:
     """Extrai com ``libarchive-c`` (reserva para RAR quando o 7-Zip não tem o codec)."""
-    import libarchive  # type: ignore[import-not-found]
+    try:
+        import libarchive  # type: ignore[import-not-found]
 
-    resolved = dest.resolve()
-    written: list[Path] = []
-    with libarchive.file_reader(str(archive)) as entries:
-        for entry in entries:
-            if entry.isdir:
-                continue
-            target = (resolved / entry.pathname).resolve()
-            if not target.is_relative_to(resolved):
-                raise ArchiveError(
-                    f"{archive.name}: caminho fora do destino: {entry.pathname}"
-                )
-            target.parent.mkdir(parents=True, exist_ok=True)
-            with open(target, "wb") as out:
-                for block in entry.get_blocks():
-                    out.write(block)
-            written.append(target)
+        resolved = dest.resolve()
+        written: list[Path] = []
+        with libarchive.file_reader(str(archive)) as entries:
+            for entry in entries:
+                if entry.isdir:
+                    continue
+                target = (resolved / entry.pathname).resolve()
+                if not target.is_relative_to(resolved):
+                    raise ArchiveError(
+                        f"{archive.name}: caminho fora do destino: {entry.pathname}"
+                    )
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with open(target, "wb") as out:
+                    for block in entry.get_blocks():
+                        out.write(block)
+                written.append(target)
+    except ArchiveError:
+        raise
+    except Exception as exc:  # libarchive-c levanta ArchiveError próprio, OSError...
+        raise ArchiveError(
+            f"{archive.name}: libarchive falhou ({type(exc).__name__}: {exc})"
+        ) from exc
     return written
 
 
@@ -191,13 +226,32 @@ def _extract_zip(archive: Path, dest: Path) -> None:
             f"{len(unsupported)} membro(s) usam um método de compressão "
             f"que o Python não lê (ex.: {unsupported[0]})",
         )
-        _sevenzip_extract(exe, archive, resolved, unsupported)
-        faltando = [n for n in unsupported if not (resolved / n).is_file()]
-        if faltando:
-            raise ArchiveError(
-                f"{archive.name}: 7-Zip não extraiu {len(faltando)} membro(s), "
-                f"ex.: {faltando[0]}"
+        too_long = (
+            len(unsupported) > _MAX_NAMES
+            or sum(len(n) + 3 for n in unsupported) > _MAX_NAMES_CHARS
+        )
+        if not too_long:
+            _sevenzip_extract(exe, archive, resolved, unsupported)
+            if all((resolved / n).is_file() for n in unsupported):
+                return
+            logger.warning(
+                "%s: o 7-Zip não achou membros pelo nome (codificação dos nomes?); "
+                "extraindo o arquivo inteiro",
+                archive.name,
             )
+        # Linha de comando longa, ou nomes que o 7-Zip grafa de outro jeito: o
+        # arquivo inteiro vai pelo 7-Zip, do zero (sem misturar com o do zipfile,
+        # que poderia deixar o mesmo membro sob dois nomes).
+        _clear_dir(resolved)
+        _sevenzip_extract(exe, archive, resolved)
+
+
+def _clear_dir(dest: Path) -> None:
+    for p in dest.iterdir():
+        if p.is_dir():
+            shutil.rmtree(p)
+        else:
+            p.unlink()
 
 
 def _extract_with_sevenzip(archive: Path, dest: Path, kind: str) -> None:
@@ -214,21 +268,17 @@ def _extract_with_sevenzip(archive: Path, dest: Path, kind: str) -> None:
     except ArchiveError as exc:
         if kind == "rar" and _SEVENZIP_NOT_ARCHIVE.search(str(exc)):
             if _libarchive_available():
-                for p in dest.iterdir():
-                    if p.is_dir():
-                        shutil.rmtree(p)
-                    else:
-                        p.unlink()
+                _clear_dir(dest)
                 _libarchive_extract(archive, dest)
                 return
-            raise ArchiveError(f"{archive.name}: {_RAR_HELP}") from exc
+            raise RarUnavailableError(f"{archive.name}: {_RAR_HELP}") from exc
         raise
 
 
 def _libarchive_available() -> bool:
     try:
         import libarchive  # type: ignore[import-not-found]  # noqa: F401
-    except (ImportError, OSError):
+    except Exception:  # ImportError, OSError (libarchive.so ausente) e afins
         return False
     return True
 
@@ -261,8 +311,17 @@ def extract_archive(archive: Path, dest: Path) -> list[Path]:
 
 @contextmanager
 def scratch_dir() -> Iterator[Path]:
-    """Diretório temporário para extrair; ``QUANTILICA_LAKE_SCRATCH`` muda o disco."""
-    with tempfile.TemporaryDirectory(
-        dir=os.environ.get("QUANTILICA_LAKE_SCRATCH") or None
-    ) as tmp:
-        yield Path(tmp)
+    """Diretório temporário para extrair; ``QUANTILICA_LAKE_SCRATCH`` muda o disco.
+
+    Falha ao apagar (arquivo aberto no Windows, antivírus) vira aviso no log, não
+    erro: a conversão já terminou.
+    """
+    tmp = Path(tempfile.mkdtemp(dir=os.environ.get("QUANTILICA_LAKE_SCRATCH") or None))
+
+    def _warn(func: object, path: str, exc: BaseException) -> None:
+        logger.warning("não consegui apagar %s: %s", path, exc)
+
+    try:
+        yield tmp
+    finally:
+        shutil.rmtree(tmp, onexc=_warn)

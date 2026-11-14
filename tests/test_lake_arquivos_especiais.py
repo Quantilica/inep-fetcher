@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import logging
+import os
 import shutil
 import subprocess
+import types
 import zipfile
 from pathlib import Path
 
@@ -13,9 +16,11 @@ import pytest
 from inep_fetcher import _archive
 from inep_fetcher._archive import (
     ArchiveError,
+    RarUnavailableError,
     SevenZipUnavailableError,
     archive_kind,
     extract_archive,
+    scratch_dir,
 )
 from inep_fetcher.lake import LakeConverter, _is_checksum_file
 
@@ -30,6 +35,12 @@ MD5 = (
 
 def _parquets(lake: Path) -> list[Path]:
     return sorted(lake.rglob("*.parquet"))
+
+
+def _txt(base: Path, name: str, text: str) -> Path:
+    path = base / name
+    path.write_text(text)
+    return path
 
 
 def _write_xlsx(path: Path) -> None:
@@ -53,6 +64,13 @@ def test_is_checksum_file_por_conteudo_e_extensao(tmp_path: Path) -> None:
     misto = tmp_path / "misto.txt"
     misto.write_text(MD5 + "co_ies;no_ies\n")
     assert not _is_checksum_file(misto)
+    # TXT de largura fixa só de dígitos (32 dígitos + nome com extensão): é dado
+    largura = tmp_path / "largura.txt"
+    largura.write_text("12345678901234567890123456789012 ESCOLA1.csv\n" * 3)
+    assert not _is_checksum_file(largura)
+    # hash de tamanho que nenhum algoritmo usa, ou nome sem extensão
+    assert not _is_checksum_file(_txt(tmp_path, "h.txt", f"{'a' * 33} x.csv\n"))
+    assert not _is_checksum_file(_txt(tmp_path, "n.txt", f"{'a' * 32} semextensao\n"))
     vazio = tmp_path / "vazio.txt"
     vazio.write_text("\n\n")
     assert not _is_checksum_file(vazio)
@@ -128,13 +146,24 @@ def test_rar_sem_7zip_pede_para_instalar(
         extract_archive(rar, tmp_path / "out")
 
 
+_REQUIRE_7Z = bool(os.environ.get("INEP_REQUIRE_7Z"))
+
+
 def _rar_legivel(tmp_path: Path) -> bool:
-    """Há 7-Zip com codec RAR ou libarchive neste ambiente?"""
+    """Há leitor de RAR (7-Zip com codec ou libarchive) neste ambiente?
+
+    Só "ferramenta ausente" vira skip; qualquer outro erro falha o teste. Com
+    ``INEP_REQUIRE_7Z=1`` (CI), até a falta do 7-Zip falha.
+    """
     probe = tmp_path / "probe.rar"
     probe.write_bytes(build_rar5({"a.txt": b"x"}))
     try:
         extract_archive(probe, tmp_path / "probe_out")
-    except ArchiveError:
+    except SevenZipUnavailableError:
+        if _REQUIRE_7Z:
+            raise
+        return False
+    except RarUnavailableError:
         return False
     return True
 
@@ -194,7 +223,7 @@ def _zip_deflate64(tmp_path: Path, arc: str, name: str, content: str) -> Path:
     return out
 
 
-@pytest.mark.skipif(_SEVENZIP is None, reason="7-Zip ausente")
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
 def test_zip_misto_store_e_deflate64_extrai_tudo(tmp_path: Path) -> None:
     conteudo = "co_ies;valor\n" + "".join(f"{i};{i * 3}\n" for i in range(20000))
     _zip_deflate64(tmp_path, "d64.zip", "RESULTADOS.csv", conteudo)
@@ -221,7 +250,7 @@ def test_zip_misto_store_e_deflate64_extrai_tudo(tmp_path: Path) -> None:
     assert (tmp_path / "out" / "RESULTADOS.csv").read_text() == conteudo
 
 
-@pytest.mark.skipif(_SEVENZIP is None, reason="7-Zip ausente")
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
 def test_convert_zip_com_membro_deflate64(tmp_path: Path) -> None:
     conteudo = "co_ies;valor\n" + "".join(f"{i};{i * 3}\n" for i in range(20000))
     arc = _zip_deflate64(tmp_path, "enem.zip", "RESULTADOS_2025.csv", conteudo)
@@ -252,3 +281,142 @@ def test_deflate64_sem_7zip_pede_para_instalar(
     monkeypatch.setattr(_archive, "find_sevenzip", lambda: None)
     with pytest.raises(SevenZipUnavailableError, match="instale o 7-Zip"):
         extract_archive(arc, tmp_path / "out")
+
+
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
+def test_convert_deflate64_so_dados_e_ignora_dicionario(tmp_path: Path) -> None:
+    conteudo = "co_ies;valor\n" + "".join(f"{i};{i * 3}\n" for i in range(20000))
+    src = tmp_path / "src"
+    (src / "pasta" / "DADOS").mkdir(parents=True)
+    (src / "DICIONÁRIO").mkdir()
+    (src / "pasta" / "DADOS" / "RESULTADOS_2025.csv").write_text(conteudo)
+    (src / "DICIONÁRIO" / "dicionario.csv").write_text(conteudo)
+    raw = tmp_path / "raw" / "enem"
+    raw.mkdir(parents=True)
+    subprocess.run(
+        [
+            _SEVENZIP or "7z",
+            "a",
+            "-tzip",
+            "-mm=Deflate64",
+            str(raw / "enem-microdados_2025@20260915.zip"),
+            "pasta",
+            "DICIONÁRIO",
+        ],
+        check=True,
+        capture_output=True,
+        cwd=src,
+    )
+    res = LakeConverter().convert(tmp_path / "raw", tmp_path / "lake")
+    assert not res.errors, res.errors
+    assert res.converted == 1
+    paths = _parquets(tmp_path / "lake")
+    assert len(paths) == 1 and "resultados_2025" in paths[0].name.lower()
+
+
+def _zip_com_muitos_membros(tmp_path: Path, n: int) -> Path:
+    arc = tmp_path / "muitos.zip"
+    with zipfile.ZipFile(arc, "w", zipfile.ZIP_DEFLATED) as zf:
+        for i in range(n):
+            zf.writestr(f"DADOS/parte_{i:03d}.csv", f"a;b\n{i};{i}\n")
+    return arc
+
+
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
+def test_muitos_membros_nao_suportados_vao_pelo_arquivo_inteiro(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    arc = _zip_com_muitos_membros(tmp_path, 60)
+    monkeypatch.setattr(_archive, "_ZIPFILE_METHODS", frozenset({zipfile.ZIP_STORED}))
+    chamadas: list[list[str] | None] = []
+    real = _archive._sevenzip_extract
+
+    def espia(exe, archive, dest, names=None):  # noqa: ANN001, ANN202
+        chamadas.append(names)
+        return real(exe, archive, dest, names)
+
+    monkeypatch.setattr(_archive, "_sevenzip_extract", espia)
+    files = extract_archive(arc, tmp_path / "out")
+    assert chamadas == [None]  # 60 nomes > 50: sem lista na linha de comando
+    assert len(files) == 60
+
+
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
+def test_membro_que_o_7zip_nao_acha_refaz_com_o_arquivo_inteiro(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    arc = _zip_com_muitos_membros(tmp_path, 3)
+    monkeypatch.setattr(_archive, "_ZIPFILE_METHODS", frozenset({zipfile.ZIP_STORED}))
+    chamadas: list[list[str] | None] = []
+    real = _archive._sevenzip_extract
+
+    def sem_achar_por_nome(exe, archive, dest, names=None):  # noqa: ANN001, ANN202
+        chamadas.append(names)
+        if names:  # simula nome com outra codificação: nada extraído
+            return None
+        return real(exe, archive, dest, names)
+
+    monkeypatch.setattr(_archive, "_sevenzip_extract", sem_achar_por_nome)
+    files = extract_archive(arc, tmp_path / "out")
+    assert len(chamadas) == 2 and chamadas[1] is None
+    assert sorted(f.name for f in files) == [f"parte_{i:03d}.csv" for i in range(3)]
+
+
+def _proc(code: int) -> types.SimpleNamespace:
+    return types.SimpleNamespace(returncode=code, stdout=b"", stderr=b"erro 7z")
+
+
+def test_7zip_codigo_1_e_aviso_e_2_e_falha(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    arc = tmp_path / "x.zip"
+    arc.write_bytes(b"")
+    monkeypatch.setattr(_archive.subprocess, "run", lambda *a, **k: _proc(1))
+    _archive._sevenzip_extract("7z", arc, tmp_path)  # não levanta
+    monkeypatch.setattr(_archive.subprocess, "run", lambda *a, **k: _proc(2))
+    with pytest.raises(ArchiveError, match="erro 7z"):
+        _archive._sevenzip_extract("7z", arc, tmp_path)
+
+
+def test_7zip_estourou_o_tempo(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    def run(*a, **k):  # noqa: ANN002, ANN003, ANN202
+        raise subprocess.TimeoutExpired("7z", 1)
+
+    monkeypatch.setattr(_archive.subprocess, "run", run)
+    with pytest.raises(ArchiveError, match="interrompido"):
+        _archive._sevenzip_extract("7z", tmp_path / "x.zip", tmp_path)
+
+
+def test_executavel_do_7zip_inexistente_pede_para_instalar(tmp_path: Path) -> None:
+    with pytest.raises(SevenZipUnavailableError, match="instale o 7-Zip"):
+        _archive._sevenzip_extract(str(tmp_path / "nao-existe"), tmp_path, tmp_path)
+
+
+def test_libarchive_com_erro_qualquer_vira_archive_error(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def file_reader(_path: str):  # noqa: ANN202
+        raise RuntimeError("quebrou")
+
+    monkeypatch.setitem(
+        __import__("sys").modules,
+        "libarchive",
+        types.SimpleNamespace(file_reader=file_reader),
+    )
+    with pytest.raises(ArchiveError, match="libarchive falhou"):
+        _archive._libarchive_extract(tmp_path / "x.rar", tmp_path)
+    monkeypatch.setitem(__import__("sys").modules, "libarchive", None)
+    assert not _archive._libarchive_available()
+
+
+def test_falha_ao_apagar_o_temporario_vira_aviso(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture
+) -> None:
+    def rmtree(path, onexc=None):  # noqa: ANN001, ANN202
+        onexc(os.rmdir, str(path), OSError("em uso"))
+
+    monkeypatch.setattr(_archive.shutil, "rmtree", rmtree)
+    monkeypatch.setenv("QUANTILICA_LAKE_SCRATCH", str(tmp_path))
+    with caplog.at_level(logging.WARNING), scratch_dir() as work:
+        assert work.parent == tmp_path
+    assert "em uso" in caplog.text
