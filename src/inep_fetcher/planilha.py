@@ -175,6 +175,8 @@ def _strip_trailing_note(text: str) -> str:
 def _label(value: Any) -> str:
     """Rótulo de cabeçalho legível: sem remissão de nota nem espaço repetido."""
     text = _text(value)
+    if _MARKER.fullmatch(text):
+        return ""  # "-" no lugar de célula vazia do cabeçalho
     text = _SUPERSCRIPT.sub("", text)
     text = _STAR.sub("", text)
     text = _PAREN_NOTE.sub("", text)
@@ -232,11 +234,14 @@ def _header_block(rows: list[list[str]]) -> tuple[int, int] | None:
         if _is_data_row(rows[i]):
             return start, i
         cells = [j for j, v in enumerate(rows[i]) if v]
-        # linha de dados com um valor só, ou sem nenhum, logo antes de linha de dados
-        sparse = cells == [first] or any(
-            _data_like(rows[i][j]) and not _YEAR.fullmatch(rows[i][j]) for j in cells
+        # primeira linha de dados com um valor só, ou sem nenhum, logo antes de dados:
+        # o valor é numérico (marcador e unidade entre parênteses são de cabeçalho)
+        # ou a única célula, na primeira coluna, é um nome ("Brasil")
+        one_value = any(
+            _numeric_like(rows[i][j]) and not _YEAR.fullmatch(rows[i][j]) for j in cells
         )
-        if sparse and i + 1 < len(rows) and _is_data_row(rows[i + 1]):
+        only_key = cells == [first] and not rows[i][first].startswith("(")
+        if (one_value or only_key) and i + 1 < len(rows) and _is_data_row(rows[i + 1]):
             return start, i
     return None
 
@@ -483,7 +488,12 @@ def _typed(series: pl.Series) -> tuple[pl.Series, bool]:
 
 
 def _read(source: Any, kwargs: dict[str, Any], **options: Any) -> pl.DataFrame:
-    """Planilha sem cabeçalho, com as linhas e colunas vazias (índice = da folha)."""
+    """Planilha sem cabeçalho, com as linhas e colunas vazias (índice = da folha).
+
+    ``skip_rows`` conta sempre da primeira linha da folha (``0`` por padrão): sem
+    ele o leitor pula as linhas vazias do começo e as leituras do topo e do corpo
+    deixam de concordar sobre onde está o cabeçalho.
+    """
     extra = dict(kwargs.get("read_options", {}))
     rest = {k: v for k, v in kwargs.items() if k != "read_options"}
     return pl.read_excel(
@@ -491,7 +501,7 @@ def _read(source: Any, kwargs: dict[str, Any], **options: Any) -> pl.DataFrame:
         has_header=False,
         drop_empty_rows=False,
         drop_empty_cols=False,
-        read_options={**extra, **options},
+        read_options={"skip_rows": 0, **extra, **options},
         **rest,
     )
 
@@ -519,8 +529,8 @@ def _assemble(source: Any, kwargs: dict[str, Any]) -> pl.DataFrame | None:
     spans = _column_levels(labels, width)
     row_counts = {r: sum(1 for v in row if v) for r, row in enumerate(labels)}
 
-    # corpo com os tipos da planilha: o texto dos números tem 9 casas no máximo
-    raw = _read(source, kwargs, skip_rows=end)
+    # corpo todo como texto: nada é anulado nem convertido por inferência de tipo
+    raw = _read(source, kwargs, skip_rows=end, dtypes="string")
     body = pl.DataFrame([_normalized(raw[c]) for c in raw.columns])
     footer = _footer_rows(body)
     blank = body.select(pl.all_horizontal(pl.all().is_null())).to_series()
@@ -530,7 +540,7 @@ def _assemble(source: Any, kwargs: dict[str, Any]) -> pl.DataFrame | None:
         return None
     # o intervalo usado da planilha pode passar da tabela (células soltas à direita)
     used = [j for j, c in enumerate(body.columns) if body[c].null_count() < body.height]
-    key_n = _key_columns(raw.head(200).cast(pl.String), used)
+    key_n = _key_columns(raw.head(200), used)
     if key_n < len(used):
         first, key_end = used[0], used[key_n - 1] + 1 if key_n else used[0]
         for j in used[:key_n]:
@@ -541,26 +551,39 @@ def _assemble(source: Any, kwargs: dict[str, Any]) -> pl.DataFrame | None:
     ]
 
     typed = [_typed(body[body.columns[j]]) for j in used]
-    redo = {j: "float" for j, (_, texto) in zip(used, typed, strict=True) if texto}
-    if redo:
-        exact = _read(source, kwargs, skip_rows=end, dtypes=redo).filter(keep)
+    decimals = {j: "float" for j, (_, texto) in zip(used, typed, strict=True) if texto}
+    if decimals:
+        # o texto dos números tem 9 casas no máximo: a precisão vem da leitura como
+        # número, só onde ela e o texto concordam
+        exact = _read(source, kwargs, skip_rows=end, dtypes=decimals).filter(keep)
         for k, j in enumerate(used):
-            if j not in redo:
-                continue
-            series = typed[k][0]
-            number = exact[exact.columns[j]].cast(pl.Float64, strict=False)
-            if series.dtype == pl.Float64:
-                typed[k] = (pl.select(pl.coalesce(number, series)).to_series(), False)
-            else:
-                decimal = series.str.contains(r"^-?\d+\.\d+$").fill_null(False)
-                text = number.cast(pl.String)
-                typed[k] = (
-                    series.zip_with(~(decimal & number.is_not_null()), text),
-                    False,
-                )
+            if j in decimals:
+                typed[k] = (_exact(typed[k][0], exact[exact.columns[j]]), False)
     out = pl.DataFrame([series for series, _ in typed])
     out.columns = _unique(names)
     return clean_columns(out)
+
+
+def _exact(series: pl.Series, number: pl.Series) -> pl.Series:
+    """Devolve ``series`` com a precisão de ``number`` onde os dois batem (1e-9).
+
+    ``series`` é a coluna já tipada (Float64) ou o texto dela; ``number`` é a
+    mesma coluna lida como número. Valor que só existe de um lado, ou em que o
+    texto e o número divergem, fica como estava.
+    """
+    number = number.cast(pl.Float64, strict=False)
+    if series.dtype == pl.Float64:
+        parsed, decimal = series, pl.Series([True] * series.len())
+    else:
+        parsed = series.cast(pl.Float64, strict=False)
+        decimal = series.str.contains(r"^-?\d+\.\d+$").fill_null(False)
+    same = (number - parsed).abs() < 1e-9
+    use = (same.fill_null(False)) & decimal
+    if series.dtype == pl.Float64:
+        return pl.select(pl.when(use).then(number).otherwise(series)).to_series()
+    return pl.select(
+        pl.when(use).then(number.cast(pl.String)).otherwise(series)
+    ).to_series()
 
 
 def read_planilha(

@@ -778,3 +778,117 @@ def test_remissao_e_ano_solto_saem_do_rotulo(rotulo: str, esperado: str) -> None
     from inep_fetcher.planilha import _label
 
     assert _label(rotulo) == esperado
+
+
+# --- revisão 2: linhas vazias no topo, texto depois da amostra, cabeçalho esparso ---
+
+
+def test_linhas_vazias_antes_do_titulo_nao_deslocam_o_corpo(tmp_path: Path) -> None:
+    # INSE 2015: 7 linhas vazias no topo; título, nota e cabeçalho não podem virar dado
+    book = xlsxwriter.Workbook(str(tmp_path / "inse15.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(7, 0, "Indicador de Nível Socioeconômico por escola")
+    sheet.write(8, 0, "*Mais informações sobre o Indicador")
+    for j, nome in enumerate(["CO_ESCOLA", "NOME_ESCOLA", "INSE_VALOR_ABSOLUTO"]):
+        sheet.write(9, j, nome)
+    for i in range(5):
+        sheet.write_row(10 + i, 0, [11000058 + i, f"ESCOLA {i}", 64.17 + i])
+    book.close()
+    df = read_planilha(tmp_path / "inse15.xlsx", "nivel-socioeconomico")
+    assert df.columns == ["CO_ESCOLA", "NOME_ESCOLA", "INSE_VALOR_ABSOLUTO"]
+    assert df.height == 5
+    assert df.schema["CO_ESCOLA"] == pl.Int64
+    assert df.schema["INSE_VALOR_ABSOLUTO"] == pl.Float64
+
+
+def test_linhas_e_coluna_vazias_antes_da_tabela(tmp_path: Path) -> None:
+    book = xlsxwriter.Workbook(str(tmp_path / "vazias.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(2, 1, "Título")
+    sheet.write_row(4, 1, ["UF", "Taxa A", "Código"])
+    for i in range(4):
+        sheet.write_row(5 + i, 1, [f"U{i}", 1.5 + i, 1000 + i])
+    book.close()
+    df = read_planilha(tmp_path / "vazias.xlsx", "taxas-transicao")
+    assert df.columns == ["UF", "Taxa A", "Código"]
+    assert df.height == 4
+
+
+def test_texto_depois_da_amostra_de_tipos_nao_e_anulado(tmp_path: Path) -> None:
+    # texto na linha 300 de coluna numérica: "A123" não vira nulo, "0012" não vira 12
+    book = xlsxwriter.Workbook(str(tmp_path / "longa.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, "Título")
+    sheet.write_row(1, 0, ["UF", "Taxa A", "Código"])
+    for i in range(300):
+        sheet.write_row(2 + i, 0, [f"U{i}", 1.5 + i / 7, 1000 + i])
+    sheet.write_row(302, 0, ["Z1", "x", "A123"])
+    sheet.write_row(303, 0, ["Z2", "a", "0012"])
+    sheet.write_row(304, 0, ["Z3", 1 / 3, "."])
+    book.close()
+    df = read_planilha(tmp_path / "longa.xlsx", "taxas-transicao")
+    assert df.height == 303
+    assert df["Código"].to_list()[-3:] == ["A123", "0012", "."]
+    assert df["Taxa A"].to_list()[-3:-1] == ["x", "a"]
+    assert df.schema["Taxa A"] == pl.String
+    # a precisão vem inteira, em texto, mesmo na coluna que ficou texto
+    um, ultimo = df["Taxa A"].to_list()[1], df["Taxa A"].to_list()[-1]
+    assert len(um.split(".")[1]) > 12 and len(ultimo.split(".")[1]) > 12
+    assert float(um) == pytest.approx(1.5 + 1 / 7, abs=1e-14)
+    assert float(ultimo) == pytest.approx(1 / 3, abs=1e-14)
+
+
+def test_precisao_so_vale_onde_texto_e_numero_concordam() -> None:
+    from inep_fetcher.planilha import _exact
+
+    texto = pl.Series(["1.5", "2.123456789", "9.9", None])
+    numero = pl.Series([1.5, 2.1234567891234, 7.7, 3.3])
+    assert _exact(texto, numero).to_list() == ["1.5", "2.1234567891234", "9.9", None]
+    flutuante = pl.Series([1.5, 2.123456789, 9.9, None])
+    assert _exact(flutuante, numero).to_list()[:2] == [1.5, 2.1234567891234]
+    assert _exact(flutuante, numero).to_list()[2] == 9.9
+
+
+def test_marcador_como_rotulo_vazio_do_cabecalho_nao_corta(tmp_path: Path) -> None:
+    src = tmp_path / "traco.xlsx"
+    _folha(
+        src,
+        [
+            ["UF", "Ensino Fundamental", None, "Ensino Médio"],
+            [None, "Total", "-", "Total"],
+            ["RO", 1.5, 2.5, 3.5],
+            ["AC", 1.1, 2.2, 3.3],
+        ],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df.columns == [
+        "UF",
+        "Ensino Fundamental - Total",
+        "Ensino Fundamental",
+        "Ensino Médio - Total",
+    ]
+    assert df["UF"].to_list() == ["RO", "AC"]
+
+
+def test_subnivel_so_na_primeira_coluna_nao_corta_o_cabecalho(tmp_path: Path) -> None:
+    src = tmp_path / "sigla.xlsx"
+    _folha(
+        src,
+        [
+            ["Região", "Taxa A", "Taxa B"],
+            ["(sigla)", None, None],
+            ["N", 1.5, 2.5],
+            ["S", 1.1, 2.2],
+        ],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df.columns == ["Região - (sigla)", "Taxa A", "Taxa B"]
+    assert df["Região - (sigla)"].to_list() == ["N", "S"]
+
+
+def test_sigilo_x_fica_como_texto_na_coluna(tmp_path: Path) -> None:
+    # decisão do projeto: o lake espelha a fonte; "x" é sigilo da fonte, não nulo
+    src = tmp_path / "x.xlsx"
+    _folha(src, [["UF", "N", "Taxa"], ["RO", 1, "x"], ["AC", 2, 2.2]])
+    df = read_planilha(src, "taxas-transicao")
+    assert df["Taxa"].to_list() == ["x", "2.2"]
