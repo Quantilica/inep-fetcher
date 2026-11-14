@@ -412,11 +412,75 @@ def test_libarchive_com_erro_qualquer_vira_archive_error(
 def test_falha_ao_apagar_o_temporario_vira_aviso(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture
 ) -> None:
+    def sempre_falha(_path: str) -> None:
+        raise OSError("em uso")
+
     def rmtree(path, onexc=None):  # noqa: ANN001, ANN202
-        onexc(os.rmdir, str(path), OSError("em uso"))
+        onexc(sempre_falha, str(path), OSError("em uso"))
 
     monkeypatch.setattr(_archive.shutil, "rmtree", rmtree)
     monkeypatch.setenv("QUANTILICA_LAKE_SCRATCH", str(tmp_path))
     with caplog.at_level(logging.WARNING), scratch_dir() as work:
         assert work.parent == tmp_path
     assert "em uso" in caplog.text
+
+
+def test_temporario_com_arquivo_somente_leitura_e_apagado_sem_aviso(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture
+) -> None:
+    chamadas: list[str] = []
+
+    def rmtree(path, onexc=None):  # noqa: ANN001, ANN202
+        # 1ª tentativa falhou por permissão; o handler libera a escrita e repete
+        onexc(lambda p: chamadas.append(p), str(path), PermissionError("ro"))
+
+    chmods: list[str] = []
+    monkeypatch.setattr(_archive.os, "chmod", lambda p, m: chmods.append(p))
+    monkeypatch.setattr(_archive.shutil, "rmtree", rmtree)
+    monkeypatch.setenv("QUANTILICA_LAKE_SCRATCH", str(tmp_path))
+    with caplog.at_level(logging.WARNING), scratch_dir():
+        pass
+    assert len(chmods) == len(chamadas) == 1
+    assert not caplog.text
+
+
+@pytest.mark.skipif(_SEVENZIP is None and not _REQUIRE_7Z, reason="7-Zip ausente")
+def test_extracao_inteira_pelo_7zip_nao_mexe_no_que_ja_estava_no_destino(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    arc = _zip_com_muitos_membros(tmp_path, 60)
+    out = tmp_path / "out"
+    (out / "OUTRO").mkdir(parents=True)
+    (out / "OUTRO" / "de_fora.csv").write_text("x;y\n1;2\n")
+    monkeypatch.setattr(_archive, "_ZIPFILE_METHODS", frozenset({zipfile.ZIP_STORED}))
+    files = extract_archive(arc, out)
+    assert (out / "OUTRO" / "de_fora.csv").read_text() == "x;y\n1;2\n"
+    assert len(files) == 61
+    assert not [p for p in out.iterdir() if p.name.startswith(".extract-")]
+
+
+def test_7zip_com_aviso_e_nada_extraido_nao_e_sucesso(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    rar = tmp_path / "x.zip"
+    rar.write_bytes(build_rar5({"a.csv": CSV.encode()}))
+    monkeypatch.setattr(_archive, "find_sevenzip", lambda: "7z")
+    monkeypatch.setattr(_archive.subprocess, "run", lambda *a, **k: _proc(1))
+    out = tmp_path / "out"
+    out.mkdir()
+    (out / "ja_existia.txt").write_text("x")  # conteúdo de fora não conta como extraído
+    with pytest.raises(ArchiveError, match="não tem arquivos"):
+        extract_archive(rar, out)
+    assert (out / "ja_existia.txt").exists()
+    assert [p.name for p in out.iterdir()] == ["ja_existia.txt"]
+
+
+def test_zip_com_extracao_inteira_que_falta_arquivo_falha(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    arc = _zip_com_muitos_membros(tmp_path, 3)
+    monkeypatch.setattr(_archive, "_ZIPFILE_METHODS", frozenset({zipfile.ZIP_STORED}))
+    monkeypatch.setattr(_archive, "find_sevenzip", lambda: "7z")
+    monkeypatch.setattr(_archive.subprocess, "run", lambda *a, **k: _proc(1))
+    with pytest.raises(ArchiveError, match="0 de 3"):
+        extract_archive(arc, tmp_path / "out")

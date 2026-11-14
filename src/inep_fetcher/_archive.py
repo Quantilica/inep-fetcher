@@ -20,10 +20,11 @@ import logging
 import os
 import re
 import shutil
+import stat
 import subprocess
 import tempfile
 import zipfile
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -198,8 +199,11 @@ def _list_files(dest: Path) -> list[Path]:
 def _extract_zip(archive: Path, dest: Path) -> None:
     resolved = dest.resolve()
     unsupported: list[str] = []
+    done: list[Path] = []  # o que o zipfile gravou (só isto se desfaz na reserva)
+    expected = 0
     try:
         with zipfile.ZipFile(archive) as zf:
+            expected = len({i.filename for i in zf.infolist() if not i.is_dir()})
             for info in zf.infolist():
                 target = (resolved / info.filename).resolve()
                 if not target.is_relative_to(resolved):
@@ -212,6 +216,7 @@ def _extract_zip(archive: Path, dest: Path) -> None:
                     unsupported.append(info.filename)
                     continue
                 zf.extract(info, resolved)
+                done.append(target)
     except zipfile.BadZipFile as exc:
         raise ArchiveError(f"{archive.name}: ZIP inválido ({exc})") from exc
     if unsupported:
@@ -240,39 +245,64 @@ def _extract_zip(archive: Path, dest: Path) -> None:
                 archive.name,
             )
         # Linha de comando longa, ou nomes que o 7-Zip grafa de outro jeito: o
-        # arquivo inteiro vai pelo 7-Zip, do zero (sem misturar com o do zipfile,
-        # que poderia deixar o mesmo membro sob dois nomes).
-        _clear_dir(resolved)
-        _sevenzip_extract(exe, archive, resolved)
+        # arquivo inteiro vai pelo 7-Zip, numa pasta de preparo dentro do destino
+        # (que pode ter conteúdo de fora). Só o que o zipfile gravou é desfeito,
+        # para o mesmo membro não ficar sob dois nomes.
+        with _staged(resolved) as stage:
+            _sevenzip_extract(exe, archive, stage)
+            got = len(_list_files(stage))
+            if got < expected:
+                raise ArchiveError(
+                    f"{archive.name}: o 7-Zip extraiu {got} de {expected} arquivos"
+                )
+            for p in done:
+                p.unlink(missing_ok=True)
 
 
-def _clear_dir(dest: Path) -> None:
-    for p in dest.iterdir():
-        if p.is_dir():
-            shutil.rmtree(p)
-        else:
-            p.unlink()
+@contextmanager
+def _staged(dest: Path) -> Iterator[Path]:
+    """Pasta de preparo dentro de ``dest``; ao sair sem erro, move tudo para ``dest``.
+
+    Evita limpar ou misturar com o conteúdo que já estava no destino (caso do ZIP
+    aninhado) quando uma extração falha no meio ou precisa ser refeita. Em erro,
+    o preparo é apagado e o destino fica como estava.
+    """
+    stage = Path(tempfile.mkdtemp(prefix=".extract-", dir=dest))
+    try:
+        yield stage
+        for src in _list_files(stage):
+            target = dest / src.relative_to(stage)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            os.replace(src, target)
+    finally:
+        shutil.rmtree(stage, ignore_errors=True)
 
 
 def _extract_with_sevenzip(archive: Path, dest: Path, kind: str) -> None:
     exe = find_sevenzip()
-    if exe is None:
-        if kind == "rar" and _libarchive_available():
-            _libarchive_extract(archive, dest)
-            return
-        raise SevenZipUnavailableError(
-            f"{archive.name}: arquivo {kind.upper()} requer o 7-Zip; {_SEVENZIP_HELP}"
-        )
-    try:
-        _sevenzip_extract(exe, archive, dest)
-    except ArchiveError as exc:
-        if kind == "rar" and _SEVENZIP_NOT_ARCHIVE.search(str(exc)):
-            if _libarchive_available():
-                _clear_dir(dest)
-                _libarchive_extract(archive, dest)
-                return
-            raise RarUnavailableError(f"{archive.name}: {_RAR_HELP}") from exc
-        raise
+    with _staged(dest) as stage:
+        if exe is None:
+            if kind == "rar" and _libarchive_available():
+                _libarchive_extract(archive, stage)
+            else:
+                raise SevenZipUnavailableError(
+                    f"{archive.name}: arquivo {kind.upper()} requer o 7-Zip; "
+                    f"{_SEVENZIP_HELP}"
+                )
+        else:
+            try:
+                _sevenzip_extract(exe, archive, stage)
+            except ArchiveError as exc:
+                if kind != "rar" or not _SEVENZIP_NOT_ARCHIVE.search(str(exc)):
+                    raise
+                if not _libarchive_available():
+                    raise RarUnavailableError(f"{archive.name}: {_RAR_HELP}") from exc
+                shutil.rmtree(stage)
+                stage.mkdir()
+                _libarchive_extract(archive, stage)
+        if not _list_files(stage):
+            # código 1 (aviso) sem nenhum arquivo não é sucesso
+            raise ArchiveError(f"{archive.name}: o arquivo compactado não tem arquivos")
 
 
 def _libarchive_available() -> bool:
@@ -318,7 +348,14 @@ def scratch_dir() -> Iterator[Path]:
     """
     tmp = Path(tempfile.mkdtemp(dir=os.environ.get("QUANTILICA_LAKE_SCRATCH") or None))
 
-    def _warn(func: object, path: str, exc: BaseException) -> None:
+    def _warn(func: Callable[[str], object], path: str, exc: BaseException) -> None:
+        # arquivo somente leitura (Windows): libera a escrita e tenta de novo
+        try:
+            os.chmod(path, stat.S_IWRITE)
+            func(path)
+            return
+        except OSError:
+            pass
         logger.warning("não consegui apagar %s: %s", path, exc)
 
     try:
