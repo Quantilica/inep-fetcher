@@ -45,6 +45,7 @@ except ImportError as exc:
     ) from exc
 
 from inep_fetcher import __version__
+from inep_fetcher.planilha import read_planilha
 from inep_fetcher.sas_layout import (
     LAYOUT_FIXES,
     SasLayout,
@@ -527,7 +528,7 @@ class LakeConverter:
                         result.converted += 1
 
                 elif suffix == ".xlsx":
-                    df = pl.read_excel(path)
+                    df = read_planilha(path)
                     written = writer.write_polars(
                         df,
                         path,
@@ -592,7 +593,7 @@ class LakeConverter:
                             key = composite_file_key(path, member_name)
                             if member.suffix.lower() in {".xlsx", ".xls"}:
                                 written = writer.write_polars(
-                                    pl.read_excel(member),
+                                    read_planilha(member),
                                     path,
                                     partitions=part_vals,
                                     file_key_name=key,
