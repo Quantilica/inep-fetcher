@@ -547,3 +547,234 @@ def test_remissao_numerica_apos_espaco_so_sai_de_total_e_rotulo_longo(
         "Média de Alunos por Turma - Turmas Multietapa, Multi ou Correção de Fluxo",
         "Média de Alunos por Turma - Nível 1",
     ]
+
+
+# --- revisão: zero à esquerda, títulos, marcadores, precisão e casos latentes ----
+
+
+def _folha(path: Path, linhas: list[list], *, titulo: str = "Título da tabela") -> None:
+    """Título numa célula, depois as linhas dadas (cabeçalho incluso)."""
+    book = xlsxwriter.Workbook(str(path))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, titulo)
+    for i, linha in enumerate(linhas):
+        for j, v in enumerate(linha):
+            if v is not None:
+                sheet.write(2 + i, j, v)
+    book.close()
+
+
+def test_codigo_com_zero_a_esquerda_continua_texto(tmp_path: Path) -> None:
+    # trajetoria: o código CINE "04" virava 4.0
+    src = tmp_path / "cine.xlsx"
+    _folha(
+        src,
+        [
+            ["Curso", "Código da área", "Taxa"],
+            ["A", "04", 1.5],
+            ["B", "0012", 2.5],
+            ["C", "12", 3.5],
+        ],
+    )
+    df = read_planilha(src, "trajetoria-educacao-superior")
+    assert df["Código da área"].to_list() == ["04", "0012", "12"]
+    assert df.schema["Código da área"] == pl.String
+    assert df.schema["Taxa"] == pl.Float64
+
+
+def test_zero_sozinho_e_decimal_menor_que_um_seguem_numericos(tmp_path: Path) -> None:
+    src = tmp_path / "zero.xlsx"
+    _folha(src, [["UF", "N", "Taxa"], ["A", "0", "0.5"], ["B", "7", "1.5"]])
+    df = read_planilha(src, "taxas-transicao")
+    assert df.schema["N"] == pl.Int64
+    assert df.schema["Taxa"] == pl.Float64
+
+
+def test_rotulo_de_grupo_longo_que_cobre_so_parte_das_medidas_fica(
+    tmp_path: Path,
+) -> None:
+    # tdi 2011: "... Ensino Fundamental de 8 e 9 anos" (64) e "... Ensino Médio" (44)
+    # têm de ser tratados do mesmo jeito; nenhum é título da tabela
+    ef = "Taxa de Distorção Idade-Série - Ensino Fundamental de 8 e 9 anos"
+    em = "Taxa de Distorção Idade-Série - Ensino Médio"
+    assert len(ef) > 60 > len(em)
+    book = xlsxwriter.Workbook(str(tmp_path / "tdi.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, "Taxas de Distorção")
+    sheet.write(1, 0, "Ano")
+    sheet.write(1, 1, "Rede")
+    sheet.merge_range(1, 2, 1, 4, ef)
+    sheet.merge_range(1, 5, 1, 6, em)
+    sheet.write_row(
+        2, 2, ["Total", "Anos Iniciais", "Anos Finais", "1ª Série", "2ª Série"]
+    )
+    sheet.write_row(3, 0, [2011, "Total", 25.1, 20.2, 31.3, 40.4, 41.5])
+    sheet.write_row(4, 0, [2011, "Estadual", 26.1, 21.2, 32.3, 41.4, 42.5])
+    book.close()
+    df = read_planilha(tmp_path / "tdi.xlsx", "taxas-distorcao-idade-serie")
+    assert df.columns == [
+        "Ano",
+        "Rede",
+        f"{ef} - Total",
+        f"{ef} - Anos Iniciais",
+        f"{ef} - Anos Finais",
+        f"{em} - 1ª Série",
+        f"{em} - 2ª Série",
+    ]
+
+
+def test_titulo_unico_na_linha_ou_que_cobre_todas_as_medidas_sai(
+    tmp_path: Path,
+) -> None:
+    titulo = "Percentual de docentes por grupo de adequação da formação à disciplina"
+    book = xlsxwriter.Workbook(str(tmp_path / "afd.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, "AFD")
+    sheet.write(1, 0, "Ano")
+    sheet.merge_range(1, 1, 1, 4, titulo)
+    sheet.merge_range(2, 1, 2, 2, "Educação Infantil")
+    sheet.merge_range(2, 3, 2, 4, "Ensino Médio")
+    sheet.write_row(3, 1, ["Grupo 1", "Grupo 2", "Grupo 1", "Grupo 2"])
+    sheet.write_row(4, 0, [2025, 1.5, 2.5, 3.5, 4.5])
+    sheet.write_row(5, 0, [2025, 1.6, 2.6, 3.6, 4.6])
+    book.close()
+    df = read_planilha(tmp_path / "afd.xlsx", "adequacao-formacao-docente")
+    assert df.columns == [
+        "Ano",
+        "Educação Infantil - Grupo 1",
+        "Educação Infantil - Grupo 2",
+        "Ensino Médio - Grupo 1",
+        "Ensino Médio - Grupo 2",
+    ]
+
+
+@pytest.mark.parametrize("marcador", ["*", "**", "***", "--", "-", "..."])
+def test_marcadores_de_sem_dado_viram_nulo(tmp_path: Path, marcador: str) -> None:
+    src = tmp_path / "marc.xlsx"
+    _folha(
+        src,
+        [["UF", "N", "Taxa"], ["A", 1, marcador], ["B", 2, 1.5], ["C", 3, 2.5]],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df["Taxa"].to_list() == [None, 1.5, 2.5]
+    assert df.schema["Taxa"] == pl.Float64
+
+
+def test_letras_de_legenda_continuam_texto(tmp_path: Path) -> None:
+    # remuneracao-docentes: a, c, d são legenda de sigilo, não "sem dado"
+    src = tmp_path / "legenda.xlsx"
+    _folha(src, [["UF", "N", "Média"], ["A", 1, "d"], ["B", 2, 1.5], ["C", 3, "a"]])
+    df = read_planilha(src, "remuneracao-docentes")
+    assert df["Média"].to_list() == ["d", "1.5", "a"]
+
+
+def test_decimais_com_mais_de_nove_casas_nao_sao_cortados(tmp_path: Path) -> None:
+    src = tmp_path / "prec.xlsx"
+    valores = [5.125310948079942, 0.333333333333333, 52.123456789012]
+    _folha(
+        src,
+        [["UF", "Pura", "ComMarcador", "ComLetra"]]
+        + [
+            ["A", valores[0], valores[0], valores[0]],
+            ["B", valores[1], "--", "d"],
+            ["C", valores[2], valores[2], valores[2]],
+        ],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df["Pura"].to_list() == valores
+    assert df["ComMarcador"].to_list() == [valores[0], None, valores[2]]
+    assert df["ComLetra"].to_list() == [str(valores[0]), "d", str(valores[2])]
+
+
+def test_cabecalho_so_com_anos_nao_e_dado(tmp_path: Path) -> None:
+    book = xlsxwriter.Workbook(str(tmp_path / "anos.xlsx"))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, "Título")
+    sheet.write(1, 0, "UF")
+    sheet.merge_range(1, 1, 1, 3, "Taxa de Aprovação")
+    sheet.write_row(2, 1, [2019, 2020, 2021])
+    sheet.write_row(3, 0, ["RO", 1.5, 2.5, 3.5])
+    sheet.write_row(4, 0, ["AC", 1.1, 2.2, 3.3])
+    book.close()
+    df = read_planilha(tmp_path / "anos.xlsx", "taxas-transicao")
+    assert df.columns == [
+        "UF",
+        "Taxa de Aprovação - 2019",
+        "Taxa de Aprovação - 2020",
+        "Taxa de Aprovação - 2021",
+    ]
+    assert df.height == 2
+
+
+def test_primeira_linha_de_dado_vazia_nao_vira_cabecalho(tmp_path: Path) -> None:
+    src = tmp_path / "vazia.xlsx"
+    _folha(
+        src,
+        [["UF", "Taxa A", "Taxa B"], ["Brasil"], ["RO", 1.5, 2.5], ["AC", 1.1, 2.2]],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df.columns == ["UF", "Taxa A", "Taxa B"]
+    assert df["UF"].to_list() == ["Brasil", "RO", "AC"]
+
+
+def test_primeira_linha_de_dado_so_com_sigilo_x_e_dado(tmp_path: Path) -> None:
+    src = tmp_path / "sigilo.xlsx"
+    _folha(src, [["UF", "Taxa A", "Taxa B"], ["RO", "x", "x"], ["AC", 1.1, 2.2]])
+    df = read_planilha(src, "taxas-transicao")
+    assert df.columns == ["UF", "Taxa A", "Taxa B"]
+    assert df["UF"].to_list() == ["RO", "AC"]
+
+
+def test_rodape_com_duas_celulas_nao_vira_dado(tmp_path: Path) -> None:
+    src = tmp_path / "rodape2.xlsx"
+    _folha(
+        src,
+        [
+            ["UF", "Taxa A", "Taxa B"],
+            ["RO", 1.5, 2.5],
+            ["AC", 1.1, 2.2],
+            [
+                "Fonte: Censo da Educação Básica/Inep.",
+                None,
+                "Nota: (1) taxa preliminar",
+            ],
+        ],
+    )
+    df = read_planilha(src, "taxas-transicao")
+    assert df["UF"].to_list() == ["RO", "AC"]
+
+
+@pytest.mark.parametrize(
+    "rotulo",
+    [
+        "Percentual de docentes com formação do Grupo 1",
+        "Percentual de escolas no Nível de complexidade 6",
+        "Ensino Médio Integrado ao Técnico - Série 4",
+        "Educação Profissional - Curso Técnico Concomitante 2",
+        "Escolas com até 50 matrículas 1",
+        "Período 2010-2019",
+        "Período 2010 - 2019",
+    ],
+)
+def test_rotulo_com_numero_parte_do_nome_fica(rotulo: str) -> None:
+    from inep_fetcher.planilha import _label
+
+    assert _label(rotulo) == rotulo
+
+
+@pytest.mark.parametrize(
+    ("rotulo", "esperado"),
+    [
+        ("Total 1", "Total"),
+        (
+            "Turmas Multietapa, Multi ou Correção de Fluxo 2",
+            "Turmas Multietapa, Multi ou Correção de Fluxo",
+        ),
+        ("Taxa de Aprovação - 2007", "Taxa de Aprovação"),
+        ("Taxa de Distorção Idade-Série - 2019", "Taxa de Distorção Idade-Série"),
+    ],
+)
+def test_remissao_e_ano_solto_saem_do_rotulo(rotulo: str, esperado: str) -> None:
+    from inep_fetcher.planilha import _label
+
+    assert _label(rotulo) == esperado
