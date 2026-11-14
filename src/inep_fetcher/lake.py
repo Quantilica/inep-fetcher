@@ -45,6 +45,7 @@ except ImportError as exc:
 
 from inep_fetcher import __version__
 from inep_fetcher._archive import extract_archive, scratch_dir
+from inep_fetcher.csv_clean import clean_csv
 from inep_fetcher.planilha import read_planilha
 from inep_fetcher.sas_layout import (
     LAYOUT_FIXES,
@@ -471,6 +472,46 @@ def _convert_fixed_width(
     return True
 
 
+def _write_csv(
+    writer: LakeWriter,
+    src: Path,
+    dataset_id: str,
+    part_vals: dict[str, Any],
+    *,
+    file_key_name: str | None = None,
+    src_origin: Path | None = None,
+) -> Any:
+    """CSV delimitado (latin-1) para o lake, com o separador detectado e a reserva.
+
+    Nos indicadores (planilhas exportadas para CSV), o título acima do
+    cabeçalho e as colunas finais sem nome e sem valor saem antes da leitura;
+    os microdados seguem direto para o DuckDB.
+    """
+    sep = _detect_separator(src)
+    fallback_sep = "," if sep == ";" else ";"
+    read_from = src
+    with scratch_dir() as work:
+        if dataset_id in INDICADORES_GROUPS:
+            cleaned = clean_csv(src, sep, work)
+            if cleaned is not None:
+                read_from = cleaned.path
+        kwargs: dict[str, Any] = {
+            "partitions": part_vals,
+            "encoding": "latin-1",
+            "converter": f"inep-fetcher {__version__}",
+        }
+        if file_key_name is not None:
+            kwargs["file_key_name"] = file_key_name
+        if src_origin is not None:
+            kwargs["src_origin"] = src_origin
+        elif read_from is not src:
+            kwargs["src_origin"] = src
+        try:
+            return writer.write_duckdb(read_from, separator=sep, **kwargs)
+        except (LakeError, duckdb.Error):
+            return writer.write_duckdb(read_from, separator=fallback_sep, **kwargs)
+
+
 class LakeConverter:
     """Converter registered under the ``quantilica.lake`` entry point."""
 
@@ -561,24 +602,7 @@ class LakeConverter:
             try:
                 if suffix == ".csv":
                     _require_separator(path)
-                    sep = _detect_separator(path)
-                    fallback_sep = "," if sep == ";" else ";"
-                    try:
-                        written = writer.write_duckdb(
-                            path,
-                            partitions=part_vals,
-                            separator=sep,
-                            encoding="latin-1",
-                            converter=f"inep-fetcher {__version__}",
-                        )
-                    except (LakeError, duckdb.Error):
-                        written = writer.write_duckdb(
-                            path,
-                            partitions=part_vals,
-                            separator=fallback_sep,
-                            encoding="latin-1",
-                            converter=f"inep-fetcher {__version__}",
-                        )
+                    written = _write_csv(writer, path, dataset_id, part_vals)
                     if written.status == "skipped":
                         result.skipped += 1
                     else:
@@ -670,28 +694,14 @@ class LakeConverter:
                             except LakeError as exc:
                                 result.errors.append(f"{path.name}: {exc}")
                                 continue
-                            sep = _detect_separator(member)
-                            fallback_sep = "," if sep == ";" else ";"
-                            try:
-                                written = writer.write_duckdb(
-                                    member,
-                                    partitions=part_vals,
-                                    file_key_name=key,
-                                    src_origin=path,
-                                    separator=sep,
-                                    encoding="latin-1",
-                                    converter=f"inep-fetcher {__version__}",
-                                )
-                            except (LakeError, duckdb.Error):
-                                written = writer.write_duckdb(
-                                    member,
-                                    partitions=part_vals,
-                                    file_key_name=key,
-                                    src_origin=path,
-                                    separator=fallback_sep,
-                                    encoding="latin-1",
-                                    converter=f"inep-fetcher {__version__}",
-                                )
+                            written = _write_csv(
+                                writer,
+                                member,
+                                dataset_id,
+                                part_vals,
+                                file_key_name=key,
+                                src_origin=path,
+                            )
 
                             if written.status == "skipped":
                                 result.skipped += 1
