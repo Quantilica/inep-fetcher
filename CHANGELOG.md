@@ -7,6 +7,11 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [0.6.0] - 2026-11-14
+
+### Corrigido
+- `financeiros` e `fluxo-educacao-superior`: as planilhas com título e cabeçalho em vários níveis viram colunas com nomes estáveis (níveis unidos por " - ", título e nota de rodapé fora; `--`, `-`, `...` e `*` como nulo; valores numéricos tipados). Antes o título entrava no nome da coluna (acima de 128 caracteres, com quebras de linha). Os demais indicadores continuam lidos como antes.
+
 ### Adicionado
 - O fetcher declara os fatos da fonte (`FetcherInfo`: id canônico, apelidos, órgão, licença, página e cadência) para o registro de fetchers da Quantilica.
 
