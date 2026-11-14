@@ -528,7 +528,7 @@ class LakeConverter:
                         result.converted += 1
 
                 elif suffix == ".xlsx":
-                    df = read_planilha(path)
+                    df = read_planilha(path, dataset_id)
                     written = writer.write_polars(
                         df,
                         path,
@@ -593,7 +593,7 @@ class LakeConverter:
                             key = composite_file_key(path, member_name)
                             if member.suffix.lower() in {".xlsx", ".xls"}:
                                 written = writer.write_polars(
-                                    read_planilha(member),
+                                    read_planilha(member, dataset_id),
                                     path,
                                     partitions=part_vals,
                                     file_key_name=key,

@@ -22,11 +22,15 @@ except ImportError as exc:  # pragma: no cover - o extra 'analysis' traz o polar
     ) from exc
 
 MAX_COLUMN_NAME = 128
-_CONTROL_RUN = re.compile(r"[\x00-\x20\x7f-\xa0​-‏  ﻿]+")
+_CONTROL_RUN = re.compile(
+    "[\\x00-\\x20\\x7f-\\xa0\\u200b-\\u200f\\u2028\\u2029\\ufeff]+"
+)
 _BLANK_NAME = re.compile(r"(_duplicated_\d+|__UNNAMED__\d+)?")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INTEGER = re.compile(r"-?(0|[1-9]\d*)")
 _SEP = " - "
+#: marcadores de "sem dado" dos indicadores (``--``, ``-``, ``...``, ``*``)
+_NULL_MARKERS = frozenset({"--", "-", "...", "*"})
 
 
 def _text(value: Any) -> str:
@@ -75,19 +79,24 @@ def _numeric_like(value: str) -> bool:
     return bool(_NUMBER.fullmatch(value) or re.fullmatch(r"\d{4}-\d{2,4}", value))
 
 
+def _data_like(value: str) -> bool:
+    """Valor de linha de dados: número, período (``2010-2011``) ou ``--``, ``*``."""
+    return _numeric_like(value) or value in _NULL_MARKERS
+
+
 def _header_block(rows: list[list[str]]) -> tuple[int, int] | None:
     """Intervalo ``[inicio, fim)`` das linhas de cabeçalho, ou ``None``.
 
     Pula as linhas de título (no máximo uma célula preenchida) e vai até a
     primeira linha de dados: a que tem metade ou mais das células numéricas
-    (``8.4``, ``2010-2011``). Os cabeçalhos são só texto.
+    (``8.4``, ``2010-2011``) ou de "sem dado" (``--``). Os cabeçalhos são só texto.
     """
     start = 0
     while start < len(rows) and sum(1 for v in rows[start] if v) <= 1:
         start += 1
     for i in range(start + 1, len(rows)):
         cells = [v for v in rows[i] if v]
-        if len(cells) >= 2 and sum(_numeric_like(v) for v in cells) * 2 >= len(cells):
+        if len(cells) >= 2 and sum(_data_like(v) for v in cells) * 2 >= len(cells):
             return start, i
     return None
 
@@ -139,6 +148,29 @@ def _typed(values: list[str | None]) -> pl.Series:
     return pl.Series(values, dtype=pl.String)
 
 
+def _cell(value: Any) -> str | None:
+    """Valor da célula como texto; vazio e marcadores de "sem dado" viram ``None``."""
+    if value is None:
+        return None
+    text = str(value).strip()
+    return None if not text or text in _NULL_MARKERS else str(value)
+
+
+def _trim_footnotes(rows: list[list[str | None]]) -> list[list[str | None]]:
+    """Tira do fim as notas de rodapé ("Fonte: ...", "Notas: ..."): texto em uma célula.
+
+    Só o bloco final conta; uma linha de dado com uma célula só no meio da tabela
+    fica. Linha final só numérica é dado.
+    """
+    end = len(rows)
+    while end:
+        cells = [v for v in rows[end - 1] if v is not None]
+        if len(cells) > 1 or (len(cells) == 1 and _numeric_like(cells[0].strip())):
+            break
+        end -= 1
+    return rows[:end]
+
+
 def _unique(names: list[str]) -> list[str]:
     """Nomes sem repetição: o DataFrame não aceita duas colunas com o mesmo nome."""
     seen: dict[str, int] = {}
@@ -167,28 +199,11 @@ def _multi_level(raw: pl.DataFrame) -> pl.DataFrame | None:
                 filled.append(last)
             row = filled
         levels.append(row)
-    body = [
-        r
-        for r in raw.slice(end).rows()
-        # linhas de nota de rodapé ("Fonte: ...", "Notas: ...") têm uma célula só
-        if sum(1 for v in r if v is not None and str(v).strip()) > 1
-    ]
+    body = _trim_footnotes([[_cell(v) for v in r] for r in raw.slice(end).rows()])
     # o intervalo usado da planilha pode passar da tabela (células soltas à direita)
-    used = [
-        j
-        for j in range(width)
-        if any(r[j] is not None and str(r[j]).strip() for r in body)
-    ]
+    used = [j for j in range(width) if any(r[j] is not None for r in body)]
     names = _names([[lvl[j] for lvl in levels] for j in used])
-    columns = {
-        f"_c{j}": _typed(
-            [
-                None if (v := row[j]) is None or not str(v).strip() else str(v)
-                for row in body
-            ]
-        )
-        for j in used
-    }
+    columns = {f"_c{j}": _typed([row[j] for row in body]) for j in used}
     df = pl.DataFrame(columns)
     df.columns = _unique(
         [n or f"__UNNAMED__{j}" for j, n in zip(used, names, strict=True)]
@@ -196,15 +211,26 @@ def _multi_level(raw: pl.DataFrame) -> pl.DataFrame | None:
     return clean_columns(df)
 
 
-def read_planilha(source: Any, **kwargs: Any) -> pl.DataFrame:
-    """Lê a primeira aba de um XLSX/XLS com nomes de coluna válidos.
+#: datasets cujas planilhas têm título e cabeçalho em níveis. Os demais
+#: indicadores seguem lidos como sempre, sem mudança de esquema.
+MULTI_LEVEL_DATASETS = frozenset({"financeiros", "fluxo-educacao-superior"})
 
-    Planilha com cabeçalho na primeira linha lê como antes. Quando a primeira
-    linha não é cabeçalho (metade ou mais dos nomes vazios: título e cabeçalho em
-    vários níveis), o cabeçalho real é montado juntando os níveis (``" - "``),
-    o título e as notas de rodapé saem, e as colunas numéricas voltam tipadas.
+
+def read_planilha(
+    source: Any, dataset_id: str | None = None, **kwargs: Any
+) -> pl.DataFrame:
+    """Lê a primeira aba de um XLSX/XLS.
+
+    Só em ``financeiros`` e ``fluxo-educacao-superior`` (:data:`MULTI_LEVEL_DATASETS`)
+    a primeira linha deixa de ser cabeçalho: quando metade ou mais dos nomes lidos
+    é vazio (título e cabeçalho em vários níveis), o cabeçalho real é montado
+    juntando os níveis (``" - "``), o título e as notas de rodapé saem, ``--``,
+    ``-``, ``...`` e ``*`` viram nulo e as colunas numéricas voltam tipadas. Os
+    demais datasets leem como ``pl.read_excel`` sempre leu.
     """
     df = pl.read_excel(source, **kwargs)
+    if dataset_id not in MULTI_LEVEL_DATASETS:
+        return df
     unnamed = sum(1 for c in df.columns if _BLANK_NAME.fullmatch(_text(c)))
     if df.width > 1 and unnamed * 2 >= df.width:
         multi = _multi_level(pl.read_excel(source, has_header=False, **kwargs))

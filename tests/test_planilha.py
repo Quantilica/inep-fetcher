@@ -14,6 +14,8 @@ pytest.importorskip("fastexcel")
 from inep_fetcher.lake import LakeConverter  # noqa: E402
 from inep_fetcher.planilha import MAX_COLUMN_NAME, read_planilha  # noqa: E402
 
+DS = "fluxo-educacao-superior"
+
 
 def _valid(names: list[str]) -> bool:
     return all(
@@ -53,7 +55,7 @@ def _fluxo(path: Path, *, extra_cell: bool = False) -> None:
 def test_cabecalho_de_dois_niveis_com_titulo_e_notas(tmp_path: Path) -> None:
     src = tmp_path / "fluxo.xlsx"
     _fluxo(src)
-    df = read_planilha(src)
+    df = read_planilha(src, DS)
     assert df.columns == ["Ano Fluxo", "Total", "Sexo - Feminino", "Sexo - Masculino"]
     assert df.height == 2  # as notas de rodapé não são dados
     assert df["Ano Fluxo"].to_list() == ["2010-2011", "2011-2012"]
@@ -64,7 +66,7 @@ def test_cabecalho_de_dois_niveis_com_titulo_e_notas(tmp_path: Path) -> None:
 def test_celula_solta_a_direita_nao_cria_colunas(tmp_path: Path) -> None:
     src = tmp_path / "fluxo.xlsx"
     _fluxo(src, extra_cell=True)
-    assert read_planilha(src).width == 4
+    assert read_planilha(src, DS).width == 4
 
 
 def test_titulo_longo_com_quebra_de_linha(tmp_path: Path) -> None:
@@ -85,7 +87,7 @@ def test_titulo_longo_com_quebra_de_linha(tmp_path: Path) -> None:
         sheet.write(4 + i, 2, 2444.7 + i)
         sheet.write(4 + i, 3, 26812.2 + i)
     book.close()
-    df = read_planilha(tmp_path / "fin.xlsx")
+    df = read_planilha(tmp_path / "fin.xlsx", DS)
     assert _valid(df.columns)
     assert df.columns[0] == "Ano"
     assert df.columns[1] == "Todos os Níveis"
@@ -100,7 +102,7 @@ def test_titulo_longo_com_quebra_de_linha(tmp_path: Path) -> None:
 def test_planilha_comum_nao_muda(tmp_path: Path) -> None:
     src = tmp_path / "comum.xlsx"
     pl.DataFrame({"uf": ["SP", "RJ"], "alunos": [30, 28]}).write_excel(src)
-    df = read_planilha(src)
+    df = read_planilha(src, DS)
     assert df.columns == ["uf", "alunos"]
     assert df["alunos"].to_list() == [30, 28]
 
@@ -122,3 +124,53 @@ def test_lake_converte_zip_de_indicadores_com_titulo(tmp_path: Path) -> None:
     df = pl.read_parquet(parquets[0])
     assert _valid(df.columns)
     assert "Sexo - Feminino" in df.columns
+
+
+def _com_marcadores(path: Path) -> None:
+    """Primeira linha de dados só de marcadores e uma linha com uma célula só."""
+    book = xlsxwriter.Workbook(str(path))
+    sheet = book.add_worksheet()
+    sheet.write(0, 0, "Variação do investimento")
+    sheet.write(1, 0, "Ano")
+    sheet.merge_range(1, 1, 1, 2, "Educação Básica")
+    sheet.write(2, 1, "∆% Direto")
+    sheet.write(2, 2, "∆% Por Estudante")
+    rows = [
+        (2000, "--", "-"),
+        (2001, 5.1, "..."),
+        (2002, "*", 3.3),
+        ("Sem dado em 2003", None, None),
+        (2004, 4.0, 2.0),
+    ]
+    for i, row in enumerate(rows):
+        for j, v in enumerate(row):
+            if v is not None:
+                sheet.write(3 + i, j, v)
+    sheet.write(9, 0, "Fonte: INEP")
+    book.close()
+
+
+def test_marcadores_viram_nulo_e_linha_de_uma_celula_no_meio_fica(
+    tmp_path: Path,
+) -> None:
+    src = tmp_path / "variacao.xlsx"
+    _com_marcadores(src)
+    df = read_planilha(src, "financeiros")
+    assert df.columns == [
+        "Ano",
+        "Educação Básica - ∆% Direto",
+        "Educação Básica - ∆% Por Estudante",
+    ]
+    # a linha de marcadores é dado (não cabeçalho), o ano não vai para o nome
+    assert df["Ano"].to_list() == ["2000", "2001", "2002", "Sem dado em 2003", "2004"]
+    assert df["Educação Básica - ∆% Direto"].to_list() == [None, 5.1, None, None, 4.0]
+    assert df.height == 5  # a linha de uma célula no meio fica; a nota final sai
+
+
+def test_outros_datasets_leem_como_sempre(tmp_path: Path) -> None:
+    # fora de financeiros/fluxo o esquema não muda: nada de cabeçalho em níveis
+    src = tmp_path / "fluxo.xlsx"
+    _fluxo(src)
+    df = read_planilha(src, "taxas-rendimento-escolar")
+    assert df.columns == pl.read_excel(src).columns
+    assert df.height == pl.read_excel(src).height
