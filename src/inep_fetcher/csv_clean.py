@@ -54,6 +54,8 @@ def split_raw(line: str, sep: str) -> tuple[list[str], bool]:
     Aspas só valem no início do campo (como no DuckDB). Devolve também se o
     registro ficou aberto (campo entre aspas que continua na linha seguinte).
     """
+    if '"' not in line:  # caminho rápido: sem aspas, é só dividir
+        return line.split(sep), False
     fields: list[str] = []
     i, n = 0, len(line)
     while True:
