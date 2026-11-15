@@ -171,7 +171,8 @@ def _detect_separator(path: Path) -> str:
     """Sniff CSV delimiter from the first line (defaulting to semicolon)."""
     try:
         return _first_line_separator(path) or ";"
-    except Exception:
+    except Exception as exc:  # noqa: BLE001 - sniffing é heurístico, nunca aborta
+        logger.debug("%s: sniffing de separador falhou (%s); usando ';'", path, exc)
         return ";"
 
 

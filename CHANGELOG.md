@@ -12,6 +12,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ### Corrigido
 - CI: o pyproject declara o PyPI antes do índice Quantilica (`[[tool.uv.index]]`), e o workflow perde `--index` e `--index-strategy`. Com a estratégia padrão `first-index`, o `uv sync` só consulta o índice para o que não está no PyPI (`quantilica-analytics`) e deixa de receber o 503 intermitente que o GitHub Pages devolve a caminhos inexistentes.
+- `lake`: a detecção de separador de CSV registra em log (`debug`) quando o sniffing falha e cai no padrão `;`, em vez de engolir o erro em silêncio. Sem mudança de comportamento.
 
 ## [0.7.1] - 2026-11-14
 
