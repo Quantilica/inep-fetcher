@@ -61,6 +61,9 @@ dev = [
     "xlsxwriter>=3.0.0",
 ]
 
+[tool.uv]
+required-version = ">=0.9"
+
 # Índices: o uv procura em ordem e para no primeiro que tem o pacote
 # (index-strategy padrão first-index). O PyPI vem antes, então o índice
 # Quantilica (GitHub Pages, que responde 503 intermitente a pacote que não
