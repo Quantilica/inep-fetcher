@@ -1,0 +1,171 @@
+{
+  "fonte": "inep",
+  "dataset": "enem-por-escola",
+  "gerado_em": "2026-11-16T00:38:18+00:00",
+  "particoes": [],
+  "colunas": [
+    {
+      "nome": "nu_ano",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "co_uf_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "sg_uf_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "co_municipio_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "no_municipio_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "co_escola_educacenso",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "no_escola_educacenso",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "tp_dependencia_adm_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "tp_localizacao_escola",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_matriculas",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_participantes_nec_esp",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_participantes",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_taxa_participacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_cn",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_ch",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_lp",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_mt",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_red",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_obj",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_media_tot",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "inse",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "pc_formacao_docente",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_taxa_permanencia",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_taxa_aprovacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_taxa_reprovacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nu_taxa_abandono",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "porte_escola",
+      "tipos": [
+        "string"
+      ]
+    }
+  ],
+  "arquivos": 1
+}

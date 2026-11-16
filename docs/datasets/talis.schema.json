@@ -1,0 +1,8779 @@
+{
+  "fonte": "inep",
+  "dataset": "talis",
+  "gerado_em": "2026-11-16T00:45:20+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "cntry",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idcntry",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idcntpop",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idschool",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idlang_cq",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g05",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g07a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g07b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g07c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g08i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g10m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g12a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g12b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g12c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g13",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g18g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g19a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g19b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g20a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g20b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g20c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g21h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g22",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g23i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24a1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24a2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24a3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24a4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24a5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24b1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24b2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24b3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24b4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24b5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24c1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24c2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24c3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24c4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24c5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24d4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24d5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24e1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24e2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24e3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24e4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24e5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24f1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24f2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24f3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24f4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24f5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24g1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24g2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24g3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24g4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24g5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24h1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24h2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24h3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24h4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24h5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24i1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24i2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24i3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24i4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24i5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24j1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24j2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24j3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24j4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24j5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24k1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24k2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24k3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24k4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g24k5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25a1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25a2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25a3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25a4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25a5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25c1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25c2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25c3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25c4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25c5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25d4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25d5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25e1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25e2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25e3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25e4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25e5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25f1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25f2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25f3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25f4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g25f5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g26i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g27k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g28a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g28b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g28c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g28d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g29a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g29b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g29c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g29d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g31a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g31b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g32j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g33",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g34",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g35a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g35b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g35c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g35d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g35e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36a6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36b6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36c6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36d6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36e6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g36f6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g37h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g38h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g39h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g40o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g41g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g42",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g43l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g44j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g49",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g50a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g50b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g50c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g50d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g51k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g52j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g53a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g53b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g53c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g53d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g53e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pagegr",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4phedat",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pempwh",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4schloc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4stratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tpratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4taratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4numstud",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pauts",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pautb",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pautp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pauti",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pautc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pautd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4placp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4placsnp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4placmr",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pyexpps",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pyexppt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pyexpsm",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pyexpt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pyexpo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4schiscn",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4schprgn",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4ttnratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4ttlratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4ttaratio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4numtch",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pleads",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4ptlead",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4poppart",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pacadt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdeli",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdivbf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pwels",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pwload",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pjsenvt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pjsprot",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pjobsat",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idpop",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "schwgtc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt7",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt8",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt9",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt10",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt11",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt12",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt13",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt14",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt15",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt16",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt17",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt18",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt19",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt20",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt21",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt22",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt23",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt24",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt25",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt26",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt27",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt28",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt29",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt30",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt31",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt32",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt33",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt34",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt35",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt36",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt37",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt38",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt39",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt40",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt41",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt42",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt43",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt44",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt45",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt46",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt47",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt48",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt49",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt50",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt51",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt52",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt53",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt54",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt55",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt56",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt57",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt58",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt59",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt60",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt61",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt62",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt63",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt64",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt65",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt66",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt67",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt68",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt69",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt70",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt71",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt72",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt73",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt74",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt75",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt76",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt77",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt78",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt79",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt80",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt81",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt82",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt83",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt84",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt85",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt86",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt87",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt88",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt89",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt90",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt91",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt92",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt93",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt94",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt95",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt96",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt97",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt98",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt99",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "crwgt100",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "version",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "ieadate",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tc4g30g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idteach",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idtquest",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "idlang_tq",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g04",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g06f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g08",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g09",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g10",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g14",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g15",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g16j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g17a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g17b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g18k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g19a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g19b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g20j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21s",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g22",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g23l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g25i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g26h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27p",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g28g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g30a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g30b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g30c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g31f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g32a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g32b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g32c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g33g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g34h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g35j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g36",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g37i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g38f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g47k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g49",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g50a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g50b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g50c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g51o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g52k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g53f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g54a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g54b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g54c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g54d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g55a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g55b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g55c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g55d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g55e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g56a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g56b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g56c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g56d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g57a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g57b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g57c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g57d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g57e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g58g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g59f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g60a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g60b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g60c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g60d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g60e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g61f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g62a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g62b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g62c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g62d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g63a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g63b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g63c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g63d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g64l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g65a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g65b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g65c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g65d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g66j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g67a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g67b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g67c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g67d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68a1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68a2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68a3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68a4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68b1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68b2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68b3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68b4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68c1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68c2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68c3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68c4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68d4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68e1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68e2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68e3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68e4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68f1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68f2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68f3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g68f4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g69h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g70a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g70b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g70c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g70d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g70e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g71a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g71b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g71c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g71d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g71e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g72f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g73i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g74",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g75a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g75b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g75c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g75d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g75e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g76a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g76b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g76c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g76d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77k",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77l",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77m",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77o",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g77p",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78h",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g78j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79e",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79f",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g79g",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g80a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g80b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g80c",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g80d",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tagegr",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4thedat",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tyqual",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tempwh",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4clsinf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4faspr",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tyexpe",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tnsch",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tyexpts",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tyexptt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tyexpo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tcsize",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tlangn",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdsubmp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdiv",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdbr",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4exinf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4coles",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4secls",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4seins",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4seeng",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4self",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4semul",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4gromst",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4sesen",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4comsel",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4sedrt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4blfdrt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4advdrt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4clain",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4cogac",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4clasm",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pdgenp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4drtwci",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4drtiia",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4emps",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4clsdis",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4adle",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4pble",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4autch",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4fulfil",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4oppart",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4sesdev",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4tlead",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4stud",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4relead",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4instle",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4clibul",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4stuhar",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4chfat",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4mopu",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4mosu",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4wels",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4wloadt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4stbeh",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4jsenvt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4jsprot",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4jobsat",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4valp",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "t4joytch",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "schwgtt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tchwgt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt7",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt8",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt9",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt10",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt11",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt12",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt13",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt14",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt15",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt16",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt17",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt18",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt19",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt20",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt21",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt22",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt23",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt24",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt25",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt26",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt27",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt28",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt29",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt30",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt31",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt32",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt33",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt34",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt35",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt36",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt37",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt38",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt39",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt40",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt41",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt42",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt43",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt44",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt45",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt46",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt47",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt48",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt49",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt50",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt51",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt52",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt53",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt54",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt55",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt56",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt57",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt58",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt59",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt60",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt61",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt62",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt63",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt64",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt65",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt66",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt67",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt68",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt69",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt70",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt71",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt72",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt73",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt74",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt75",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt76",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt77",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt78",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt79",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt80",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt81",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt82",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt83",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt84",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt85",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt86",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt87",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt88",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt89",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt90",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt91",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt92",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt93",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt94",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt95",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt96",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt97",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt98",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt99",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "trwgt100",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_1_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_2_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_3_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_4_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_5_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_6_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_7_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_8_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_9_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_10_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_11_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "nat_question_12_x_br",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07i",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g07j",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21q",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g21r",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24q",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g24r",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g27r",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48ba",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bb",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48be",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bh",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bi",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bj",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bk",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "tt4g48bl",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2024",
+      "periodo_fim": "2024"
+    }
+  ],
+  "arquivos": 6
+}

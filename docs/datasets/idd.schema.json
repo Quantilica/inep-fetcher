@@ -1,0 +1,171 @@
+{
+  "fonte": "inep",
+  "dataset": "idd",
+  "gerado_em": "2026-11-16T00:41:36+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "nu_ano",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_categad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_orgacad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_grupo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_modalidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_munic_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_inscricao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "in_regular",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_inscricao_adm",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ano_in_grad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "tp_pres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_ger",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ano_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "enem_nt_cn",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "enem_nt_ch",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "enem_nt_lc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "enem_nt_mt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ano_inicio_grad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2023",
+      "periodo_fim": "2023"
+    }
+  ],
+  "arquivos": 3
+}

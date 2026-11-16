@@ -1,0 +1,1291 @@
+{
+  "fonte": "inep",
+  "dataset": "enade",
+  "gerado_em": "2026-11-16T00:42:56+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "nu_ano",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_categad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_orgacad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_grupo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_modalidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_munic_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_uf_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_regiao_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i04",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i05",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i06",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i07",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i08",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i09",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i10",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i11",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i12",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i13",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ano_fim_em",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ano_in_grad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "in_matut",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "in_vesper",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "in_noturno",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "qe_i14",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i15",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i16",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i17",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i18",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i19",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i20",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i21",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_ofg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_oce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_gab_ofg_fin",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_gab_oce_fin",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_esc_ofg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_ace_ofg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_esc_oce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "ds_vt_ace_oce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pr_ger",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pr_ob_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pr_di_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pr_ob_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_pr_di_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_sfg_d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_sfg_d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "tp_sce_d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_sce_d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "tp_sce_d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "nt_ger",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_obj_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_dis_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg_d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg_d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "nt_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_obj_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_dis_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_ce_d1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_ce_d2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "nt_ce_d3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "co_rs_i1",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i3",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i4",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i5",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i6",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i7",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i8",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "co_rs_i9",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i22",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i23",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i24",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i25",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i26",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i27",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i28",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i29",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i30",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i31",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i32",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i33",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i34",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i35",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i36",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i37",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i38",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i39",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i40",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i41",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i42",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i43",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i44",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i45",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i46",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i47",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i48",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i49",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i50",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i51",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i52",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i53",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i54",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "tp_sexo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_idade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i01",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i02",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i03",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg_d1_pt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg_d1_ct",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nt_fg_d2_pt",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "nt_fg_d2_ct",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i55",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i56",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i57",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i58",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i59",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i60",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i61",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i62",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i63",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i64",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i65",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i66",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i67",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_ofg_z",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_ofg_x",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_ofg_n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_oce_z",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_oce_x",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "nu_item_oce_n",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i69",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i70",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i71",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i72",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i73",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i74",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i75",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i68",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i76",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i77",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i78",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i79",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "qe_i80",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i81",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "co_turno_graduacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "qe_i82",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i83",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i84",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i85",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i86",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i87",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i88",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i89",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i90",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i91",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "qe_i92",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    }
+  ],
+  "arquivos": 432
+}
