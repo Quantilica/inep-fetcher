@@ -7,6 +7,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+
+## [0.8.0] - 2026-11-16
 ### Adicionado
 - Documentação dos dados em `docs/`, conforme a norma de documentação dos dados: página da fonte e, para cada um dos 34 datasets (16 de microdados e 18 de indicadores educacionais), página e esquema de referência com o dicionário de todas as variáveis. Os esquemas vêm de conversão local de amostras. O teste `tests/test_docs.py` a verifica; `quantilica-core[docs]` entra no grupo `dev`.
 - Testes: identidade do registro conferida.
