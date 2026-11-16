@@ -1,0 +1,588 @@
+{
+  "fonte": "inep",
+  "dataset": "taxas-transicao",
+  "gerado_em": "2026-11-16T03:34:43+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Fundamental - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Promoção - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Fundamental - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Repetência - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Fundamental - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Taxa de Evasão - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 1º Ano",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Fundamental - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Migração para EJA - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Código do município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Nome do município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    }
+  ],
+  "arquivos": 16
+}

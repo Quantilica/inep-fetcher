@@ -1,0 +1,404 @@
+{
+  "fonte": "inep",
+  "dataset": "taxas-nao-resposta",
+  "gerado_em": "2026-11-16T03:34:43+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Rede",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - Total Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - Anos Iniciais (1º ao 5º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - Anos Finais (6º ao 9º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Fundamental de 8 e 9 anos - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - Total Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - 4ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Não-Resposta - Ensino Médio - Total Médio Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental de 8 e 9 anos - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - 4ª série",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 29
+}

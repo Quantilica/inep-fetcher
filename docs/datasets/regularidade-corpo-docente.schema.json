@@ -1,0 +1,147 @@
+{
+  "fonte": "inep",
+  "dataset": "regularidade-corpo-docente",
+  "gerado_em": "2026-11-16T03:34:41+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Baixa regularidade (0-/2)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média-baixa (2-/3)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média-alta (3-/4)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Alta (4-/5)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidades da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média do Indicador de Regularidade do Docente (IRD)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 23
+}

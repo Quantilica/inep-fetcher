@@ -1,0 +1,3009 @@
+{
+  "fonte": "inep",
+  "dataset": "qualidade-educacao-superior",
+  "gerado_em": "2026-11-16T03:34:45+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "co_grupo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "co_ies",
+      "tipos": [
+        "int64",
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "co_munic",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2006"
+    },
+    {
+      "nome": "ano_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "nome_da_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "sigla_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "municipio_funcionamento_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "uf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "media_fg_ing",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "media_fg_conc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "media_ce_ing",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "media_ce_conc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "media_geral_ing",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "media_geral_conc",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "conceito_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "conceito_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2004",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "sub_area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2005",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "observacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2006",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "codmunic_inep",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "codigo_uf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "cd_dep",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2007"
+    },
+    {
+      "nome": "rede",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2007"
+    },
+    {
+      "nome": "cd_catad",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "dep_administrativa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "cd_orgac",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "co_regiao_habil",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "n_alunos_presentes_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "participantes_ingressantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "participantes_concluintes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "conceito_preliminar_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "avaliam_bem_o_plano_de_ensino_resp_a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "equipamentos_disponiveis_sao_suficientes_resp_a_b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "numero_de_docentes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "docentes_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "docentes_regime_parcial_integral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "docentes_doutores_2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "docentes_regime_parcial_integral_2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "nota_infra",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "nota_pedag",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "nota_regime",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_doutor",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "termo_insumos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2007"
+    },
+    {
+      "nome": "nota_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2007"
+    },
+    {
+      "nome": "nota_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "cpc_continuo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "organizacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "docentes_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "docentes_mestres_2",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "idd_indice_auxiliar",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "idd_indice",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "nota_mestre",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "nota_enade_ingressantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "nota_enade_concluintes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "CÓD. IES",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "IES",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "Sigla",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "UF (Sede)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "Nº de cursos que fizeram Enade nos últimos três anos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "Nº de cursos com CPC nos últimos três anos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "IGC - Contínuo",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "IGC - Faixas",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2008",
+      "periodo_fim": "2008"
+    },
+    {
+      "nome": "codigo_da_ies_antiga",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "codigo_da_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "sigla",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "codigo_da_area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "codigo_da_subarea",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "codigo_do_municipio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "municipio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_de_participantes_ingressantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "numero_de_participantes_concluintes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "nota_enade_concluintes_conceito_enade_continuo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2009"
+    },
+    {
+      "nome": "conceito_enade_faixa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "numero_de_alunos_que_responderam_a_pergunta_sobre_infraestrutura",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "proporcao_que_avalia_que_os_equipamentos_disponiveis_sao_suficientes_resp_a_b",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "numero_de_alunos_que_responderam_a_pergunta_sobre_plano_de_ensino",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "proporcao_que_avalia_bem_o_plano_de_ensino_resp_a",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "proporcao_de_docentes_no_minimo_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "proporcao_de_docentes_no_minimo_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "proporcao_de_docentes_regime_parcial_integral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "cpc_faixa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2009",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "codigo_da_uf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "categoria_administrativa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "organizacao_academica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "numero_de_cursos_na_unidade_de_calculo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "numero_de_concluintes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "numero_de_ingressantes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "codigo_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "codigo_area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "codigo_area_agrupamento",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "area_enquadramento",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "sigla_uf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "codigo_municipio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_cursos_unidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_concluintes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_de_concluintes_participantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_ingressantes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_ingressantes_participantes_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_enem_ingressantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "proporcao_de_respostas_sobre_infraestrutura",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_de_infraestrutura",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "proporcao_de_respostas_sobre_plano_ensino",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_de_organizacao_pedagogica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "numero_docentes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "proporcao_docentes_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_mestrado",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "proporcao_docentes_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "nota_doutorado",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "proporcao_docentes_parc_integral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2011"
+    },
+    {
+      "nome": "Código da Área",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Descrição da Área",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Código da IES",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da IES",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Categoria Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Organização Acadêmica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Município do Curso",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da UF do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "UF do Curso",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Número de Cursos na Unidade",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Número de Estudantes Inscritos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Número de Estudantes Participantes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Nota Bruta do Curso - Formação Geral",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Nota padronizada do curso - Formação Geral",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Nota Bruta do Curso - Componente Específico",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Nota padronizada do curso - Componente Específico",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Conceito Enade (Contínuo)",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Conceito Enade (Faixa)",
+      "tipos": [
+        "int64",
+        "large_string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "descricao_da_area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "codigo_do_municipio_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "municipio_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "codigo_da_uf_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "uf_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "numero_de_cursos_na_unidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_de_estudantes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_de_estudantes_participantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_do_curso_formacao_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_do_curso_formacao_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_do_curso_componente_especifico",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_do_curso_componente_especifico",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "conceito_enade_continuo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "area_de_enquadramento",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "sigla_da_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "numero_de_cursos_da_unidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_concluintes_inscritos_no_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_concluintes_participantes_no_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_de_formacao_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_de_componente_especifico",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "nota_padronizada_de_formacao_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_componente_especifico",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_de_concluintes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_de_ingressantes_inscritos_no_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "numero_de_ingressantes_participantes_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_dos_ingressantes_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "escolaridade_dos_pais_superior_dos_ingressantes_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_bruta_do_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_do_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "de_infraestrutura",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_infraestrutura",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "organizacao_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_organizacao_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "de_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "de_regime_de_trabalho_integral_parcial",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "nota_padronizada_de_regime_de_trabalho_integral_parcial",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2012",
+      "periodo_fim": "2012"
+    },
+    {
+      "nome": "Cód.Área",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Área de Enquadramento",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Cód.IES",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Sigla da IES",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Categ. Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Org. Acadêmica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Cód. Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Região do Curso",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Nr. Cursos da Unidade",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Cód. Cursos da Unidade",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Conluintes Inscritos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Concluintes Participantes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Bruta - FG",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - FG",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - CE",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - CE",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Contínua do Enade",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Conceito Enade",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "Obs:",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "cod_area",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "cod_ies",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "categ_administrativa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "org_academica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "cod_municipio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "regiao_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "nr_cursos_da_unidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "cod_cursos_da_unidade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "conluintes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2013"
+    },
+    {
+      "nome": "concluintes_participantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "nota_padronizada_fg",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "nota_bruta_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "nota_padronizada_ce",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "nota_continua_do_enade",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "obs",
+      "tipos": [
+        "large_string",
+        "string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "UF da IES",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nr. de Cursos Avaliados no Triênio",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Nr. de Cursos com CPC no Triênio",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "alfa(Proporção de Graduandos)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Conceito médio da Graduação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "beta(Proporção de Mestrandos - Equivalente)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Conceito Médio do Mestrado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Conceito Médio do doutorado",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "IGC (Contínuo)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "IGC (faixa)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Cód Area",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Área",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Cód. IES",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Cod. Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Inscritos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Participantes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Nota Bruta - Geral",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Nota Padronizada - Geral",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Observação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "nome_do_municipio",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "participantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "nota_padronizada_geral",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "gama(Proporção de Doutorandos - Equivalente)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "codigo_do_curso",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "modalidade_de_ensino",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "sigla_da_uf",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "concluintes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "concluintes_participantes_com_nota_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "percentual_de_concluintes_participantes_com_nota_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "nota_padronizada_idd",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_organizacao_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_organizacao_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_infraestrutura_e_instalacoes_fisicas",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_infraestrutura_e_instalacoes_fisicas",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_oportunidades_de_ampliacao_da_formacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_oportunidades_de_ampliacao_da_formacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nr_de_docentes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "nota_bruta_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_mestres",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_doutores",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_bruta_regime_de_trabalho",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nota_padronizada_regime_de_trabalho",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "alfa (Proporção de Graduandos)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "beta (Proporção de Mestrandos - Equivalente)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "gama (Proporção de Doutorandos - Equivalente)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "nu_ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "no_ies",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "sg_ies",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "no_orgacad",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "no_categad",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "sg_uf",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "n_cursos_cpc",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "alfa",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "G_ies",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "beta",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "M",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "gama",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "D",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "igc",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "fx_igc",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Edição",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Área de Avaliação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Modalidade de Ensino",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64",
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Sigla da UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nº de Concluintes Inscritos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nº  de Concluintes Participantes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nº de Concluintes Participantes com nota no Enem",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Percentual de Concluintes participantes com nota no Enem",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Bruta - IDD",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - IDD",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - Organização Didático-Pedagógica",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Padronizada - Organização Didático-Pedagógica",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - Infraestrutura e Instalações Físicas",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Padronizada - Infraestrutura e Instalações Físicas",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - Oportunidades de Ampliação da Formação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Padronizada - Oportunidades de Ampliação da Formação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nº de Docentes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Bruta - Mestres",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - Mestres",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - Doutores",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - Doutores",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta - Regime de Trabalho",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Nota Padronizada - Regime de Trabalho",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "CPC Contínuo",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "CPC Faixa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "edicao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "area_de_avaliacao",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "no_de_concluintes_inscritos",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "no_de_concluintes_participantes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "no_de_concluintes_participantes_com_nota_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "no_de_docentes",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Concluintes Inscritos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "Concluintes Participantes com nota no Enem",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "IDD (Faixa)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "idd_faixa",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "Nº de Cursos com CPC no Triênio",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2017"
+    },
+    {
+      "nome": "IGC (Faixa)",
+      "tipos": [
+        "int64",
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nº de Concluintes Participantes",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Proporção de Concluintes participantes com nota no Enem",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "IDD (Contínuo)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "proporcao_de_concluintes_participantes_com_nota_no_enem",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "idd_continuo",
+      "tipos": [
+        "string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2018"
+    },
+    {
+      "nome": "Nº de Cursos com CPC no triênio",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Alfa (Proporção de Graduação)",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Conceito Médio de Graduação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Beta (Proporção de Mestrado - Equivalente)",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Conceito Médio de Mestrado",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Gama (Proporção de Doutorandos – Equivalente)",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "TX_OBS",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Concluintes participantes com nota no Enem",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Proporção de concluintes participantes com nota no Enem",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta – Organização Didático-Pedagógica",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta – Infraestrutura e Instalações Físicas",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta – Oportunidade de Ampliação da Formação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Padronizada - Oportunidade de Ampliação da Formação",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Nota Bruta – Regime de Trabalho",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "CPC (Contínuo)",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "CPC (Faixa)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2019",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Entidade Beneficiente de Assistência Social (CEBAS)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "X",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Grau acadêmico",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Código da IES*",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Nome da IES*",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Sigla da IES*",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Organização Acadêmica*",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Categoria Administrativa*",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Código do Curso**",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Modalidade de Ensino***",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Código do Município***",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Município do Curso***",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Sigla da UF**",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Grau Acadêmico",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município**",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "Município do Curso**",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2023"
+    },
+    {
+      "nome": "(Observação)",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2022",
+      "periodo_fim": "2022"
+    },
+    {
+      "nome": "Categoria Administrativa**",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Total Concluinte Acima do Padrão",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Percentual Concluintes Acima do Padrão",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "CEBAS",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da IES¹",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Sigla da IES ¹",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Organização Acadêmica ¹",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Categoria Administrativa ²",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Total de Concluinte  Igual ou Acima do Padrão 1 de Proficiência",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Percentual de Concluintes Igual ou Acima do Padrão 1 de Proficiência",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "ano",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_bruta_org_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_padronizada_org_didatico_pedagogica",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_bruta_infraestrutura",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_padronizada_infraestrutura",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_bruta_oport_ampliacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_padronizada_oport_ampliacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "ingressantes_inscritos_no_enade",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "ingressantes_participantes_no_enem",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "de_ingressantes_cujos_pais_tem_ensino_superior",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "de_doutores",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "regime_de_trabalho_minimo_parcial",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_padronizada_de_regime_de_trabalho",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "UF do curso",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Região do curso",
+      "tipos": [
+        "large_string"
+      ]
+    },
+    {
+      "nome": "Número de cursos da unidade",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Nr. de Docentes",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Nr. de Matrículas",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "nr_de_matriculas",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "Nota Bruta - Oportunidade de Ampliação da Formação",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "nota_bruta_oportunidade_de_ampliacao_da_formacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "nota_padronizada_oportunidade_de_ampliacao_da_formacao",
+      "tipos": [
+        "string"
+      ]
+    },
+    {
+      "nome": "TX_OBS (Observação)",
+      "tipos": [
+        "large_string"
+      ]
+    }
+  ],
+  "arquivos": 62
+}

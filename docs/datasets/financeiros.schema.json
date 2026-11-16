@@ -1,0 +1,429 @@
+{
+  "fonte": "inep",
+  "dataset": "financeiros",
+  "gerado_em": "2026-11-16T03:34:44+00:00",
+  "particoes": [],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Todos os Níveis de Ensino",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Ensino Fundamental - De 1ª a 4ª Séries ou Anos Iniciais",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Ensino Fundamental - De 5ª a 8ª Séries ou Anos Finais",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Duração Teórica do Ensino (anos) - Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto Cumulativo por Estudante R$1,00 - Todos os Níveis de Ensino",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto Cumulativo por Estudante R$1,00 - Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto Cumulativo por Estudante R$1,00 - Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Ensino Fundamental - De 1ª a 4ª Séries ou Anos Iniciais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Ensino Fundamental - De 5ª a 8ª Séries ou Anos Finais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto Cumulativo por Estudante R$1,00 - Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto Cumulativo por Estudante R$1,00 - Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Todos os Níveis de Ensino",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Ensino Fundamental - De 1ª a 4ª Séries ou Anos Iniciais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Ensino Fundamental - De 5ª a 8ª Séries ou Anos Finais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante (R$1,00) - Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Todos os Níveis de Ensino",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Investimento Público Direto por Estudante R$1,00 - Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - Total",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - Despesas Correntes - Total",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - Despesas Correntes - Pessoal Ativo e Encargos Sociais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - Despesas Correntes - Outras Despesas Correntes",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - Despesas de Capital",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - Total",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Educação Básica - Despesas Correntes - Total",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - Despesas Correntes - Pessoal Ativo e Encargos Sociais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - Despesas Correntes - Outras Despesas Correntes",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - Despesas de Capital",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - Total",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Educação Superior - Despesas Correntes - Total",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - Despesas Correntes - Pessoal Ativo e Encargos Sociais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - Despesas Correntes - Outras Despesas Correntes",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - Despesas de Capital",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Todos os Níveis de Ensino",
+      "tipos": [
+        "int64"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Educação Básica",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Educação Infantil",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Ensino Fundamental - De 1ª a 4ª Séries ou Anos Iniciais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Ensino Fundamental - De 5ª a 8ª Séries ou Anos Finais",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Ensino Médio",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Proporção do Investimento Público Total (%) - Níveis de Ensino - Educação Superior",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Todos os Níveis de Ensino - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Básica - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Infantil - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Infantil - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Fundamental - De 1ª a 4ª séries ou anos iniciais - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Fundamental - De 1ª a 4ª séries ou anos iniciais - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Fundamental - De 5ª a 8ª séries ou anos iniciais - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Fundamental - De 5ª a 8ª séries ou anos iniciais - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Médio - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Ensino Médio - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - ∆% Investimento Direto",
+      "tipos": [
+        "double"
+      ]
+    },
+    {
+      "nome": "Educação Superior - ∆% Investimento por Estudante",
+      "tipos": [
+        "double"
+      ]
+    }
+  ],
+  "arquivos": 10
+}

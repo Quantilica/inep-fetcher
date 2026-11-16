@@ -1,0 +1,219 @@
+{
+  "fonte": "inep",
+  "dataset": "docentes-curso-superior",
+  "gerado_em": "2026-11-16T03:34:42+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Rede",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Educação Infantil - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Educação Infantil - Creche",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Educação Infantil - Pré-Escola",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Educação Profissional",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "EJA",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Educação Especial",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da UF",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Educação de Jovens e Adultos (EJA)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Educação de Jovens e Adultos (EJA - Ensino Fundamental)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Educação de Jovens e Adultos (EJA - Ensino Médio)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 29
+}

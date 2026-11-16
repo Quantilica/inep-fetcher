@@ -1,0 +1,195 @@
+{
+  "fonte": "inep",
+  "dataset": "fluxo-educacao-superior",
+  "gerado_em": "2026-11-16T03:34:45+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano Fluxo",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Sexo - Feminino",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Sexo - Masculino",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Amarela",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Branca",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Indígena",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Parda",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Preta",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Cor-Raça - Sem Declaração 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - Até 19 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 20 a 22 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 23 e 24 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 25 a 29 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 30 a 39 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 40 a 49 anos",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Faixa de Idade - 50 anos ou mais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Deficiência - Sim",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Deficiência - Não",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Região Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Unidade da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Preto/Pardo/Indígena (PPI) - Sim",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Preto/Pardo/Indígena (PPI) - Não 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    }
+  ],
+  "arquivos": 3
+}

@@ -1,0 +1,307 @@
+{
+  "fonte": "inep",
+  "dataset": "esforco-docente",
+  "gerado_em": "2026-11-16T03:34:41+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 2",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 3",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 4",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 5",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Total - Nível 6",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 2",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 3",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 4",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 5",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Iniciais - Nível 6",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 2",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 3",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 4",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 5",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Fundamental - Anos Finais - Nível 6",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 2",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 3",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 4",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 5",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Ensino Médio - Nível 6",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2013",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Sigla",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 23
+}

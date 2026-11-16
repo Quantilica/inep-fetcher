@@ -1,0 +1,163 @@
+{
+  "fonte": "inep",
+  "dataset": "complexidade-gestao-escola",
+  "gerado_em": "2026-11-16T03:34:41+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 2",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 3",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 4",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 5",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível 6",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nível de complexidade de gestão da escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 14
+}

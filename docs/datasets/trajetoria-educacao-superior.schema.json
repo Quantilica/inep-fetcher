@@ -1,0 +1,275 @@
+{
+  "fonte": "inep",
+  "dataset": "trajetoria-educacao-superior",
+  "gerado_em": "2026-11-16T03:34:45+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Código da Instituição",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Nome da Instituição",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Categoria Administrativa",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Organização Acadêmica",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código do Curso de Graduação",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Nome do Curso de Graduação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código da Região Geográfica do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código da Unidade Federativa do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código do Município do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Grau Acadêmico",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Modalidade de Ensino",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código da área do Curso segundo a classificação CINE BRASIL",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Nome da área do Curso segundo a classificação CINE BRASIL",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Código da Grande Área do Curso segundo a classificação CINE BRASIL",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Nome da Grande Área do Curso segundo a classificação CINE BRASIL",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Ano de Ingresso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Ano de Referência",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Prazo de Integralização em Anos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Ano de Integralização do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Prazo de Acompanhamento do Curso em anos",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Ano Máximo de Acompanhamento do Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Quantidade de Ingressantes no Curso",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Quantidade de Permanência no Curso no ano de referência",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Quantidade de Concluintes no Curso no ano de referência",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Quantidade de Desistência no Curso no ano de referência",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Quantidade de Falecimentos no Curso no ano de referência",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Permanência - TAP",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Conclusão Acumulada - TCA",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Desistência Acumulada - TODA",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Conclusão Anual - TCAN",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Desistência Anual - TDAN",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Desistência Acumulada - TDA",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Indicadores de Trajetória - Taxa de Desistência Anual - TADA",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    }
+  ],
+  "arquivos": 11
+}

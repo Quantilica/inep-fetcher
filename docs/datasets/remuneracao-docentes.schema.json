@@ -1,0 +1,155 @@
+{
+  "fonte": "inep",
+  "dataset": "remuneracao-docentes",
+  "gerado_em": "2026-11-16T03:34:44+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dependência administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Escolaridade do docente",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados gerais - Número de docentes Censo Escolar",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados gerais - % de docentes localizados na RAIS",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração Bruta em R$ - 1º quartil",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração Bruta em R$ - Mediana",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração Bruta em R$ - Média",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração Bruta em R$ - 3º quartil",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração Bruta em R$ - Desvio padrão",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Carga horária média semanal",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Dados de remuneração dos docentes localizados na RAIS - Remuneração média padronizada para 40h semanais em R$",
+      "tipos": [
+        "double",
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2014",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Código do município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    },
+    {
+      "nome": "Nome do município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2021"
+    }
+  ],
+  "arquivos": 17
+}

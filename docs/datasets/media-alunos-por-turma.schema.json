@@ -1,0 +1,892 @@
+{
+  "fonte": "inep",
+  "dataset": "media-alunos-por-turma",
+  "gerado_em": "2026-11-16T03:34:42+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Rede",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Educação Infantil - total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Educação Infantil - Creche",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Educação Infantil - Pré-Escola",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 1ª série/ 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 2ª série/ 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 3ª série/ 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 4ª série/ 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 5ª série/ 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 6ª série/ 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 7ª série/ 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries - 8ª série/ 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Turmas Unificadas 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - Total Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - 4ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - Médio Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Educação Infantil - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Séries/Anos - 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Séries/Anos - 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Turmas Unificadas 1",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Séries - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2015",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - 4ª série",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Não - Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental 8 e 9 anos - 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Não- Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Unidade da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Médio - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental de 8 e 9 anos - Turmas Multietapa, Multi ou Correção de Fluxo",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2020"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 2° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 3° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 4° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 5° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 6° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 7° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 8° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - 9° ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Média de Alunos por Turma / Etapas de Ensino - Ensino Fundamental - Turmas Multietapa, Multi ou Correção de Fluxo",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2021",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 41
+}

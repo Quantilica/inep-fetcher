@@ -1,0 +1,1438 @@
+{
+  "fonte": "inep",
+  "dataset": "taxas-rendimento-escolar",
+  "gerado_em": "2026-11-16T03:34:43+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Localização",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Rede",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Aprovação no 1º Ano do Ensino Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 1ª série/2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 2ª série/3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 3ª série/4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 4ª série/5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2007"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 5ª série/6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 6ª série/7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 7ª série/8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação na 8ª série/9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação 1ª a 4ª Série/1º a 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação 5ª a 8ª Série/ 6º ao 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Total Aprovação Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 1ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 2ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 3ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 4ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Total Aprovação Médio Não Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Total Aprovação Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 1º Ano do Ensino Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 1ª série/2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 2ª série/3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 3ª série/4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 4ª série/5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 5ª série/6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 6ª série/7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 7ª série/8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação na 8ª série/9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação 1ª a 4ª Série/1º a 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação 5ª a 8ª Série/ 6º ao 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Total Reprovação Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 1ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 2ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 3ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 4ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Total Reprovação Médio Não Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Total Reprovação Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 1º Ano do Ensino Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 1ª série/2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 2ª série/3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 3ª série/4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 4ª série/5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 5ª série/6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 6ª série/7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 7ª série/8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono na 8ª série/9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono 1ª a 4ª Série/1º a 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono 5ª a 8ª Série/ 6º ao 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Total Abandono Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 1ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 2ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 3ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 4ª série - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total Abandono Médio Não Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total Abandono - Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "Abrangência",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2016"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovaçãona 4ª série/5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2010"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2007",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Total Aprovação no Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação - Anos Iniciais (1º ao 5º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação - Anos Finais (6º ao 9º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Aprovação no 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Aprovação na 4ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Total Aprovação Médio Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Total Reprovação no Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação - Anos Iniciais (1º ao 5º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação - Anos Finais (6º ao 9º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Reprovação no 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Total Reprovação no Ens. Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Reprovação na 4ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Total Reprovação Médio Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Total Abandono no Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono - Anos Iniciais (1º ao 5º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono - Anos Finais (6º ao 9º Ano)",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Abandono no 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total Abandono Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Abandono na 4ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total Abandono Médio Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Total Aprovação Fundamental no Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2014"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Total Aprovação no Ens. Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Total Abandono Ens. Fundamental",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total Abandono no Ens. Médio",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2011",
+      "periodo_fim": "2015"
+    },
+    {
+      "nome": "Dependência Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Fundamental de 8 e 9 anos - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - 4ª série",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Aprovação - Ensino Médio - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Fundamental de 8 e 9 anos - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - 4ª série",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Reprovação - Ensino Médio - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Anos Iniciais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - Anos Finais",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 1º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 2º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 3º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 4º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 5º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 6º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 7º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 8º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Fundamental de 8 e 9 anos - 9º Ano",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - 1ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - 2ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - 3ª série",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - 4ª série",
+      "tipos": [
+        "double",
+        "int64"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Taxa de Abandono - Ensino Médio - Não-Seriado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2016",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2017",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Código da Escola",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    },
+    {
+      "nome": "Nome da Escola",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2025",
+      "periodo_fim": "2025"
+    }
+  ],
+  "arquivos": 41
+}

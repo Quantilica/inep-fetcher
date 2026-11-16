@@ -1,0 +1,163 @@
+{
+  "fonte": "inep",
+  "dataset": "docentes-pos-graduacao",
+  "gerado_em": "2026-11-16T03:34:44+00:00",
+  "particoes": [
+    "ano"
+  ],
+  "colunas": [
+    {
+      "nome": "Ano",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Unidade Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Categoria Administrativa",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Organização Acadêmica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Grau Acadêmico",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Modalidade de Ensino",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Área Geral do Curso (Cine Brasil)",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Percentual de Docentes com Pós-Graduação Stricto Sensu - Total",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Percentual de Docentes com Pós-Graduação Stricto Sensu - Grau de Formação - Mestrado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Percentual de Docentes com Pós-Graduação Stricto Sensu - Grau de Formação - Doutorado",
+      "tipos": [
+        "double"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Cógido da Instituição",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Nome da Instituição",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Sigla da Instituição",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Região Geográfica",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Unidade da Federação",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Região",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "UF",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Código do Município",
+      "tipos": [
+        "int64"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    },
+    {
+      "nome": "Nome do Município",
+      "tipos": [
+        "large_string"
+      ],
+      "periodo_inicio": "2010",
+      "periodo_fim": "2024"
+    }
+  ],
+  "arquivos": 60
+}
