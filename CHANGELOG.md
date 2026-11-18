@@ -7,7 +7,11 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Corrigido
+- `lake`: o build sem mudança não lê mais o bruto. CSV e planilha soltos conferem `is_current` (sha256 do sidecar e rodapé do Parquet) antes de detectar separador, limpar o CSV ou ler a planilha; ZIP/7z/RAR conferem `origin_recorded` e, quando todo Parquet que o cita registra o sha256 atual, contam os membros pelos rodapés e seguem sem abrir nem extrair o arquivo. As contagens de `converted`/`skipped`, `force` e o bruto novo ou alterado seguem como antes. Limitação: um membro de ZIP que falhou numa rodada anterior (sem Parquet) não é reexaminado enquanto os demais membros estiverem em dia; `force` ou alterar o arquivo reabre o ZIP.
+
 ### Alterado
+- Piso de `quantilica-analytics` do extra `analysis` sobe para 0.15.0 (`LakeWriter.origin_recorded`).
 - CI e infraestrutura alinhados ao template (fetcher-template v0.2.1).
 
 ## [0.8.0] - 2026-11-16
