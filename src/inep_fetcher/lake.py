@@ -28,13 +28,7 @@ from typing import Any
 try:
     import duckdb
     import polars as pl
-    import pyarrow as pa
-    import pyarrow.parquet as pq
-    from quantilica.analytics.lake import (
-        LakeError,
-        LakeWriter,
-        footer_from_metadata,
-    )
+    from quantilica.analytics.lake import LakeError, LakeWriter, output_id
     from quantilica.core.lake import (
         DatasetDescriptor,
         composite_file_key,
@@ -432,6 +426,25 @@ def _convert_fixed_width(
     if not txts:
         return False
 
+    # Primeiro se decide, sem gravar, o que cada TXT e cada script dá (a ordem dos
+    # erros é a de sempre); depois se grava. Assim as saídas do ZIP são conhecidas
+    # antes da primeira gravação e cada Parquet as declara (``origin_outputs``).
+    # Os TXT sem layout, de layout divergente ou que falham ficam na lista e nunca
+    # são gravados, e um erro sem TXT (script inválido, dado ausente) entra com um
+    # id que nunca é gravado: a declaração fica incompleta e o ZIP é reaberto a
+    # cada build, onde o erro volta a ser contado.
+    plan: list[
+        tuple[str, Any, Any]
+    ] = []  # ("erro", mensagem, id) | ("grava", txt, layout)
+    sentinels: list[str] = []
+
+    def erro(message: str, ref: str | None = None) -> None:
+        plan.append(("erro", message, None))
+        if ref is not None:
+            sentinels.append(
+                f"{output_id(part_vals, composite_file_key(path, ref))}#erro"
+            )
+
     layouts: dict[str, list[tuple[Path, SasLayout]]] = {}
     broken: set[str] = set()
     for script in scripts:
@@ -440,7 +453,7 @@ def _convert_fixed_width(
         try:
             layout = parse_sas_input(text, fix)
         except ValueError as exc:
-            result.errors.append(f"{path.name}: {script.name}: {exc}")
+            erro(f"{path.name}: {script.name}: {exc}", script.name)
             name = peek_infile(text)
             if name:
                 broken.add(name)
@@ -454,16 +467,32 @@ def _convert_fixed_width(
         cands = layouts.get(name, [])
         if not cands:
             if name not in broken:
-                result.errors.append(f"{path.name}: {txt.name}: sem layout SAS")
+                erro(f"{path.name}: {txt.name}: sem layout SAS")
             continue
         matched.add(name)
         if any(c[1].fields != cands[0][1].fields for c in cands):
-            result.errors.append(
+            erro(
                 f"{path.name}: {txt.name}: layouts SAS divergentes "
                 f"({', '.join(c[0].name for c in cands)})"
             )
             continue
-        layout = cands[0][1]
+        plan.append(("grava", txt, cands[0][1]))
+    for name, cands in sorted(layouts.items()):
+        if name not in matched:
+            script = cands[0][0].name
+            erro(
+                f"{path.name}: {script}: arquivo de dados {name} não encontrado",
+                script,
+            )
+
+    outputs = [
+        output_id(part_vals, composite_file_key(path, names[txt])) for txt in txts
+    ] + sentinels
+    for kind, first, second in plan:
+        if kind == "erro":
+            result.errors.append(first)
+            continue
+        txt, layout = first, second
         try:
             _check_layout_fix(txt, layout)
             with scratch_dir() as work:
@@ -473,6 +502,7 @@ def _convert_fixed_width(
                     partitions=part_vals,
                     file_key_name=composite_file_key(path, names[txt]),
                     converter=f"inep-fetcher {__version__}",
+                    origin_outputs=outputs,
                 )
         except Exception as exc:
             first_line = (str(exc).strip().splitlines() or [repr(exc)])[0]
@@ -482,12 +512,6 @@ def _convert_fixed_width(
             result.skipped += 1
         else:
             result.converted += 1
-    for name, cands in sorted(layouts.items()):
-        if name not in matched:
-            script = cands[0][0].name
-            result.errors.append(
-                f"{path.name}: {script}: arquivo de dados {name} não encontrado"
-            )
     return True
 
 
@@ -499,6 +523,7 @@ def _write_csv(
     *,
     file_key_name: str | None = None,
     src_origin: Path | None = None,
+    origin_outputs: list[str] | None = None,
 ) -> Any:
     """CSV delimitado (latin-1) para o lake, com o separador detectado e a reserva.
 
@@ -534,6 +559,8 @@ def _write_csv(
                 kwargs["file_key_name"] = file_key_name
             if origin is not None:
                 kwargs["src_origin"] = origin
+            if origin_outputs is not None:
+                kwargs["origin_outputs"] = origin_outputs
             return writer.write_duckdb(read_from, **kwargs)
 
         try:
@@ -541,30 +568,6 @@ def _write_csv(
         except (LakeError, duckdb.Error):
             # reserva com o outro separador: a limpeza é refeita com ele
             return attempt(fallback_sep)
-
-
-def _recorded_keys(dataset_dir: Path) -> dict[str, set[str]]:
-    """``{arquivo de origem: chaves de arquivo}`` lidos só dos rodapés do dataset.
-
-    Serve para contar os membros de um ZIP/7z pulado sem abri-lo: cada membro
-    convertido deixou um ``file_key`` no rodapé do seu Parquet, citando o
-    arquivo compactado como origem.
-    """
-    found: dict[str, set[str]] = {}
-    if not dataset_dir.is_dir():
-        return found
-    for parquet in sorted(dataset_dir.rglob("*.parquet")):
-        if ".tmp" in parquet.relative_to(dataset_dir).parts:
-            continue
-        try:
-            footer = footer_from_metadata(pq.read_metadata(parquet))
-        except (OSError, pa.ArrowException):
-            continue
-        origin = footer.get("quantilica.origin_file")
-        key = footer.get("quantilica.file_key")
-        if origin and key:
-            found.setdefault(origin, set()).add(key)
-    return found
 
 
 class LakeConverter:
@@ -628,7 +631,6 @@ class LakeConverter:
                 result.skipped += 1
 
         writers: dict[str, LakeWriter] = {}
-        recorded: dict[Path, dict[str, set[str]]] = {}
 
         for path in files:
             dataset_id = resolve_dataset(path)
@@ -660,18 +662,16 @@ class LakeConverter:
                 # estar em disco de rede lento): só o sidecar e os rodapés do lake.
                 # CSV e planilha soltos têm a partição no nome e a chave é a do
                 # arquivo; o compactado só conhece seus membros depois de aberto,
-                # então basta que todo Parquet que o cita registre o sha256 atual.
+                # então cada Parquet declara a lista de saídas do arquivo
+                # (origin_outputs) e o pulo exige que todas existam: conversão
+                # interrompida, membro que falha ou sem layout deixam a declaração
+                # incompleta e o arquivo é reaberto, repetindo o erro.
                 if suffix in {".csv", ".xlsx"}:
                     if writer.is_current(path, partitions=part_vals):
                         result.skipped += 1
                         continue
-                elif writer.origin_recorded(path):
-                    keys = recorded.get(writer.dataset_dir)
-                    if keys is None:
-                        keys = recorded[writer.dataset_dir] = _recorded_keys(
-                            writer.dataset_dir
-                        )
-                    result.skipped += max(len(keys.get(path.name, ())), 1)
+                elif writer.origin_complete(path):
+                    result.skipped += len(writer.origin_outputs(path) or ()) or 1
                     continue
 
                 if suffix == ".csv":
@@ -747,6 +747,13 @@ class LakeConverter:
                             )
                             continue
 
+                        # Todas as saídas do arquivo, antes da primeira gravação; o
+                        # membro que falha entra na lista e nunca é gravado, o que
+                        # mantém o arquivo "incompleto" e o erro a cada build.
+                        outputs = [
+                            output_id(part_vals, composite_file_key(path, member.stem))
+                            for member in data_members
+                        ]
                         for member in data_members:
                             member_name = member.stem
                             key = composite_file_key(path, member_name)
@@ -757,6 +764,7 @@ class LakeConverter:
                                     partitions=part_vals,
                                     file_key_name=key,
                                     converter=f"inep-fetcher {__version__}",
+                                    origin_outputs=outputs,
                                 )
                                 if written.status == "skipped":
                                     result.skipped += 1
@@ -775,6 +783,7 @@ class LakeConverter:
                                 part_vals,
                                 file_key_name=key,
                                 src_origin=path,
+                                origin_outputs=outputs,
                             )
 
                             if written.status == "skipped":
