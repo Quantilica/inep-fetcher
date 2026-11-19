@@ -5,14 +5,16 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [Não lançado]
-
-### Corrigido
-- `lake`: o build sem mudança não lê mais o bruto. CSV e planilha soltos conferem `is_current` (sha256 do sidecar e rodapé do Parquet) antes de detectar separador, limpar o CSV ou ler a planilha. ZIP/7z/RAR declaram, em cada Parquet, a lista de todas as saídas do arquivo (`origin_outputs`, conhecidas antes da primeira gravação, inclusive no formato SAEB de largura fixa) e só são pulados, sem abrir nem extrair, quando todas existem com o sha256 atual (`origin_complete`). Uma conversão interrompida, um membro que falha (sem separador, TXT sem layout SAS, script inválido ou sem arquivo de dados) deixam a declaração incompleta e o arquivo é reaberto e o erro contado a cada build, como antes. Lake gravado sem a declaração reconverte uma vez e depois pula. As contagens de `converted`/`skipped`, `force` e o bruto novo ou alterado seguem como antes.
+## [0.8.1] - 2026-11-19
 
 ### Alterado
+
 - Piso de `quantilica-analytics` do extra `analysis` sobe para 0.15.0 (`origin_outputs`, `LakeWriter.origin_complete`).
 - CI e infraestrutura alinhados ao template (fetcher-template v0.2.1).
+
+### Corrigido
+
+- `lake`: o build sem mudança não lê mais o bruto. CSV e planilha soltos conferem `is_current` (sha256 do sidecar e rodapé do Parquet) antes de detectar separador, limpar o CSV ou ler a planilha. ZIP/7z/RAR declaram, em cada Parquet, a lista de todas as saídas do arquivo (`origin_outputs`, conhecidas antes da primeira gravação, inclusive no formato SAEB de largura fixa) e só são pulados, sem abrir nem extrair, quando todas existem com o sha256 atual (`origin_complete`). Uma conversão interrompida, um membro que falha (sem separador, TXT sem layout SAS, script inválido ou sem arquivo de dados) deixam a declaração incompleta e o arquivo é reaberto e o erro contado a cada build, como antes. Lake gravado sem a declaração reconverte uma vez e depois pula. As contagens de `converted`/`skipped`, `force` e o bruto novo ou alterado seguem como antes.
 
 ## [0.8.0] - 2026-11-16
 ### Adicionado
