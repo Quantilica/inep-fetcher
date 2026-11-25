@@ -7,6 +7,7 @@ arquivo, com carimbo mais novo que a versão real.
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import httpx2
@@ -308,3 +309,178 @@ def test_validar_corpo_zip_aceita_rar_mas_recusa_o_resto(tmp_path: Path) -> None
     p.write_bytes(b"\x00" * 2048)
     with pytest.raises(CorruptPayloadError, match="assinatura"):
         validar_corpo(p)
+
+
+# --- preparo de execução morta ---------------------------------------------------
+
+
+def _pid_morto() -> int:
+    """Pid de um processo que já terminou (a execução morta simulada)."""
+    import subprocess
+    import sys
+
+    proc = subprocess.Popen([sys.executable, "-c", "pass"])
+    proc.wait()
+    return proc.pid
+
+
+def _velho(caminho: Path, horas: float) -> None:
+    import os
+    import time
+
+    passado = time.time() - horas * 3600
+    os.utime(caminho, (passado, passado))
+
+
+def test_preparo_termina_em_tmp_e_leva_o_pid(tmp_path: Path) -> None:
+    import os
+
+    from inep_fetcher.integridade import caminho_de_preparo
+
+    destino = tmp_path / "x@20260101.zip"
+    preparo = caminho_de_preparo(destino)
+    assert preparo.name.endswith(".tmp")  # ignorado por select_current/ingest/auditoria
+    assert preparo.name.startswith(f".{destino.name}.{os.getpid()}-")
+    assert preparo != caminho_de_preparo(destino)  # único por download
+    assert preparo.parent == destino.parent
+
+
+def test_preparo_de_execucao_morta_e_limpo_no_proximo_preparo(
+    app, tmp_path: Path
+) -> None:
+    from inep_fetcher.integridade import caminho_de_preparo, preparar
+
+    entry = _entry("rar")
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    destino.parent.mkdir(parents=True)
+    destino.write_bytes(RAR_OK)
+    sidecar = destino.with_name(destino.name + ".manifest.json")
+    sidecar.write_text("{}")
+    morto = _pid_morto()
+    lixo = [
+        destino.with_name(f".{destino.name}.{morto}-aaaaaaaa.parte.tmp"),
+        destino.with_name(f".{destino.name}.{morto}-aaaaaaaa.parte.tmp.manifest.json"),
+        # .tmp parcial que o core deixa ao lado do preparo
+        destino.with_name(f"..{destino.name}.{morto}-aaaaaaaa.parte.tmp.k3_x9z0q.tmp"),
+        # formato antigo (sem pid): só pela idade
+        destino.with_name(f".{destino.name}.deadbeef.parte"),
+    ]
+    for item in lixo:
+        item.write_bytes(b"parcial")
+    _velho(lixo[3], 49)
+    vivo = destino.with_name(f".{destino.name}.{os.getpid()}-bbbbbbbb.parte.tmp")
+    vivo.write_bytes(b"de outra thread")
+    antigo_fresco = destino.with_name(f".{destino.name}.cafebabe.parte")
+    antigo_fresco.write_bytes(b"talvez em andamento")
+    de_outro = destino.with_name(f".outro.zip.{morto}-aaaaaaaa.parte.tmp")
+    de_outro.write_bytes(b"de outro destino")
+
+    preparar(destino, caminho_de_preparo(destino))
+
+    assert not any(item.exists() for item in lixo)
+    assert vivo.exists() and antigo_fresco.exists() and de_outro.exists()
+    assert destino.read_bytes() == RAR_OK  # o destino e o sidecar nunca são tocados
+    assert sidecar.read_text() == "{}"
+
+
+def test_preparo_de_pid_vivo_so_cai_depois_de_48h(tmp_path: Path) -> None:
+    from inep_fetcher.integridade import limpar_preparos_orfaos
+
+    destino = tmp_path / "x@20260101.zip"
+    vivo = tmp_path / f".{destino.name}.{os.getpid()}-bbbbbbbb.parte.tmp"
+    vivo.write_bytes(b"x")
+    assert limpar_preparos_orfaos(destino) == 0
+    _velho(vivo, 49)
+    assert limpar_preparos_orfaos(destino) == 1
+    assert not vivo.exists()
+
+
+def test_download_depois_de_execucao_morta_nao_deixa_rastro(
+    app, tmp_path: Path
+) -> None:
+    entry = _entry("rar")
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    destino.parent.mkdir(parents=True)
+    morto = destino.with_name(f".{destino.name}.{_pid_morto()}-aaaaaaaa.parte.tmp")
+    morto.write_bytes(b"parcial")
+    app(RAR_OK)
+    fetcher.download_entry(entry, tmp_path)
+    assert not morto.exists()
+    assert destino.read_bytes() == RAR_OK
+    assert not [n for n in _arquivos(tmp_path) if n.startswith(".")]
+
+
+# --- quebra de linha final quando o tamanho não foi conferido --------------------
+
+
+def test_conferir_csv_sem_quebra_final_so_recusa_quando_exigido(
+    tmp_path: Path,
+) -> None:
+    from inep_fetcher.plugin import _conferir
+
+    preparo = tmp_path / ".t.csv.1-aaaaaaaa.parte.tmp"
+    preparo.write_bytes(b"a;b\n1;2\n3;4")  # sem \n final: transferência truncada?
+    _conferir(preparo, "t.csv", "csv", None)  # tamanho conferido: aceita
+    with pytest.raises(CorruptPayloadError, match="quebra de linha"):
+        _conferir(preparo, "t.csv", "csv", None, require_final_newline=True)
+    preparo.write_bytes(b"a;b\n1;2\n3;4\n")
+    _conferir(preparo, "t.csv", "csv", None, require_final_newline=True)
+
+
+def _csv_entry() -> dict:
+    return next(
+        dict(e)
+        for g in __import__("inep_fetcher.catalog", fromlist=["GROUPS"]).GROUPS
+        for e in list_datasets(g)
+        if str(e.get("url", "")).lower().endswith(".csv")
+    )
+
+
+def test_csv_truncado_sem_content_length_e_recusado(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    corpo = b"a;b\n" + b"1;2\n" * 400 + b"3;"  # corta no meio da linha
+
+    def handler(request: httpx2.Request) -> httpx2.Response:
+        if request.method == "HEAD":
+            return httpx2.Response(200)
+        # corpo em pedaços: sem Content-Length
+        return httpx2.Response(200, content=iter([corpo[:100], corpo[100:]]))
+
+    monkeypatch.setattr(
+        fetcher,
+        "client",
+        HttpClient(attempts=1, transport=httpx2.MockTransport(handler)),
+    )
+    entry = _csv_entry()
+    with pytest.raises(CorruptPayloadError, match="quebra de linha"):
+        fetcher.download_entry(entry, tmp_path)
+    assert _arquivos(tmp_path) == []
+
+
+def test_csv_sem_quebra_final_com_content_length_e_aceito(app, tmp_path: Path) -> None:
+    app(b"a;b\n" + b"1;2\n" * 400 + b"3;4")  # tamanho conferido pelo core
+    entry = _csv_entry()
+    destino = fetcher.download_entry(entry, tmp_path)
+    assert destino is not None and Path(destino).exists()
+
+
+def test_promover_regrava_o_sidecar_com_o_writer_do_core(
+    app, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import quantilica.core.manifests as manifests
+
+    chamadas: list[Path] = []
+    real = manifests.write_manifest_sidecar
+
+    def espiao(alvo, manifesto):
+        chamadas.append(Path(alvo))
+        return real(alvo, manifesto)
+
+    monkeypatch.setattr(manifests, "write_manifest_sidecar", espiao)
+    entry = _entry("rar")
+    app(RAR_OK)
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    fetcher.download_entry(entry, tmp_path)
+    assert chamadas == [destino]
+    assert not [n for n in _arquivos(tmp_path) if n.startswith(".")]

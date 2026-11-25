@@ -20,10 +20,13 @@ from .integridade import (
     baixou,
     caminho_de_preparo,
     eh_rar,
+    esquecer_tamanho,
     extensao_de,
     limpar_preparo,
+    observar_tamanho,
     preparar,
     promover,
+    tamanho_conferido,
     validar_corpo,
 )
 from .storage import DataRepository
@@ -77,6 +80,8 @@ class InepFetcherApp(FetcherApp):
         )
         preparo = caminho_de_preparo(output)
         preparar(output, preparo)
+        observar_tamanho(self.client)
+        esquecer_tamanho()
         try:
             # ``expected_format=""``: o core não valida o preparo; vale o abaixo.
             super()._download_file(url, preparo, progress, expected_format="", **kwargs)
@@ -92,7 +97,13 @@ class InepFetcherApp(FetcherApp):
                         )
                 return output
             try:
-                _conferir(preparo, output.name, ext, fmt)
+                _conferir(
+                    preparo,
+                    output.name,
+                    ext,
+                    fmt,
+                    require_final_newline=not tamanho_conferido(),
+                )
             except CorruptPayloadError as exc:
                 raise CorruptPayloadError(
                     f"download recusado, versão anterior mantida: {exc}"
@@ -103,14 +114,30 @@ class InepFetcherApp(FetcherApp):
             limpar_preparo(preparo)
 
 
-def _conferir(preparo: Path, nome: str, ext: str, fmt: str | None) -> None:
-    """Confere o corpo baixado antes de ele substituir o destino ``nome``."""
+def _conferir(
+    preparo: Path,
+    nome: str,
+    ext: str,
+    fmt: str | None,
+    *,
+    require_final_newline: bool = False,
+) -> None:
+    """Confere o corpo baixado antes de ele substituir o destino ``nome``.
+
+    ``require_final_newline``: o servidor não anunciou o tamanho do corpo, então
+    um ``.csv``/``.txt`` precisa terminar em quebra de linha (como no core).
+    """
     validar_corpo(preparo, ext, nome)
     if ext == "zip" and eh_rar(preparo):
         return  # RAR com extensão .zip (IDD 2022): sem teste de ZIP
     if fmt:
         validate_payload_signature(preparo, fmt)  # type: ignore[arg-type]
-    check_payload(preparo, nome, allow_header_only=True)
+    check_payload(
+        preparo,
+        nome,
+        allow_header_only=True,
+        require_final_newline=require_final_newline,
+    )
 
 
 aliases = {k: [v] for k, v in GROUP_ALIASES.items()}

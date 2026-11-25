@@ -16,12 +16,18 @@ por um corpo recusado.
 
 from __future__ import annotations
 
-import json
+import contextlib
+import dataclasses
 import logging
 import os
+import re
 import shutil
+import threading
+import time
 import uuid
+from collections.abc import Iterator
 from pathlib import Path
+from typing import Any
 
 from quantilica.core.exceptions import InvalidPayloadSignatureError
 
@@ -105,13 +111,80 @@ def validar_corpo(
         )
 
 
+PREPARO_MAX_HORAS = 48
+"""Idade (horas) a partir da qual um arquivo de preparo vira lixo, mesmo de pid vivo."""
+
+
 def caminho_de_preparo(destino: Path) -> Path:
-    """Arquivo de preparo ao lado do destino, com extensão neutra (``.parte``).
+    """Arquivo de preparo ao lado do destino: ``.<nome>.<pid>-<id>.parte.tmp``.
 
     A extensão neutra faz o core não aplicar ao download a validação pela extensão
-    do destino (ZIP, por exemplo): a conferência é a de :func:`validar_corpo`.
+    do destino (ZIP, por exemplo): a conferência é a de :func:`validar_corpo`. O
+    sufixo ``.tmp`` faz ``select_current``, a ingestão e a auditoria o ignorarem
+    se uma execução morta o deixar para trás, e o pid dono permite a
+    :func:`limpar_preparos_orfaos` saber se o dono ainda existe.
     """
-    return destino.with_name(f".{destino.name}.{uuid.uuid4().hex[:8]}.parte")
+    sufixo = f"{os.getpid()}-{uuid.uuid4().hex[:8]}"
+    return destino.with_name(f".{destino.name}.{sufixo}.parte.tmp")
+
+
+def _pid_vivo(pid: int) -> bool:
+    """Se ``pid`` é um processo vivo neste host (no Windows, assume que sim)."""
+    if pid <= 0:
+        return False
+    if os.name == "nt":  # os.kill(pid, 0) lá equivale a Ctrl+C
+        return True
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except OSError:  # PermissionError: existe, é de outro usuário
+        return True
+    return True
+
+
+def limpar_preparos_orfaos(destino: Path, *, agora: float | None = None) -> int:
+    """Apaga o preparo de execução morta que ficou ao lado de ``destino``.
+
+    Cobre o preparo (``.<nome>.<pid>-<id>.parte.tmp``), o sidecar dele, o ``.tmp``
+    parcial que o core deixa ao lado do preparo e os preparos do formato antigo
+    (``.<nome>.<id>.parte``, sem pid). Um preparo é órfão quando o pid dono morreu
+    ou quando passou de :data:`PREPARO_MAX_HORAS` (formato antigo: só pela idade).
+    Só toca nomes deste destino; o destino e o sidecar dele nunca são removidos.
+    Devolve quantos arquivos removeu.
+    """
+    agora = time.time() if agora is None else agora
+    padrao = re.compile(
+        rf"^\.{{1,2}}{re.escape(destino.name)}\.(?:(?P<pid>\d+)-)?[0-9a-f]{{8}}"
+        r"\.parte(?:\.tmp)?(?:\.manifest\.json)?(?:\.[a-z0-9_]{8}\.tmp)?$"
+    )
+    removidos = 0
+    try:
+        entradas = list(os.scandir(destino.parent))
+    except OSError:
+        return 0
+    for entrada in entradas:
+        achado = padrao.match(entrada.name)
+        if achado is None or not entrada.is_file(follow_symlinks=False):
+            continue
+        try:
+            velho = agora - entrada.stat(follow_symlinks=False).st_mtime > (
+                PREPARO_MAX_HORAS * 3600
+            )
+        except OSError:
+            continue
+        pid = achado["pid"]
+        morto = pid is not None and not _pid_vivo(int(pid))
+        if not (velho or morto):
+            continue
+        try:
+            os.unlink(entrada.path)
+        except OSError as exc:  # pragma: no cover - disco com problema
+            logger.warning("Não foi possível remover %s: %s", entrada.path, exc)
+        else:
+            removidos += 1
+            logger.info("Removido preparo órfão %s", entrada.name)
+    return removidos
 
 
 def sidecar_de(caminho: Path) -> Path:
@@ -125,8 +198,10 @@ def preparar(destino: Path, preparo: Path) -> None:
     O arquivo existente entra por link físico (ou simbólico, se o sistema de
     arquivos não os tem), sem copiar dados; o sidecar é copiado (modo efêmero:
     sem o arquivo, só o sidecar). Quando o core baixa, ele troca o preparo por um
-    arquivo novo e o destino fica como estava.
+    arquivo novo e o destino fica como estava. Antes, apaga o preparo órfão que uma
+    execução morta deixou ao lado do destino (:func:`limpar_preparos_orfaos`).
     """
+    limpar_preparos_orfaos(destino)
     if destino.exists():
         try:
             os.link(destino, preparo)
@@ -153,24 +228,91 @@ def baixou(destino: Path, preparo: Path) -> bool:
 
 
 def promover(preparo: Path, destino: Path) -> None:
-    """Coloca o arquivo conferido (e o sidecar dele) no lugar do destino."""
+    """Coloca o arquivo conferido (e o sidecar dele) no lugar do destino.
+
+    O sidecar é regravado com ``write_manifest_sidecar`` do core, com o
+    ``path`` do destino; sem ele (core antigo) o sidecar do preparo é movido.
+    """
     sidecar = sidecar_de(preparo)
+    manifesto = _ler_manifesto(preparo) if sidecar.exists() else None
     os.replace(preparo, destino)
     if not sidecar.exists():
         return
-    final = sidecar_de(destino)
     try:
-        dados = json.loads(sidecar.read_text(encoding="utf-8"))
-        dados["path"] = str(destino.absolute())
-        temporario = final.with_name(f".{final.name}.{uuid.uuid4().hex[:8]}.tmp")
-        temporario.write_text(
-            json.dumps(dados, ensure_ascii=False, indent=2, sort_keys=True),
-            encoding="utf-8",
+        if manifesto is None:
+            raise ValueError("sem manifesto legível")
+        from quantilica.core.manifests import write_manifest_sidecar
+
+        write_manifest_sidecar(
+            destino, dataclasses.replace(manifesto, path=str(destino.absolute()))
         )
-        os.replace(temporario, final)
         sidecar.unlink()
-    except (OSError, ValueError, TypeError):
-        os.replace(sidecar, final)  # o caminho no sidecar fica o do preparo
+    except (ImportError, OSError, ValueError, TypeError):
+        os.replace(
+            sidecar, sidecar_de(destino)
+        )  # o caminho no sidecar fica o do preparo
+
+
+def _ler_manifesto(preparo: Path) -> Any | None:
+    try:
+        from quantilica.core.manifests import read_manifest_sidecar
+
+        return read_manifest_sidecar(preparo)
+    except Exception:  # noqa: BLE001 - core antigo ou sidecar ilegível
+        return None
+
+
+# --- tamanho conferido pelo servidor ---------------------------------------------
+# O core exige quebra de linha final num .csv/.tsv/.txt quando o tamanho do
+# download não pôde ser conferido (sem Content-Length nem total de Content-Range):
+# é o sinal de transferência truncada. Como o download vai para um preparo de
+# extensão neutra, a checagem do core não vale para ele; o plugin repete a regra
+# a partir dos cabeçalhos da resposta, observados por :func:`observar_tamanho`.
+
+_observado = threading.local()
+_TOTAL_DO_RANGE = re.compile(r"^bytes\s+(?:\d+-\d+|\*)/(\d+)$", re.IGNORECASE)
+
+
+def _tamanho_anunciado(cabecalhos: Any) -> bool:
+    comprimento = str(cabecalhos.get("Content-Length") or "").strip()
+    if comprimento.isdigit() and int(comprimento) > 0:
+        return True
+    return _TOTAL_DO_RANGE.match(str(cabecalhos.get("Content-Range") or "")) is not None
+
+
+def observar_tamanho(cliente: Any) -> None:
+    """Faz ``cliente.stream`` anotar (por thread) se a resposta anunciou o tamanho.
+
+    Idempotente; sem efeito num cliente sem ``stream``.
+    """
+    original = getattr(cliente, "stream", None)
+    if original is None or getattr(original, "_inep_observa", False):
+        return
+
+    @contextlib.contextmanager
+    def stream(*args: Any, **kwargs: Any) -> Iterator[Any]:
+        with original(*args, **kwargs) as resposta:
+            try:
+                _observado.verificado = _tamanho_anunciado(resposta.headers)
+            except Exception:  # noqa: BLE001
+                _observado.verificado = False
+            yield resposta
+
+    stream._inep_observa = True  # type: ignore[attr-defined]
+    try:
+        cliente.stream = stream
+    except (AttributeError, TypeError):  # pragma: no cover - cliente imutável
+        pass
+
+
+def esquecer_tamanho() -> None:
+    """Zera a observação desta thread (chamar antes de cada download)."""
+    _observado.verificado = False
+
+
+def tamanho_conferido() -> bool:
+    """Se a última resposta desta thread anunciou o tamanho do corpo."""
+    return bool(getattr(_observado, "verificado", False))
 
 
 def limpar_preparo(preparo: Path) -> None:
