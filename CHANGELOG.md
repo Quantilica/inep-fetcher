@@ -5,6 +5,12 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.8.3] - 2026-11-25
+
+### Corrigido
+
+- O extra `analysis` passa a instalar `libarchive-c`, a reserva do leitor de RAR quando o 7-Zip não traz o codec RAR (caso do 7-Zip empacotado em algumas distribuições Linux). Sem ele, o RAR5 dos microdados do ENADE 2022 falhava com `RarUnavailableError` e o ano ficava fora do lake. Requer a biblioteca `libarchive` do sistema.
+
 ## [0.8.2] - 2026-11-25
 
 ### Corrigido

@@ -1,6 +1,6 @@
 [project]
 name = "inep-fetcher"
-version = "0.8.2"
+version = "0.8.3"
 description = "A commandline utility to download INEP (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) open microdata"
 readme = "README.md"
 authors = [
@@ -42,6 +42,7 @@ analysis = [
     "polars>=1.0.0",
     "fastexcel>=0.12.0",
     "quantilica-analytics>=0.15.0",
+    "libarchive-c>=5.1",
 ]
 
 [project.entry-points."quantilica.fetchers"]
