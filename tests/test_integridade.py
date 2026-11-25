@@ -332,15 +332,15 @@ def _velho(caminho: Path, horas: float) -> None:
     os.utime(caminho, (passado, passado))
 
 
-def test_preparo_termina_em_tmp_e_leva_o_pid(tmp_path: Path) -> None:
+def test_preparo_termina_em_tmp_e_leva_o_host_e_o_pid(tmp_path: Path) -> None:
     import os
 
-    from inep_fetcher.integridade import caminho_de_preparo
+    from inep_fetcher.integridade import _hospedeiro, caminho_de_preparo
 
     destino = tmp_path / "x@20260101.zip"
     preparo = caminho_de_preparo(destino)
     assert preparo.name.endswith(".tmp")  # ignorado por select_current/ingest/auditoria
-    assert preparo.name.startswith(f".{destino.name}.{os.getpid()}-")
+    assert preparo.name.startswith(f".{destino.name}.{_hospedeiro()}-{os.getpid()}-")
     assert preparo != caminho_de_preparo(destino)  # único por download
     assert preparo.parent == destino.parent
 
@@ -348,7 +348,11 @@ def test_preparo_termina_em_tmp_e_leva_o_pid(tmp_path: Path) -> None:
 def test_preparo_de_execucao_morta_e_limpo_no_proximo_preparo(
     app, tmp_path: Path
 ) -> None:
-    from inep_fetcher.integridade import caminho_de_preparo, preparar
+    from inep_fetcher.integridade import (
+        _hospedeiro,
+        caminho_de_preparo,
+        preparar,
+    )
 
     entry = _entry("rar")
     destino = fetcher.path_builder(tmp_path, entry, None)
@@ -357,42 +361,129 @@ def test_preparo_de_execucao_morta_e_limpo_no_proximo_preparo(
     sidecar = destino.with_name(destino.name + ".manifest.json")
     sidecar.write_text("{}")
     morto = _pid_morto()
+    host = _hospedeiro()
+    base = f".{destino.name}.{host}-{morto}-aaaaaaaa.parte.tmp"
     lixo = [
-        destino.with_name(f".{destino.name}.{morto}-aaaaaaaa.parte.tmp"),
-        destino.with_name(f".{destino.name}.{morto}-aaaaaaaa.parte.tmp.manifest.json"),
+        destino.with_name(base),
+        destino.with_name(base + ".manifest.json"),
         # .tmp parcial que o core deixa ao lado do preparo
-        destino.with_name(f"..{destino.name}.{morto}-aaaaaaaa.parte.tmp.k3_x9z0q.tmp"),
-        # formato antigo (sem pid): só pela idade
-        destino.with_name(f".{destino.name}.deadbeef.parte"),
+        destino.with_name("." + base + ".k3_x9z0q.tmp"),
     ]
     for item in lixo:
         item.write_bytes(b"parcial")
-    _velho(lixo[3], 49)
-    vivo = destino.with_name(f".{destino.name}.{os.getpid()}-bbbbbbbb.parte.tmp")
+    vivo = destino.with_name(f".{destino.name}.{host}-{os.getpid()}-bbbbbbbb.parte.tmp")
     vivo.write_bytes(b"de outra thread")
-    antigo_fresco = destino.with_name(f".{destino.name}.cafebabe.parte")
-    antigo_fresco.write_bytes(b"talvez em andamento")
-    de_outro = destino.with_name(f".outro.zip.{morto}-aaaaaaaa.parte.tmp")
+    # formatos antigos (sem host): só pela idade, e ela é a do ctime (recente aqui)
+    antigos = [
+        destino.with_name(f".{destino.name}.cafebabe.parte"),
+        destino.with_name(f".{destino.name}.{morto}-aaaaaaaa.parte.tmp"),
+    ]
+    for item in antigos:
+        item.write_bytes(b"talvez em andamento")
+    de_outro = destino.with_name(f".outro.zip.{host}-{morto}-aaaaaaaa.parte.tmp")
     de_outro.write_bytes(b"de outro destino")
 
     preparar(destino, caminho_de_preparo(destino))
 
     assert not any(item.exists() for item in lixo)
-    assert vivo.exists() and antigo_fresco.exists() and de_outro.exists()
+    assert vivo.exists() and de_outro.exists()
+    assert all(item.exists() for item in antigos)
     assert destino.read_bytes() == RAR_OK  # o destino e o sidecar nunca são tocados
     assert sidecar.read_text() == "{}"
 
 
-def test_preparo_de_pid_vivo_so_cai_depois_de_48h(tmp_path: Path) -> None:
+def test_preparo_de_pid_vivo_do_proprio_host_nunca_cai_pela_idade(
+    tmp_path: Path,
+) -> None:
+    """O preparo é link físico do destino e herda o mtime dele (meses): o pid decide."""
+    import time
+
+    from inep_fetcher.integridade import _hospedeiro, limpar_preparos_orfaos
+
+    destino = tmp_path / "x@20260101.zip"
+    destino.write_bytes(b"destino de meses atras")
+    _velho(destino, 24 * 100)
+    vivo = (
+        tmp_path / f".{destino.name}.{_hospedeiro()}-{os.getpid()}-bbbbbbbb.parte.tmp"
+    )
+    os.link(destino, vivo)  # herda o mtime velho do destino
+    assert time.time() - vivo.stat().st_mtime > 48 * 3600
+    assert limpar_preparos_orfaos(destino) == 0
+    assert limpar_preparos_orfaos(destino, agora=time.time() + 400 * 24 * 3600) == 0
+    assert vivo.exists() and destino.exists()
+
+
+def test_preparo_de_outro_host_so_cai_depois_de_48h_de_ctime(tmp_path: Path) -> None:
+    import time
+
+    from inep_fetcher.integridade import _hospedeiro, limpar_preparos_orfaos
+
+    destino = tmp_path / "x@20260101.zip"
+    destino.write_bytes(b"x")
+    outro = "0" * 8 if _hospedeiro() != "0" * 8 else "1" * 8
+    de_fora = tmp_path / f".{destino.name}.{outro}-{_pid_morto()}-bbbbbbbb.parte.tmp"
+    de_fora.write_bytes(b"de outro host, pid sem sentido aqui")
+    parcial = tmp_path / f"..{destino.name}.{outro}-1-bbbbbbbb.parte.tmp.k3_x9z0q.tmp"
+    parcial.write_bytes(b"parcial do core")
+    _velho(de_fora, 24 * 100)  # o mtime velho não conta: vale o ctime
+    agora = time.time()
+    assert limpar_preparos_orfaos(destino, agora=agora + 47 * 3600) == 0
+    assert limpar_preparos_orfaos(destino, agora=agora + 49 * 3600) == 2
+    assert not de_fora.exists() and not parcial.exists()
+    assert destino.exists()
+
+
+def test_preparo_de_formato_antigo_so_cai_pela_idade_do_ctime(tmp_path: Path) -> None:
+    import time
+
     from inep_fetcher.integridade import limpar_preparos_orfaos
 
     destino = tmp_path / "x@20260101.zip"
-    vivo = tmp_path / f".{destino.name}.{os.getpid()}-bbbbbbbb.parte.tmp"
-    vivo.write_bytes(b"x")
+    destino.write_bytes(b"x")
+    antigo = tmp_path / f".{destino.name}.cafebabe.parte"
+    antigo.write_bytes(b"x")
+    com_pid = tmp_path / f".{destino.name}.{_pid_morto()}-aaaaaaaa.parte.tmp"
+    com_pid.write_bytes(b"x")
     assert limpar_preparos_orfaos(destino) == 0
-    _velho(vivo, 49)
-    assert limpar_preparos_orfaos(destino) == 1
-    assert not vivo.exists()
+    assert limpar_preparos_orfaos(destino, agora=time.time() + 49 * 3600) == 2
+
+
+def test_limpeza_de_um_processo_nao_apaga_o_preparo_de_outro_vivo(
+    tmp_path: Path,
+) -> None:
+    """Dois processos no mesmo destino: o vivo (de pid de verdade) não é apagado."""
+    import subprocess
+    import sys
+
+    from inep_fetcher.integridade import (
+        _hospedeiro,
+        caminho_de_preparo,
+        limpar_preparos_orfaos,
+        preparar,
+    )
+
+    destino = tmp_path / "x@20260101.zip"
+    destino.write_bytes(b"destino antigo")
+    _velho(destino, 24 * 90)
+    vivo = subprocess.Popen(
+        [sys.executable, "-c", "import time; time.sleep(60)"],
+        stdin=subprocess.DEVNULL,
+    )
+    try:
+        preparo_do_vivo = tmp_path / (
+            f".{destino.name}.{_hospedeiro()}-{vivo.pid}-aaaaaaaa.parte.tmp"
+        )
+        os.link(destino, preparo_do_vivo)  # mtime de 90 dias, como no download real
+        preparar(destino, caminho_de_preparo(destino))  # segundo processo (este)
+        assert preparo_do_vivo.exists()
+        vivo.kill()
+        vivo.wait()
+        assert limpar_preparos_orfaos(destino) >= 1  # morto: agora cai
+        assert not preparo_do_vivo.exists()
+    finally:
+        vivo.kill()
+        vivo.wait()
+    assert destino.read_bytes() == b"destino antigo"
 
 
 def test_download_depois_de_execucao_morta_nao_deixa_rastro(
@@ -401,7 +492,11 @@ def test_download_depois_de_execucao_morta_nao_deixa_rastro(
     entry = _entry("rar")
     destino = fetcher.path_builder(tmp_path, entry, None)
     destino.parent.mkdir(parents=True)
-    morto = destino.with_name(f".{destino.name}.{_pid_morto()}-aaaaaaaa.parte.tmp")
+    from inep_fetcher.integridade import _hospedeiro
+
+    morto = destino.with_name(
+        f".{destino.name}.{_hospedeiro()}-{_pid_morto()}-aaaaaaaa.parte.tmp"
+    )
     morto.write_bytes(b"parcial")
     app(RAR_OK)
     fetcher.download_entry(entry, tmp_path)

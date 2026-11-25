@@ -18,10 +18,12 @@ from __future__ import annotations
 
 import contextlib
 import dataclasses
+import hashlib
 import logging
 import os
 import re
 import shutil
+import socket
 import threading
 import time
 import uuid
@@ -112,28 +114,37 @@ def validar_corpo(
 
 
 PREPARO_MAX_HORAS = 48
-"""Idade (horas) a partir da qual um arquivo de preparo vira lixo, mesmo de pid vivo."""
+"""Idade (horas, por ``st_ctime``) a partir da qual um preparo de outro host, ou de
+formato antigo, vira lixo."""
+
+
+def _hospedeiro() -> str:
+    """Hash curto do nome deste host (entra no nome do preparo)."""
+    return hashlib.sha1(  # noqa: S324 - só identifica o host, não protege nada
+        socket.gethostname().encode("utf-8")
+    ).hexdigest()[:8]
 
 
 def caminho_de_preparo(destino: Path) -> Path:
-    """Arquivo de preparo ao lado do destino: ``.<nome>.<pid>-<id>.parte.tmp``.
+    """Arquivo de preparo ao lado do destino: ``.<nome>.<host>-<pid>-<id>.parte.tmp``.
 
     A extensão neutra faz o core não aplicar ao download a validação pela extensão
     do destino (ZIP, por exemplo): a conferência é a de :func:`validar_corpo`. O
     sufixo ``.tmp`` faz ``select_current``, a ingestão e a auditoria o ignorarem
-    se uma execução morta o deixar para trás, e o pid dono permite a
-    :func:`limpar_preparos_orfaos` saber se o dono ainda existe.
+    se uma execução morta o deixar para trás. O hash do host e o pid dono
+    permitem a :func:`limpar_preparos_orfaos` saber se o dono ainda existe: o pid
+    só vale no host que o gerou (a pasta pode estar num volume compartilhado).
     """
-    sufixo = f"{os.getpid()}-{uuid.uuid4().hex[:8]}"
+    sufixo = f"{_hospedeiro()}-{os.getpid()}-{uuid.uuid4().hex[:8]}"
     return destino.with_name(f".{destino.name}.{sufixo}.parte.tmp")
 
 
 def _pid_vivo(pid: int) -> bool:
-    """Se ``pid`` é um processo vivo neste host (no Windows, assume que sim)."""
+    """Se ``pid`` é um processo vivo neste host."""
     if pid <= 0:
         return False
     if os.name == "nt":  # os.kill(pid, 0) lá equivale a Ctrl+C
-        return True
+        return _pid_vivo_windows(pid)
     try:
         os.kill(pid, 0)
     except ProcessLookupError:
@@ -143,21 +154,55 @@ def _pid_vivo(pid: int) -> bool:
     return True
 
 
+def _pid_vivo_windows(pid: int) -> bool:  # pragma: no cover - só no Windows
+    import ctypes
+    from ctypes import wintypes
+
+    consulta_limitada = 0x1000
+    ainda_ativo = 259
+    k32 = ctypes.WinDLL("kernel32", use_last_error=True)  # pyright: ignore[reportAttributeAccessIssue]
+    k32.OpenProcess.restype = wintypes.HANDLE
+    k32.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    k32.GetExitCodeProcess.argtypes = [wintypes.HANDLE, ctypes.POINTER(wintypes.DWORD)]
+    k32.CloseHandle.argtypes = [wintypes.HANDLE]
+    handle = k32.OpenProcess(consulta_limitada, False, pid)
+    if not handle:
+        return ctypes.get_last_error() == 5  # pyright: ignore[reportAttributeAccessIssue]
+    try:
+        codigo = wintypes.DWORD()
+        if not k32.GetExitCodeProcess(handle, ctypes.byref(codigo)):
+            return True
+        return codigo.value == ainda_ativo
+    finally:
+        k32.CloseHandle(handle)
+
+
 def limpar_preparos_orfaos(destino: Path, *, agora: float | None = None) -> int:
     """Apaga o preparo de execução morta que ficou ao lado de ``destino``.
 
-    Cobre o preparo (``.<nome>.<pid>-<id>.parte.tmp``), o sidecar dele, o ``.tmp``
-    parcial que o core deixa ao lado do preparo e os preparos do formato antigo
-    (``.<nome>.<id>.parte``, sem pid). Um preparo é órfão quando o pid dono morreu
-    ou quando passou de :data:`PREPARO_MAX_HORAS` (formato antigo: só pela idade).
+    Cobre o preparo (``.<nome>.<host>-<pid>-<id>.parte.tmp``), o sidecar dele e o
+    ``.tmp`` parcial que o core deixa ao lado do preparo; e os formatos antigos
+    (``.<nome>.<pid>-<id>.parte.tmp`` e ``.<nome>.<id>.parte``, sem host).
+
+    A decisão por preparo:
+
+    - do próprio host, com pid: só o pid decide (morto, apaga; vivo, fica, com a
+      idade que tiver). A idade do arquivo não serve: o preparo nasce como link
+      físico do destino e herda o ``mtime`` dele, que pode ter meses;
+    - de outro host (pasta compartilhada) ou de formato antigo: não há como saber
+      se o dono vive; só passa de :data:`PREPARO_MAX_HORAS` pelo ``st_ctime``
+      (instante em que o inode mudou: a criação do link, não o ``mtime`` herdado).
+
     Só toca nomes deste destino; o destino e o sidecar dele nunca são removidos.
     Devolve quantos arquivos removeu.
     """
     agora = time.time() if agora is None else agora
     padrao = re.compile(
-        rf"^\.{{1,2}}{re.escape(destino.name)}\.(?:(?P<pid>\d+)-)?[0-9a-f]{{8}}"
+        rf"^\.{{1,2}}{re.escape(destino.name)}\."
+        r"(?:(?P<host>[0-9a-f]{8})-(?P<pid>\d+)-|\d+-)?[0-9a-f]{8}"
         r"\.parte(?:\.tmp)?(?:\.manifest\.json)?(?:\.[a-z0-9_]{8}\.tmp)?$"
     )
+    meu_host = _hospedeiro()
     removidos = 0
     try:
         entradas = list(os.scandir(destino.parent))
@@ -167,16 +212,16 @@ def limpar_preparos_orfaos(destino: Path, *, agora: float | None = None) -> int:
         achado = padrao.match(entrada.name)
         if achado is None or not entrada.is_file(follow_symlinks=False):
             continue
-        try:
-            velho = agora - entrada.stat(follow_symlinks=False).st_mtime > (
-                PREPARO_MAX_HORAS * 3600
-            )
-        except OSError:
-            continue
-        pid = achado["pid"]
-        morto = pid is not None and not _pid_vivo(int(pid))
-        if not (velho or morto):
-            continue
+        if achado["host"] == meu_host:
+            if _pid_vivo(int(achado["pid"])):
+                continue
+        else:
+            try:
+                idade = agora - entrada.stat(follow_symlinks=False).st_ctime
+            except OSError:
+                continue
+            if idade <= PREPARO_MAX_HORAS * 3600:
+                continue
         try:
             os.unlink(entrada.path)
         except OSError as exc:  # pragma: no cover - disco com problema
