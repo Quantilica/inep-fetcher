@@ -5,6 +5,12 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Corrigido
+
+- O download recusa corpo que não é o arquivo esperado. O servidor do INEP responde HTTP 200 com uma página HTML ("Request Rejected", 243 bytes) quando bloqueia o cliente, e o `.rar` do ENADE 2022 chegou a ser gravado com ela, com carimbo mais novo que o arquivo real. O `quantilica-core` valida a assinatura antes de confirmar o download, mas não conhece `.rar`, então só o `.rar` passava sem conferência. Agora o formato é repassado ao core (que rejeita HTML e bloqueio de WAF no `.tmp`, antes de gravar) e, em seguida, a versão recém-criada passa por `inep_fetcher.integridade.validar_corpo`: assinatura de `zip`, `xlsx`, `xls`, `rar` e `7z` e tamanho mínimo de 1 KiB. Em recusa a versão nova não fica no disco (nem o sidecar), o erro ("download recusado, versão anterior mantida") entra na lista de falhas da execução e a versão anterior segue como a atual. Arquivo que já estava no destino nunca é apagado: só gera aviso no log.
+
 ## [0.8.1] - 2026-11-19
 
 ### Alterado
