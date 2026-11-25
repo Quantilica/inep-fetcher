@@ -9,16 +9,21 @@ from typing import Any
 
 from quantilica.cli.sdk import FetcherApp
 from quantilica.core.exceptions import CorruptPayloadError
+from quantilica.core.files import check_payload
 from quantilica.core.registry import FetcherInfo
-from quantilica.core.storage import expected_format_for_path
+from quantilica.core.storage import expected_format_for_path, validate_payload_signature
 from quantilica.core.sync import FreshnessPolicy
 
 from . import catalog
 from .catalog import GROUP_ALIASES, GROUPS, list_datasets
 from .integridade import (
-    ASSINATURAS,
-    descartar_versao_nova,
+    baixou,
+    caminho_de_preparo,
+    eh_rar,
     extensao_de,
+    limpar_preparo,
+    preparar,
+    promover,
     validar_corpo,
 )
 from .storage import DataRepository
@@ -46,11 +51,13 @@ class InepFetcherApp(FetcherApp):
     """FetcherApp que recusa corpo que não é o arquivo esperado.
 
     O servidor do INEP devolve HTTP 200 com uma página HTML quando o firewall
-    bloqueia o cliente. O core valida a assinatura antes de confirmar o download,
-    mas não conhece ``.rar``; aqui o formato é repassado ao core (rejeição de
-    HTML/WAF no ``.tmp``) e, depois, a versão recém-criada é conferida (assinatura,
-    tamanho mínimo). Em recusa a versão nova não fica no disco, o erro vai para a
-    lista de falhas da execução e a versão anterior segue como a atual.
+    bloqueia o cliente, e o IDD 2022 é um RAR5 com extensão ``.zip``. O core valida
+    pela extensão do destino (não conhece ``.rar`` e recusaria o RAR5 como ZIP),
+    então o download vai para um arquivo de preparo de extensão neutra, ao lado do
+    destino, e só substitui o destino depois de conferido (assinatura, tamanho
+    mínimo, integridade do ZIP). Em recusa o preparo é apagado, o erro vai para a
+    lista de falhas da execução e o destino (e o sidecar dele), se existia, segue
+    intacto como a versão atual.
     """
 
     def _download_file(
@@ -63,37 +70,47 @@ class InepFetcherApp(FetcherApp):
         **kwargs: Any,
     ) -> Path:
         ext = extensao_de(output)
-        if (
-            expected_format is None
-            and ext in ASSINATURAS
-            and expected_format_for_path(output.name) is None
-        ):
-            expected_format = ext  # o core ainda não tem tabela para esta extensão
-        existia = output.exists()
+        fmt = (
+            expected_format
+            if expected_format is not None
+            else expected_format_for_path(output.name)
+        )
+        preparo = caminho_de_preparo(output)
+        preparar(output, preparo)
         try:
-            resultado = super()._download_file(
-                url, output, progress, expected_format=expected_format, **kwargs
-            )
-        except CorruptPayloadError as exc:
-            # Recusado pelo core antes de confirmar o download: nada foi gravado.
-            raise CorruptPayloadError(
-                f"{output.name}: download recusado, versão anterior mantida: {exc}"
-            ) from exc
-        resultado = Path(resultado)
-        if not resultado.exists():
-            return resultado  # modo efêmero: só o sidecar ficou, nada novo a conferir
-        try:
-            validar_corpo(resultado, ext)
-        except CorruptPayloadError as exc:
-            if existia or resultado != output:
-                # Arquivo que já estava lá (acervo): nunca é apagado aqui.
-                logger.warning("arquivo existente com conteúdo suspeito: %s", exc)
-                return resultado
-            descartar_versao_nova(resultado)
-            raise CorruptPayloadError(
-                f"download recusado, versão anterior mantida: {exc}"
-            ) from exc  # a mensagem do validar_corpo já traz o nome do arquivo
-        return resultado
+            # ``expected_format=""``: o core não valida o preparo; vale o abaixo.
+            super()._download_file(url, preparo, progress, expected_format="", **kwargs)
+            if not baixou(output, preparo):
+                # Fresco, ou modo efêmero (só o sidecar): nada novo a conferir.
+                if output.exists():
+                    try:
+                        validar_corpo(output, ext)
+                    except CorruptPayloadError as exc:
+                        # Arquivo que já estava lá (acervo): nunca é apagado aqui.
+                        logger.warning(
+                            "arquivo existente com conteúdo suspeito: %s", exc
+                        )
+                return output
+            try:
+                _conferir(preparo, output.name, ext, fmt)
+            except CorruptPayloadError as exc:
+                raise CorruptPayloadError(
+                    f"download recusado, versão anterior mantida: {exc}"
+                ) from exc  # a mensagem já traz o nome do arquivo
+            promover(preparo, output)
+            return output
+        finally:
+            limpar_preparo(preparo)
+
+
+def _conferir(preparo: Path, nome: str, ext: str, fmt: str | None) -> None:
+    """Confere o corpo baixado antes de ele substituir o destino ``nome``."""
+    validar_corpo(preparo, ext, nome)
+    if ext == "zip" and eh_rar(preparo):
+        return  # RAR com extensão .zip (IDD 2022): sem teste de ZIP
+    if fmt:
+        validate_payload_signature(preparo, fmt)  # type: ignore[arg-type]
+    check_payload(preparo, nome, allow_header_only=True)
 
 
 aliases = {k: [v] for k, v in GROUP_ALIASES.items()}

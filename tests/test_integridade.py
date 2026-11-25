@@ -198,3 +198,113 @@ def test_todo_ext_do_catalogo_tem_assinatura_ou_e_csv() -> None:
 
     exts = {e["ext"] for e in list_datasets()}
     assert exts - set(ASSINATURAS) <= {"csv"}
+
+
+RAR5_COMO_ZIP = b"Rar!\x1a\x07\x01\x00" + b"\x01" * 4096
+
+
+def _entry_idd_2022() -> dict:
+    return next(
+        dict(e) for e in list_datasets("idd") if e["id"] == "idd-microdados-2022"
+    )
+
+
+def _zip_de_verdade() -> bytes:
+    import io
+    import zipfile
+
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("dados.csv", "a;b\n1;2\n" * 200)
+    return buf.getvalue()
+
+
+def test_idd_2022_rar5_com_extensao_zip_e_aceito(app, tmp_path: Path) -> None:
+    """O IDD 2022 é RAR5 publicado como .zip: o core o recusaria como ZIP."""
+    app(RAR5_COMO_ZIP)
+    destino = fetcher.download_entry(_entry_idd_2022(), tmp_path)
+    assert destino.suffix == ".zip"
+    assert destino.read_bytes() == RAR5_COMO_ZIP
+    sidecar = destino.with_name(destino.name + ".manifest.json")
+    assert sidecar.exists()
+    import json
+
+    assert json.loads(sidecar.read_text())["path"] == str(destino.absolute())
+    assert _arquivos(tmp_path) == sorted([destino.name, sidecar.name])
+
+
+def test_zip_de_verdade_e_gravado(app, tmp_path: Path) -> None:
+    corpo = _zip_de_verdade()
+    app(corpo)
+    destino = fetcher.download_entry(_entry("zip"), tmp_path)
+    assert destino.read_bytes() == corpo
+    assert len(_arquivos(tmp_path)) == 2  # arquivo + sidecar, sem preparo
+
+
+def test_zip_truncado_e_recusado_e_nao_deixa_rastro(app, tmp_path: Path) -> None:
+    app(_zip_de_verdade()[:300])
+    with pytest.raises(CorruptPayloadError):
+        fetcher.download_entry(_entry("zip"), tmp_path)
+    assert _arquivos(tmp_path) == []
+
+
+def test_rar_com_assinatura_errada_nao_sobrescreve_o_existente(
+    app, tmp_path: Path
+) -> None:
+    """O core troca o .tmp pelo destino antes de qualquer conferência do INEP."""
+    entry = _entry("rar")
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    destino.parent.mkdir(parents=True)
+    destino.write_bytes(RAR_OK)
+    sidecar = destino.with_name(destino.name + ".manifest.json")
+    sidecar.write_text('{"sha256": "antigo"}')
+    app(b"\x00\x01\x02\x03" * 2048)  # tamanho diferente: o core baixa
+    with pytest.raises(CorruptPayloadError, match="versão anterior mantida"):
+        fetcher.download_entry(entry, tmp_path)
+    assert destino.read_bytes() == RAR_OK
+    assert sidecar.read_text() == '{"sha256": "antigo"}'
+    assert _arquivos(tmp_path) == sorted([destino.name, sidecar.name])
+
+
+def test_rar_valido_novo_substitui_o_existente_e_o_sidecar(app, tmp_path: Path) -> None:
+    entry = _entry("rar")
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    destino.parent.mkdir(parents=True)
+    destino.write_bytes(RAR_OK)
+    novo = b"Rar!\x1a\x07\x01\x00" + b"\x02" * 9000
+    app(novo)
+    fetcher.download_entry(entry, tmp_path)
+    assert destino.read_bytes() == novo
+    import json
+
+    meta = json.loads(destino.with_name(destino.name + ".manifest.json").read_text())
+    assert meta["size_bytes"] == len(novo)
+    assert meta["path"] == str(destino.absolute())
+    assert len(_arquivos(tmp_path)) == 2
+
+
+def test_modo_efemero_recusa_sem_apagar_o_sidecar_existente(
+    app, tmp_path: Path
+) -> None:
+    """Só o sidecar ficou (arquivo apagado do local): um corpo ruim não o apaga."""
+    entry = _entry("rar")
+    destino = fetcher.path_builder(tmp_path, entry, None)
+    destino.parent.mkdir(parents=True)
+    sidecar = destino.with_name(destino.name + ".manifest.json")
+    sidecar.write_text("{}")  # ilegível para o core: ele baixa de novo
+    assert not destino.exists()
+    app(PAGINA_ERRO, content_type="text/html")
+    with pytest.raises(CorruptPayloadError):
+        fetcher.download_entry(entry, tmp_path)
+    assert not destino.exists()
+    assert sidecar.read_text() == "{}"
+    assert _arquivos(tmp_path) == [sidecar.name]
+
+
+def test_validar_corpo_zip_aceita_rar_mas_recusa_o_resto(tmp_path: Path) -> None:
+    p = tmp_path / "a.zip"
+    p.write_bytes(RAR5_COMO_ZIP)
+    validar_corpo(p)
+    p.write_bytes(b"\x00" * 2048)
+    with pytest.raises(CorruptPayloadError, match="assinatura"):
+        validar_corpo(p)
