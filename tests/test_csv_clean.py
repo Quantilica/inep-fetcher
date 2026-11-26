@@ -11,6 +11,14 @@ import polars as pl
 from inep_fetcher.csv_clean import CsvCleanup, clean_csv, detect_separator, split_raw
 from inep_fetcher.lake import LakeConverter
 
+
+def _unico(achados) -> Path:
+    """O único caminho de `achados`; falha se houver zero ou mais de um."""
+    lista = sorted(achados)
+    assert len(lista) == 1, lista
+    return lista[0]
+
+
 TITULO_3 = (
     "Ministério da Educação;;;;\n"
     "Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira;;;;\n"
@@ -209,7 +217,7 @@ def test_microdados_nao_passam_pela_limpeza(tmp_path: Path) -> None:
     _write(raw / "enem_2023@20240101.csv", "a;b;;\n1;2;;\n")
     res = LakeConverter().convert(tmp_path / "raw", tmp_path / "lake")
     assert not res.errors
-    df = pl.read_parquet(next((tmp_path / "lake").rglob("*.parquet")))
+    df = pl.read_parquet(_unico((tmp_path / "lake").rglob("*.parquet")))
     assert df.width == 4  # as colunas sem nome continuam: só os indicadores limpam
 
 
