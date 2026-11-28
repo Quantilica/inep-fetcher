@@ -5,6 +5,12 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Adicionado
+
+- Aviso de edição nova possivelmente não catalogada. O catálogo dos microdados é estático (ex.: `range(1998, 2026)` no ENEM) e nada avisava quando a fonte publicava uma edição nova. Para os grupos anuais (`enem`, `censo_escolar`, `censo_educacao_superior`), `list_datasets` passa a emitir um WARNING por execução quando o ano esperado (ano corrente menos 1 depois do mês de corte do grupo, menos 2 antes dele) não está no catálogo, dizendo qual grupo, até onde vai e qual edição é esperada. Meses de corte documentados em `EDICAO_ANUAL_MES_DE_CORTE` (ENEM e Censo Escolar: junho; Censo da Educação Superior: dezembro), estimativas do calendário usual, sem consulta à fonte. `edicoes_possivelmente_novas(hoje)` devolve a mesma lista. Não muda código de saída nem descobre edições: só avisa. Os grupos bienais, de edição única ou com lacunas não entram.
+
 ## [0.8.3] - 2026-11-25
 
 ### Corrigido

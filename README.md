@@ -126,6 +126,12 @@ for entry in list_datasets(group="enem"):
     print(entry["id"], entry["url"])
 ```
 
+O catálogo dos microdados é estático: edição nova entra editando o módulo do
+grupo. Para os grupos anuais (`enem`, `censo_escolar`, `censo_educacao_superior`),
+`list_datasets` emite um WARNING por execução quando a edição do ano anterior já
+deveria estar publicada (mês de corte em `EDICAO_ANUAL_MES_DE_CORTE`) e não está no
+catálogo; `edicoes_possivelmente_novas()` devolve a mesma lista.
+
 ## Desenvolvimento
 
 ```bash

@@ -1,11 +1,16 @@
 """Tests for inep_fetcher.catalog."""
 
+import datetime as dt
+import logging
+
 import pytest
 
+from inep_fetcher import catalog
 from inep_fetcher.catalog import (
     ALL_GROUP_KEYS,
     GROUPS,
     INDICADORES_GROUP_KEYS,
+    edicoes_possivelmente_novas,
     expand_group,
     list_datasets,
     resolve_group,
@@ -376,6 +381,55 @@ def test_list_datasets_filtered():
 def test_list_datasets_unknown_group_raises():
     with pytest.raises(ValueError, match="Unknown group"):
         list_datasets("bogus")
+
+
+# ---------------------------------------------------------------------------
+# Aviso de edição nova possivelmente não catalogada
+# ---------------------------------------------------------------------------
+
+
+def test_edicao_em_dia_nao_avisa():
+    # Nov/2026: ENEM e Censo Escolar vão até 2025; o Superior (2024) só é cobrado
+    # a partir de dezembro.
+    assert edicoes_possivelmente_novas(dt.date(2026, 11, 28)) == []
+
+
+def test_edicao_atrasada_depois_do_mes_de_corte_avisa():
+    assert edicoes_possivelmente_novas(dt.date(2026, 12, 1)) == [
+        ("censo_educacao_superior", 2024, 2025)
+    ]
+    # Um ano depois, sem ninguém atualizar o catálogo: os três grupos anuais.
+    assert [g for g, _, _ in edicoes_possivelmente_novas(dt.date(2027, 12, 1))] == [
+        "enem",
+        "censo_escolar",
+        "censo_educacao_superior",
+    ]
+
+
+def test_antes_do_mes_de_corte_cobra_so_o_ano_anterior_ao_anterior():
+    # Em março/2027 a edição 2026 ainda não é esperada, a de 2025 sim.
+    assert edicoes_possivelmente_novas(dt.date(2027, 3, 1)) == [
+        ("censo_educacao_superior", 2024, 2025)
+    ]
+    # Em junho/2026 ENEM e Censo Escolar 2025 são esperados (e estão); o Superior
+    # só é cobrado em 2024.
+    assert edicoes_possivelmente_novas(dt.date(2026, 6, 1)) == []
+
+
+def test_list_datasets_avisa_uma_vez_por_execucao(monkeypatch, caplog):
+    monkeypatch.setattr(catalog, "_aviso_edicao_emitido", False)
+    monkeypatch.setattr(
+        catalog,
+        "edicoes_possivelmente_novas",
+        lambda hoje=None: [("enem", 2025, 2026)],
+    )
+    with caplog.at_level(logging.WARNING, logger="inep_fetcher.catalog"):
+        list_datasets("ana")
+        list_datasets("enem")
+    avisos = [r for r in caplog.records if "edição nova não catalogada" in r.message]
+    assert len(avisos) == 1
+    assert "'enem'" in avisos[0].message
+    assert "2025" in avisos[0].message and "2026" in avisos[0].message
 
 
 # ---------------------------------------------------------------------------

@@ -30,6 +30,9 @@ Public API is stable across future waves (mais grupos podem ser adicionados
 sem quebrar esta interface).
 """
 
+import datetime as dt
+import logging
+
 from ._catalog_base import DatasetEntry, GroupInfo
 from .catalog_ana import GROUP_ALIASES_ANA, GROUPS_ANA
 from .catalog_censo import GROUP_ALIASES_CENSO_ESCOLAR, GROUPS_CENSO_ESCOLAR
@@ -75,7 +78,10 @@ __all__ = [
     "resolve_group",
     "expand_group",
     "list_datasets",
+    "edicoes_possivelmente_novas",
 ]
+
+logger = logging.getLogger(__name__)
 
 GROUPS: dict[str, GroupInfo] = {
     **GROUPS_ENEM,
@@ -126,6 +132,64 @@ _MACRO_GROUPS: dict[str, list[str]] = {
 }
 
 
+# Catálogo estático: edição nova não aparece sozinha. Para os grupos anuais, a
+# edição do ano anterior costuma estar publicada a partir de um certo mês; passado
+# esse mês sem ela no catálogo, o ``list_datasets`` avisa (uma vez por execução).
+# Os meses são estimativas conservadoras do calendário usual do INEP, não dado da
+# fonte: ENEM e Censo Escolar do ano N saem no primeiro semestre de N+1 (corte em
+# junho); o Censo da Educação Superior do ano N sai no segundo semestre de N+1
+# (corte em dezembro). Os demais grupos têm periodicidade irregular (bienal, edição
+# única, lacunas) e não entram.
+EDICAO_ANUAL_MES_DE_CORTE: dict[str, int] = {
+    "enem": 6,
+    "censo_escolar": 6,
+    "censo_educacao_superior": 12,
+}
+
+_aviso_edicao_emitido = False
+
+
+def edicoes_possivelmente_novas(
+    hoje: dt.date | None = None,
+) -> list[tuple[str, int, int]]:
+    """Grupos anuais cujo catálogo pode estar atrasado em relação à fonte.
+
+    Devolve ``(grupo, último ano catalogado, ano esperado)``. O ano esperado é o
+    ano corrente menos 1 depois do mês de corte do grupo (``EDICAO_ANUAL_MES_DE_CORTE``)
+    e o ano corrente menos 2 antes dele. Não consulta a fonte: só compara o
+    catálogo com o calendário.
+    """
+    hoje = hoje or dt.date.today()
+    saida: list[tuple[str, int, int]] = []
+    for grupo, mes in EDICAO_ANUAL_MES_DE_CORTE.items():
+        anos = [
+            e["year"] for e in GROUPS[grupo]["entries"] if e.get("year") is not None
+        ]
+        if not anos:
+            continue
+        esperado = hoje.year - 1 if hoje.month >= mes else hoje.year - 2
+        if max(anos) < esperado:
+            saida.append((grupo, max(anos), esperado))
+    return saida
+
+
+def _avisar_edicoes_novas() -> None:
+    """WARNING por execução para cada grupo anual que pode ter edição não catalogada."""
+    global _aviso_edicao_emitido
+    if _aviso_edicao_emitido:
+        return
+    _aviso_edicao_emitido = True
+    for grupo, ultimo, esperado in edicoes_possivelmente_novas():
+        logger.warning(
+            "catálogo do INEP: o grupo '%s' vai até %d e a edição %d já deveria "
+            "estar publicada; pode haver edição nova não catalogada (o catálogo é "
+            "estático: confira a fonte e acrescente o ano ao módulo do grupo)",
+            grupo,
+            ultimo,
+            esperado,
+        )
+
+
 def resolve_group(key: str) -> str | None:
     """Resolve a group key or alias to a canonical group id.
 
@@ -173,6 +237,7 @@ def list_datasets(group: str | None = None) -> list[DatasetEntry]:
     Raises:
         ValueError: If a group is provided but not recognized.
     """
+    _avisar_edicoes_novas()
     if group is not None:
         canon = resolve_group(group)
         if canon is None:
