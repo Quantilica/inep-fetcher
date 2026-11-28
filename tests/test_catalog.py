@@ -388,13 +388,27 @@ def test_list_datasets_unknown_group_raises():
 # ---------------------------------------------------------------------------
 
 
-def test_edicao_em_dia_nao_avisa():
+@pytest.fixture
+def grupos_anuais_fixos(monkeypatch):
+    """Catálogo fixo (último ano por grupo anual), independente do real."""
+    anos = {"enem": 2025, "censo_escolar": 2025, "censo_educacao_superior": 2024}
+    monkeypatch.setattr(
+        catalog,
+        "GROUPS",
+        {
+            g: {"name": g, "entries": [{"year": a - 1}, {"year": a}]}
+            for g, a in anos.items()
+        },
+    )
+
+
+def test_edicao_em_dia_nao_avisa(grupos_anuais_fixos):
     # Nov/2026: ENEM e Censo Escolar vão até 2025; o Superior (2024) só é cobrado
     # a partir de dezembro.
     assert edicoes_possivelmente_novas(dt.date(2026, 11, 28)) == []
 
 
-def test_edicao_atrasada_depois_do_mes_de_corte_avisa():
+def test_edicao_atrasada_depois_do_mes_de_corte_avisa(grupos_anuais_fixos):
     assert edicoes_possivelmente_novas(dt.date(2026, 12, 1)) == [
         ("censo_educacao_superior", 2024, 2025)
     ]
@@ -406,7 +420,7 @@ def test_edicao_atrasada_depois_do_mes_de_corte_avisa():
     ]
 
 
-def test_antes_do_mes_de_corte_cobra_so_o_ano_anterior_ao_anterior():
+def test_antes_do_mes_de_corte_cobra_so_o_ano_anterior_ao_anterior(grupos_anuais_fixos):
     # Em março/2027 a edição 2026 ainda não é esperada, a de 2025 sim.
     assert edicoes_possivelmente_novas(dt.date(2027, 3, 1)) == [
         ("censo_educacao_superior", 2024, 2025)
